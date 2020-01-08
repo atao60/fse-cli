@@ -26,8 +26,8 @@
     "access": "public"
   },
   "files": [
-    "./bin",
-    "./dist"
+    "bin/",
+    "dist/"
   ],
   "scripts": {
     "start": "npm run test",
