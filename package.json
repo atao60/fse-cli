@@ -27,7 +27,9 @@
   },
   "files": [
     "bin/",
-    "dist/"
+    "dist/",
+    "MANUAL.md",
+    "CONTRIBUTING.md"
   ],
   "scripts": {
     "start": "npm run test",
