@@ -1,0 +1,13 @@
+{
+    "watch": [
+        "src",
+        "test"
+    ],
+    "ext": "js,ts",
+    "ignore": [
+        ".git",
+        "node_modules",
+        ".follow-up"
+    ],
+    "exec": "npm run test:dev"
+}

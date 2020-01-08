@@ -1,0 +1,21 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "noEmit": true,
+        "skipLibCheck": true,
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "outDir": "../dist",
+        "baseUrl": "",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "lib": [
+            "es2018",
+            "dom"
+        ]
+    },
+    "exclude": [
+        "dist",
+        "node_modules"
+    ]
+}
