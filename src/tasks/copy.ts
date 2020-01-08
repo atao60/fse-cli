@@ -113,7 +113,7 @@ export function fseCopy ({ src, dest, ...otherOptions }:
 
     function mainMessageFromError(error: Error | string): string {
         const msg = error.toString();
-        const groups = msg.match(/^\s*Error\s*:\s*(.*?\s+already\s+exists\s*)$/)
+        const groups = msg.match(/^\s*Error\s*:\s*(.*?\s+already\s+exists\s*)$/);
         if (!groups) {
             return null;
         }

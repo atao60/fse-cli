@@ -109,7 +109,8 @@ describe('The fse CLI project', () => {
             mkdirSync(TMP_DIR, { recursive: true });
             newDirPath = mkdtempSync(join(TMP_DIR, 'fse-cli-test-'));
         } catch (e) {
-            throw new Error(`Test 'Create a directory', before starting unable to create a temporaray directory '${newDirPath}': ${e}`);
+            throw new Error("Test 'Create a directory', " +
+                `before starting unable to create a temporaray directory '${newDirPath}': ${e}`);
         }
 
         const baseDir = newDirPath;
@@ -137,7 +138,8 @@ describe('The fse CLI project', () => {
                 done(error);
             })
             .finally(() => {
-                rmdirSync(dirToBeCreated, { recursive: true });  // to avoid ENOTEMPTY with next rmdirSync, even with recursive: true
+                // to avoid ENOTEMPTY with the second rmdirSync, even with recursive: true
+                rmdirSync(dirToBeCreated, { recursive: true });  
                 rmdirSync(baseDir, { recursive: true });
             });
     });

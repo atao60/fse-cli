@@ -43,7 +43,7 @@ export const ensureDirDef = {
  * Wrapper for node-fs-exta ensureDir function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/ensureDir.md
  */
-export function fseEnsureDir ({ dir: directory, mode }: 
+export function fseEnsureDir ({ dir: directory, mode }:
     { dir: string; mode: number }) {
 
     console.info(`Checking if existing and, if not, creating directory ${directory} ...`);
@@ -51,7 +51,7 @@ export function fseEnsureDir ({ dir: directory, mode }:
     ensureDir(directory, mode, error => {
         if (error) {
             return console.error(`${chalk.red.bold('ERROR')} thrown while emptying directory: `, error);
-         }
+        }
     });
 
     console.info(`Directory ${directory} created`);
