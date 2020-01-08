@@ -4,13 +4,15 @@
 
 ## 💡 Rational
 
-Everyone needs simple file system operations like copy, remove, clean, ... that can be used from the terminal or via [npm(https://www.npmjs.com)] scripts. 
+Everyone needs simple file system operations like copy, remove, clean, ... that can be used from the terminal or via [npm](https://www.npmjs.com) scripts. 
 
 While there are many [Node.js](https://nodejs.org) utils that provide this, all are meant to be used as part of an app, and does not have a CLI.
 
 Ths CLI is based on [fs-extra](https://github.com/jprichardson/node-fs-extra).
 
-Note: it's a work in progress. Not all functions are mapped yet. See [Commands](#Commands) below
+Note: it's a work in progress:
+* not all functions are mapped yet. See [Commands](#Commands) below,
+* a lot of tests still to be created, even if they will only cover the cli part.
 
 ## 🏁 Quickstart
 
