@@ -150,7 +150,12 @@ function executeWithInput (processPath: string, args: {} | [] = {}, inputs: any[
                 inputs = [];
             }
             resolve(err.toString()); // don't reject here, it's not an exception
+            // TODO may be return an object with a property 'type'
         });
+
+        childProcess.on('close', (code) => {
+            resolve('Process exit code: ' + code);
+        })
 
         childProcess.on('error', (toto) => {
             reject();
