@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { remove } from 'fs-extra';
 
 export const removeDef = {
@@ -28,7 +29,7 @@ export function fseRemove ({ dir }: { dir: string }) {
 
     remove(dir, error => {
         if (error) {
-            return console.error('Error thrown while removing file or directory: ', error);
+            return console.error(`${chalk.red.bold('ERROR')} thrown while emptying directory: `, error);
         }
     });
 

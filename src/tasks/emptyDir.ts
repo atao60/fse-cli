@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { emptyDir } from 'fs-extra';
 
 export const emptyDirDef = {
@@ -28,7 +29,7 @@ export function fseEmptyDir ({ directory }: { directory: string }) {
 
     emptyDir(directory, error => {
         if (error) {
-            return console.error('Error thrown while emptying directory: ', error);
+            return console.error(`${chalk.red.bold('ERROR')} thrown while emptying directory: `, error);
         }
     });
 

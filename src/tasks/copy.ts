@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { copy, CopyOptions } from 'fs-extra';
 
 export const copyDef = {
@@ -94,7 +95,6 @@ export const copyDef = {
  * Wrapper for node-fs-exta copy function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/copy.md
  */
-// export function fseCopy ({ src, dest, ...otherOptions }: { src: string, dest: string, otherOptions: CopyOptions }) {
 export function fseCopy ({ src, dest, ...otherOptions }: 
     { src: string; dest: string; otherOptions: { [tag: string]: any } }) {
 
@@ -111,10 +111,21 @@ export function fseCopy ({ src, dest, ...otherOptions }:
         }
     }
 
-    copy(src, dest, otherOptions as CopyOptions, error => {
-        if (error) {
-            return console.error('Error thrown while copying directory: ', error);
+    function mainMessageFromError(error: Error | string): string {
+        const msg = error.toString();
+        const groups = msg.match(/^\s*Error\s*:\s*(.*?\s+already\s+exists\s*)$/)
+        if (!groups) {
+            return null;
         }
+        return groups[1];
+    }
+
+    copy(src, dest, otherOptions as CopyOptions, error => {
+        if (!error) {
+            return;
+        }
+        const mainMsg = mainMessageFromError(error) || error;
+        return console.error(`${chalk.red.bold('ERROR')} thrown while copying directory: `, mainMsg);
     });
 
     console.info('Copy complete...');

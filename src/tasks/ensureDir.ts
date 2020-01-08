@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { ensureDir } from 'fs-extra';
 
 export const ensureDirDef = {
@@ -49,8 +50,8 @@ export function fseEnsureDir ({ dir: directory, mode }:
 
     ensureDir(directory, mode, error => {
         if (error) {
-            return console.error('Error thrown while creating directory: ', error);
-        }
+            return console.error(`${chalk.red.bold('ERROR')} thrown while emptying directory: `, error);
+         }
     });
 
     console.info(`Directory ${directory} created`);
