@@ -52,7 +52,6 @@ export function fseEnsureDir ({ dir: directory, mode }:
         if (error) {
             return console.error(`${chalk.red.bold('ERROR')} thrown while emptying directory: `, error);
         }
+        console.info(`Directory ${directory} created`);
     });
-
-    console.info(`Directory ${directory} created`);
 }

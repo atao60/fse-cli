@@ -33,7 +33,6 @@ export function fseEnsureFile ({ file }: { file: string }) {
         if (error) {
             return console.error(`${chalk.red.bold('ERROR')} thrown while creating: `, error);
         }
+        console.info(`File ${file} created`);
     });
-
-    console.info(`File ${file} created`);
 }

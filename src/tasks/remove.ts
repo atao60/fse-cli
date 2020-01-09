@@ -32,7 +32,7 @@ export function fseRemove ({ dir }: { dir: string }) {
         if (error) {
             return console.error(`${chalk.red.bold('ERROR')} thrown while emptying directory: `, error);
         }
+        console.info(`Directory ${dir} gone.`);
     });
 
-    console.info(`Directory ${dir} gone.`);
 }

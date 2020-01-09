@@ -31,7 +31,6 @@ export function fseEmptyDir ({ directory }: { directory: string }) {
         if (error) {
             return console.error(`${chalk.red.bold('ERROR')} thrown while emptying directory: `, error);
         }
+        console.info(`Directory ${directory} gone.`);
     });
-
-    console.info(`Directory ${directory} gone.`);
 }
