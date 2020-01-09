@@ -8,10 +8,10 @@ Everyone needs simple file system operations like copy, remove, clean, ... that 
 
 While there are many [Node.js](https://nodejs.org) utils that provide this, all are meant to be used as part of an app, and does not have a CLI.
 
-Ths CLI is based on [fs-extra](https://github.com/jprichardson/node-fs-extra).
+This CLI is based on [fs-extra](https://github.com/jprichardson/node-fs-extra).
 
 Note. It's a work in progress:
-* not all functions are mapped yet. See [Commands](#Commands) below,
+* not all functions are mapped yet, see [Commands](#Commands) below;
 * a lot of tests still to be created, even if they will only cover the cli part.
 
 ## 🏁 Quickstart
@@ -30,7 +30,7 @@ For more details, see the [manual](MANUAL.md).
 
 ## 🎹 Commands
 
-- [copy](MANUAL.md#'Copy-files-or-folders'),
+- [copy](MANUAL.md#'Copy-file-or-directory'),
 - [ensureDir](MANUAL.md#'Creating-directories'), alias mkdirs or mkdirp
 - [remove](MANUAL.md#'Deleting-directories'), alias rimraf
 - [emptyDir](MANUAL.md#'Cleaning-directories'),
@@ -44,7 +44,7 @@ See [Contributing](CONTRIBUTING.md).
 
 [MIT](LICENSE)
 
-## 📜 Crédits
+## 📜 Credits
 
 Indeed [node-fs-extra](https://github.com/jprichardson/node-fs-extra).
 

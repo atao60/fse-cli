@@ -4,7 +4,7 @@
 
 When lauching a job with prompting, by default the user is asked the arguments without default or inline value. To force prompting for all the arguments, add '--all'.
 
-### Copy file or folder
+### Copy file or directory
 
 From the [fs-extra documentation](https://github.com/jprichardson/node-fs-extra/blob/master/docs/copy.md):
 
@@ -19,8 +19,10 @@ fse copy
 *Power user style*
 
 ```
-fse copy --overwrite no --errorOnExist yes --preserveTimestamps <source path> <destination path>
+fse copy --keepExisting --errorOnExist --preserveTimestamps <source path> <destination path>
 ```
+
+> Note. `--keepExisting` behaves as the opposite of `fs-extra`'s `--overwrite`.
 
 ### Creating directories
 
@@ -99,3 +101,7 @@ fse touch
 ```
 fse touch <new file's path>
 ```
+
+
+
+
