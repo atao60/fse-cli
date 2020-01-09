@@ -38,11 +38,7 @@ export const copyDef = {
                 type: 'input',
                 name: 'src',
                 message: "Please fill in the source to copy",
-                validate: (input: string) => {
-                    const result = (input && input.trim()) ? true : "A directory is required";
-                    console.log("copy questions validate input & result: ", input, result);
-                    return result;
-                }
+                validate: (input: string) => (input && input.trim()) ? true : "A source file or directory is required"
             });
         }
         if (!options.dest) {
@@ -50,7 +46,7 @@ export const copyDef = {
                 type: 'input',
                 name: 'dest',
                 message: "Please fill in the destination of the copy",
-                validate: (input: string) => (input && input.trim()) ? true : "A directory is required"
+                validate: (input: string) => (input && input.trim()) ? true : "A destination directory is required"
             });
         }
         if (!options.askAll) { return questions; }
@@ -104,7 +100,7 @@ export function fseCopy ({ src, dest, ...otherOptions }:
     delete ((otherOptions as any).keepExisting);
     delete ((otherOptions as any).askAll);
 
-    console.info(`Copying files/folders... from '${src}' to '${dest}'${showAll ? " with options: " : "." }`);
+    console.info(`Copying file or directory ... from '${src}' to '${dest}'${showAll ? " with options: " : "." }`);
     if (showAll) {
         for(const o of Object.entries(otherOptions)) {
             console.info(`- ${o[0]}: ${o[1]}`);
@@ -114,19 +110,22 @@ export function fseCopy ({ src, dest, ...otherOptions }:
     function mainMessageFromError(error: Error | string): string {
         const msg = error.toString();
         const groups = msg.match(/^\s*Error\s*:\s*(.*?\s+already\s+exists\s*)$/);
-        if (!groups) {
-            return null;
+        if (groups) {
+            return groups[1];
         }
-        return groups[1];
+        // only if under Linux TODO what about other os?
+        if ((error as any).code === 'EISDIR' && (error as any).syscall === 'unlink') { 
+            return `it seems your're trying to copy a file on the directory '${(error as any).path}', which is not allowed` ;
+        }
     }
 
     copy(src, dest, otherOptions as CopyOptions, error => {
         if (!error) {
+            console.info('Copy complete...');
             return;
         }
         const mainMsg = mainMessageFromError(error) || error;
-        return console.error(`${chalk.red.bold('ERROR')} thrown while copying directory: `, mainMsg);
+        return console.error(`${chalk.red.bold('ERROR')} thrown while copying file or directory: `, mainMsg);
     });
 
-    console.info('Copy complete...');
 }

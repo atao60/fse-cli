@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { existsSync, mkdtempSync, mkdirSync, rmdirSync, statSync, unlinkSync } from 'fs';
+import { closeSync, existsSync, mkdtempSync, mkdirSync, openSync, rmdirSync, statSync, unlinkSync } from 'fs';
 import { describe, it } from 'mocha';
 import { join } from 'path';
 import { env } from 'process';
@@ -71,7 +71,7 @@ describe('The fse CLI project', () => {
             mkdirSync(TMP_DIR, { recursive: true });
             newDirPath = mkdtempSync(join(TMP_DIR, 'fse-cli-test-'));
         } catch (e) {
-            throw new Error(`Test 'Remove a directory', unable to create a temporaray directory '${newDirPath}': ${e}`);
+            throw new Error(`Test 'Remove a directory', unable to create a temporary directory '${newDirPath}': ${e}`);
         }
 
         const dirToBeRemoved = newDirPath;
@@ -110,7 +110,7 @@ describe('The fse CLI project', () => {
             newDirPath = mkdtempSync(join(TMP_DIR, 'fse-cli-test-'));
         } catch (e) {
             throw new Error("Test 'Create a directory', " +
-                `before starting unable to create a temporaray directory '${newDirPath}': ${e}`);
+                `before starting unable to create a temporary directory '${newDirPath}': ${e}`);
         }
 
         const baseDir = newDirPath;
@@ -152,7 +152,7 @@ describe('The fse CLI project', () => {
             newDirPath = mkdtempSync(join(TMP_DIR, 'fse-cli-test-'));
         } catch (e) {
             throw new Error("Test 'Create a directory', " +
-                `before starting unable to create a temporaray directory '${newDirPath}': ${e}`);
+                `before starting unable to create a temporary directory '${newDirPath}': ${e}`);
         }
 
         const baseDir = newDirPath;
@@ -182,6 +182,70 @@ describe('The fse CLI project', () => {
             .finally(() => {
                 // to avoid ENOTEMPTY with the latter rmdirSync, even with `recursive: true`
                 if (existsSync(fileToBeCreated)) unlinkSync(fileToBeCreated);
+                rmdirSync(baseDir, { recursive: true });
+            });
+    });
+
+    // first check if the jog is done
+    it("Copy a file", function (done) { // don't pass 'done' as argument! with async/await
+        const destDirName = "sub-dir";
+        const srcFileName = "theFileToBeCopied";
+        const destFileName = "theFileCopy";
+        let newDirPath: string = null;
+        try {
+            mkdirSync(TMP_DIR, { recursive: true });
+            newDirPath = mkdtempSync(join(TMP_DIR, 'fse-cli-test-'));
+        } catch (e) {
+            throw new Error("Test 'Copy a file', " +
+                `before starting unable to create a temporary source directory '${newDirPath}': ${e}`);
+        }
+
+        const baseDir = newDirPath;
+        const destDirPath = join(baseDir, destDirName)
+        const fileToBeCopied = join(baseDir, srcFileName);
+        // dixit fs-extra doc, "if src is a file, dest cannot be a directory"
+        const fileCopy = join(destDirPath, destFileName); 
+ 
+        try {
+            mkdirSync(join(newDirPath, destDirName));
+        } catch (e) {
+            throw new Error("Test 'Copy a file', " +
+                `before starting unable to create a temporary destination directory '${destDirPath}': ${e}`);
+        }
+        try {
+            closeSync(openSync(fileToBeCopied, 'w'))
+        } catch (e) {
+            throw new Error("Test 'Copy a file', " +
+                `before starting unable to create a temporary file '${fileToBeCopied}': ${e}`);
+        }
+
+        const script = `${LIB_DIR}`; // ie index.js
+        const args = { app: ['copy', fileToBeCopied, fileCopy] };
+        const userInputs = [];
+        const options = {
+            // env: { DEBUG: true },  // false by default
+            // timeout: 200,          // 100 ms by default
+            // maxTimeout: 0          // 10 s by default; if "0" then no timeout
+        };
+        run(
+            script,
+            args,
+            userInputs,
+            options
+        )
+            .then(() => {
+                expect(existsSync(fileCopy), "no copied file").to.be.true;
+                expect(statSync(fileCopy).isFile(), "new item is not a file").to.be.true;
+                done();
+            })
+            .catch(error => {
+                done(error);
+            })
+            .finally(() => {
+                // to avoid ENOTEMPTY with the latter rmdirSync-s, even with `recursive: true`
+                if (existsSync(fileCopy)) unlinkSync(fileCopy);
+                if (existsSync(fileToBeCopied)) unlinkSync(fileToBeCopied);
+                rmdirSync(destDirPath, { recursive: true });
                 rmdirSync(baseDir, { recursive: true });
             });
     });
