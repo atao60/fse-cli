@@ -102,6 +102,20 @@ fse touch
 fse touch <new file's path>
 ```
 
+### Move file or directory
 
+From the [fs-extra documentation](https://github.com/jprichardson/node-fs-extra/blob/master/docs/move.md):
 
+"Moves a file or directory, even across devices."
 
+*Follow the prompts*
+
+```
+fse move
+```
+
+*Power user style*
+
+```
+fse move --overwrite <source path> <destination path>
+```

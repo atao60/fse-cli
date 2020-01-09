@@ -1,4 +1,4 @@
-import { fseCopy, fseEmptyDir, fseEnsureDir, fseEnsureFile, fseRemove } from './tasks';
+import { fseCopy, fseEmptyDir, fseEnsureDir, fseEnsureFile, fseMove, fseRemove } from './tasks';
 
 // TODO: load the list of files under ./tasks but index.ts then lazy load the required ones
 const jobDefs = {
@@ -6,7 +6,8 @@ const jobDefs = {
     remove: fseRemove,
     ensureDir: fseEnsureDir,
     emptyDir: fseEmptyDir,
-    ensureFile: fseEnsureFile
+    ensureFile: fseEnsureFile,
+    move: fseMove
 }
 
 export function doit ({ tag, options }: { tag: string, options: {} }) {

@@ -34,7 +34,8 @@ For more details, see the [manual](MANUAL.md).
 - [ensureDir](MANUAL.md#'Creating-directories'), alias mkdirs or mkdirp
 - [remove](MANUAL.md#'Deleting-directories'), alias rimraf
 - [emptyDir](MANUAL.md#'Cleaning-directories'),
-- [ensureFile](MANUAL.md#'Creating-files'), alias touch.
+- [ensureFile](MANUAL.md#'Creating-files'), alias touch,
+- [move](MANUAL.md#'Move-file-or-directory').
 
 ## 🛠️ Development
 

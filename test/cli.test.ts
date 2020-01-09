@@ -250,4 +250,67 @@ describe('The fse CLI project', () => {
             });
     });
 
+    // first check if the jog is done
+    it("Move a file", function (done) { // don't pass 'done' as argument! with async/await
+        const destDirName = "sub-dir";
+        const srcFileName = "theFileToBeCopied";
+        let newDirPath: string = null;
+        try {
+            mkdirSync(TMP_DIR, { recursive: true });
+            newDirPath = mkdtempSync(join(TMP_DIR, 'fse-cli-test-'));
+        } catch (e) {
+            throw new Error("Test 'Copy a file', " +
+                `before starting unable to create a temporary source directory '${newDirPath}': ${e}`);
+        }
+
+        const baseDir = newDirPath;
+        const destDirPath = join(baseDir, destDirName)
+        const fileToBeMovedPath = join(baseDir, srcFileName);
+        const movedFilePath = join(destDirPath, srcFileName);
+ 
+        try {
+            mkdirSync(join(newDirPath, destDirName));
+        } catch (e) {
+            throw new Error("Test 'Copy a file', " +
+                `before starting unable to create a temporary destination directory '${destDirPath}': ${e}`);
+        }
+        try {
+            closeSync(openSync(fileToBeMovedPath, 'w'))
+        } catch (e) {
+            throw new Error("Test 'Copy a file', " +
+                `before starting unable to create a temporary file '${fileToBeMovedPath}': ${e}`);
+        }
+
+        const script = `${LIB_DIR}`; // ie index.js
+        const args = { app: ['move', fileToBeMovedPath, movedFilePath] };
+        const userInputs = [];
+        const options = {
+            // env: { DEBUG: true },  // false by default
+            // timeout: 200,          // 100 ms by default
+            // maxTimeout: 0          // 10 s by default; if "0" then no timeout
+        };
+        run(
+            script,
+            args,
+            userInputs,
+            options
+        )
+            .then(() => {
+                expect(existsSync(fileToBeMovedPath), "source file still existing").to.be.false;
+                expect(existsSync(movedFilePath), "no moved file").to.be.true;
+                expect(statSync(movedFilePath).isFile(), "new item is not a file").to.be.true;
+                done();
+            })
+            .catch(error => {
+                done(error);
+            })
+            .finally(() => {
+                // to avoid ENOTEMPTY with the latter rmdirSync-s, even with `recursive: true`
+                if (existsSync(movedFilePath)) unlinkSync(movedFilePath);
+                if (existsSync(fileToBeMovedPath)) unlinkSync(fileToBeMovedPath);
+                rmdirSync(destDirPath, { recursive: true });
+                rmdirSync(baseDir, { recursive: true });
+            });
+    });
+
 });

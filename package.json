@@ -16,6 +16,7 @@
     "fse-copy": "./bin/fse",
     "fse-ensureFile": "./bin/fse",
     "fse-touch": "./bin/fse",
+    "fse-move": "./bin/fse",
     "fse-cli-remove": "./bin/fse",
     "fse-cli-rimraf": "./bin/fse",
     "fse-cli-ensureDir": "./bin/fse",
@@ -24,7 +25,8 @@
     "fse-cli-emptydir": "./bin/fse",
     "fse-cli-copy": "./bin/fse",
     "fse-cli-ensureFile": "./bin/fse",
-    "fse-cli-touch": "./bin/fse"
+    "fse-cli-touch": "./bin/fse",
+    "fse-cli-move": "./bin/fse"
   },
   "publishConfig": {
     "access": "public"
