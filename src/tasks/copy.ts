@@ -115,7 +115,8 @@ export function fseCopy ({ src, dest, ...otherOptions }:
         }
         // only if under Linux TODO what about other os?
         if ((error as any).code === 'EISDIR' && (error as any).syscall === 'unlink') { 
-            return `it seems your're trying to copy a file on the directory '${(error as any).path}', which is not allowed` ;
+            return `it seems your're trying to copy a file on the directory '${(error as any).path}'`
+                + ', which is not allowed';
         }
     }
 

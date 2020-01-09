@@ -201,7 +201,7 @@ describe('The fse CLI project', () => {
         }
 
         const baseDir = newDirPath;
-        const destDirPath = join(baseDir, destDirName)
+        const destDirPath = join(baseDir, destDirName);
         const fileToBeCopied = join(baseDir, srcFileName);
         // dixit fs-extra doc, "if src is a file, dest cannot be a directory"
         const fileCopy = join(destDirPath, destFileName); 
@@ -213,7 +213,7 @@ describe('The fse CLI project', () => {
                 `before starting unable to create a temporary destination directory '${destDirPath}': ${e}`);
         }
         try {
-            closeSync(openSync(fileToBeCopied, 'w'))
+            closeSync(openSync(fileToBeCopied, 'w'));
         } catch (e) {
             throw new Error("Test 'Copy a file', " +
                 `before starting unable to create a temporary file '${fileToBeCopied}': ${e}`);
@@ -264,7 +264,7 @@ describe('The fse CLI project', () => {
         }
 
         const baseDir = newDirPath;
-        const destDirPath = join(baseDir, destDirName)
+        const destDirPath = join(baseDir, destDirName);
         const fileToBeMovedPath = join(baseDir, srcFileName);
         const movedFilePath = join(destDirPath, srcFileName);
  
@@ -275,7 +275,7 @@ describe('The fse CLI project', () => {
                 `before starting unable to create a temporary destination directory '${destDirPath}': ${e}`);
         }
         try {
-            closeSync(openSync(fileToBeMovedPath, 'w'))
+            closeSync(openSync(fileToBeMovedPath, 'w'));
         } catch (e) {
             throw new Error("Test 'Copy a file', " +
                 `before starting unable to create a temporary file '${fileToBeMovedPath}': ${e}`);
