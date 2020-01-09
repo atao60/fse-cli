@@ -10,7 +10,7 @@ While there are many [Node.js](https://nodejs.org) utils that provide this, all 
 
 Ths CLI is based on [fs-extra](https://github.com/jprichardson/node-fs-extra).
 
-Note: it's a work in progress:
+Note. It's a work in progress:
 * not all functions are mapped yet. See [Commands](#Commands) below,
 * a lot of tests still to be created, even if they will only cover the cli part.
 
@@ -28,12 +28,13 @@ The arguments are those of [fs-extra](https://github.com/jprichardson/node-fs-ex
 
 For more details, see the [manual](MANUAL.md).
 
-## ⚙ Commands
+## 🎹 Commands
 
 - [copy](MANUAL.md#'Copy-files-or-folders'),
 - [ensureDir](MANUAL.md#'Creating-directories'), alias mkdirs or mkdirp
 - [remove](MANUAL.md#'Deleting-directories'), alias rimraf
-- [emptyDir](MANUAL.md#'Cleaning-directories').
+- [emptyDir](MANUAL.md#'Cleaning-directories'),
+- [ensureFile](MANUAL.md#'Creating-files'), alias touch.
 
 ## 🛠️ Development
 
@@ -43,5 +44,9 @@ See [Contributing](CONTRIBUTING.md).
 
 [MIT](LICENSE)
 
-## 
+## 📜 Crédits
+
+Indeed [node-fs-extra](https://github.com/jprichardson/node-fs-extra).
+
+Amongst several dead attempts to create a CLI : [node-fs-extra-cli](https://www.npmjs.com/package/fs-extra-cli).
 

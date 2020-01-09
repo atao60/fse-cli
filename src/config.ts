@@ -4,7 +4,7 @@ import { prompt } from 'inquirer';
 import { basename, join } from 'path';
 import { exit } from 'process';
 
-import { copyDef, emptyDirDef, ensureDirDef, removeDef } from './tasks';
+import { copyDef, emptyDirDef, ensureDirDef, ensureFileDef, removeDef } from './tasks';
 
 // TODO: load the list of files under ./tasks but index.ts then lazy load the required ones
 //       create handle task file for the aliases
@@ -18,7 +18,9 @@ const jobDefs = {
     ensureDir: ensureDirDef,
     mkdirs: { alias: 'ensureDir' },
     mkdirp: { alias: 'ensureDir' },
-    emptyDir: emptyDirDef
+    emptyDir: emptyDirDef,
+    ensureFile: ensureFileDef,
+    touch: { alias: 'ensureFile'}
 }
 
 // 'cli' must not be used as task name

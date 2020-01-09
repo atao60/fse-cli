@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { existsSync, mkdtempSync, mkdirSync, rmdirSync, statSync } from 'fs';
+import { existsSync, mkdtempSync, mkdirSync, rmdirSync, statSync, unlinkSync } from 'fs';
 import { describe, it } from 'mocha';
 import { join } from 'path';
 import { env } from 'process';
@@ -138,11 +138,52 @@ describe('The fse CLI project', () => {
                 done(error);
             })
             .finally(() => {
-                // to avoid ENOTEMPTY with the second rmdirSync, even with recursive: true
-                rmdirSync(dirToBeCreated, { recursive: true });  
+                // to avoid ENOTEMPTY with the second rmdirSync, even with `recursive: true`
+                rmdirSync(dirToBeCreated, { recursive: true });
                 rmdirSync(baseDir, { recursive: true });
             });
     });
 
+    // first check if the jog is done
+    it("Create a file", function (done) { // don't pass 'done' as argument! with async/await
+        let newDirPath: string = null;
+        try {
+            mkdirSync(TMP_DIR, { recursive: true });
+            newDirPath = mkdtempSync(join(TMP_DIR, 'fse-cli-test-'));
+        } catch (e) {
+            throw new Error("Test 'Create a directory', " +
+                `before starting unable to create a temporaray directory '${newDirPath}': ${e}`);
+        }
+
+        const baseDir = newDirPath;
+        const fileToBeCreated = join(baseDir, 'theNewFile');
+        const script = `${LIB_DIR}`; // ie index.js
+        const args = { app: ['ensureFile', fileToBeCreated] };
+        const userInputs = [];
+        const options = {
+            // env: { DEBUG: true },  // false by default
+            // timeout: 200,          // 100 ms by default
+            // maxTimeout: 0          // 10 s by default; if "0" then no timeout
+        };
+        run(
+            script,
+            args,
+            userInputs,
+            options
+        )
+            .then(() => {
+                expect(existsSync(fileToBeCreated), "no new file").to.be.true;
+                expect(statSync(fileToBeCreated).isFile(), "new item is not a file").to.be.true;
+                done();
+            })
+            .catch(error => {
+                done(error);
+            })
+            .finally(() => {
+                // to avoid ENOTEMPTY with the latter rmdirSync, even with `recursive: true`
+                if (existsSync(fileToBeCreated)) unlinkSync(fileToBeCreated);
+                rmdirSync(baseDir, { recursive: true });
+            });
+    });
 
 });

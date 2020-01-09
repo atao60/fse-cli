@@ -3,6 +3,7 @@ import { remove } from 'fs-extra';
 
 export const removeDef = {
     spec: {},
+    'default': {},
     options: (args) => ({
         dir: args._[0]  // TODO a list of directories?
     }),

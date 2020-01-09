@@ -6,7 +6,7 @@ When lauching a job with prompting, by default the user is asked the arguments w
 
 ### Copy file or folder
 
-From the fs-extra repo:
+From the [fs-extra documentation](https://github.com/jprichardson/node-fs-extra/blob/master/docs/copy.md):
 
 "Copy a file or directory. The directory can have contents. Like cp -r."
 
@@ -24,9 +24,9 @@ fse copy --overwrite no --errorOnExist yes --preserveTimestamps <source path> <d
 
 ### Creating directories
 
-From the fs-extra repo:
+From the [fs-extra documentation](https://github.com/jprichardson/node-fs-extra/blob/master/docs/ensureDir.md):
 
-"Creates a directory. If the parent hierarchy doesn't exist, it's created. Like mkdir -p."
+"Ensures that the directory exists. If the directory structure does not exist, it is created. Like mkdir -p."
 
 Aliases: ensureDir, mkdirs, mkdirp
 
@@ -44,7 +44,7 @@ fse mkdirp <new directory's path>
 
 ### Cleaning directories
 
-From the fs-extra repo:
+From the [fs-extra documentation](https://github.com/jprichardson/node-fs-extra/blob/master/docs/emptyDir.md):
 
 "Ensures that a directory is empty. Deletes directory contents if the directory is not empty. If the directory does not exist, it is created. The directory itself is not deleted."
 
@@ -62,9 +62,9 @@ fse emptyDir <directory's path>
 
 ### Deleting directories
 
-From the fs-extra repo:
+From the [fs-extra documentation](https://github.com/jprichardson/node-fs-extra/blob/master/docs/remove.md):
 
-"Removes a file or directory. The directory can have contents. Like rm -rf."
+"Removes a file or directory. The directory can have contents. If the path does not exist, silently does nothing. Like rm -rf."
 
 Aliases: remove, rimraf
 
@@ -78,4 +78,24 @@ fse remove
 
 ```
 fse remove <directory's path>
+```
+
+### Creating files
+
+From the [fs-extra documentation](https://github.com/jprichardson/node-fs-extra/blob/master/docs/ensureFile.md):
+
+"Ensures that the file exists. If the file that is requested to be created is in directories that do not exist, these directories are created. If the file already exists, it is NOT MODIFIED."
+
+Aliases: ensureFile, touch
+
+*Follow the prompts*
+
+```
+fse touch
+```
+
+*Power user style*
+
+```
+fse touch <new file's path>
 ```
