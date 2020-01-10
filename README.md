@@ -17,7 +17,7 @@ Note. It's a work in progress:
 ## 🏁 Quickstart
 
 ```
-npm install @atao/fse-cli
+npm install @atao60/fse-cli
 ```
 
 Each function is available:
