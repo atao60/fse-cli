@@ -56,6 +56,8 @@
     "test:dev:watch": "nodemon --config ./nodemon-it.json",
     "test": "npm run test:dev:watch",
     "fullcheck": "npm run test:dev && npm run lint",
+    "precommit": "npm run lint",
+    "prepush": "npm run fullcheck",
     "preversion": "npm run fullcheck",
     "version": "npm run build && git add -A",
     "postversion": "git push && git push --tags",
