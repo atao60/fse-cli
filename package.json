@@ -63,7 +63,7 @@
     "test": "npm run test:dev:watch",
     "fullcheck": "npm run test:dev && npm run lint",
     "preversion": "npm run fullcheck",
-    "version": "npm run build && git add -A",
+    "version": "cross-env HUSKY_SKIP_HOOKS=1 npm run build && git add -A",
     "postversion": "git push && git push --tags",
     "prepublishOnly": "npm run build",
     "lint": "tsc --project src && eslint src/**/* --ext .js,.ts --quiet && eslint test/**/* --ext .js,.ts --quiet",
