@@ -20,24 +20,24 @@ const jobDefs = {
     mkdirp: { alias: 'ensureDir' },
     emptyDir: emptyDirDef,
     ensureFile: ensureFileDef,
-    touch: { alias: 'ensureFile'},
+    touch: { alias: 'ensureFile' },
     move: moveDef
 }
 
 // 'cli' must not be used as task name
-const allowedScriptPrefixes = ['fse-cli', 'fse', ];  // longer first
+const allowedScriptPrefixes = ['fse-cli', 'fse',];  // longer first
 
-function extractScriptAndTask(scriptPath: string) {
+function extractScriptAndTask (scriptPath: string) {
 
     const scriptName = basename(scriptPath);
     if (allowedScriptPrefixes.includes(scriptName)) {
         return [scriptPath];
     }
-    
+
     const prefixes = allowedScriptPrefixes.map(p => p + '-')
-    for(const p of prefixes) {
+    for (const p of prefixes) {
         if (scriptName.startsWith(p)) {
-            const fromEnd = p.length - scriptName.length -1;
+            const fromEnd = p.length - scriptName.length - 1;
             return [scriptPath.slice(0, fromEnd), scriptName.slice(p.length)]
         }
     }
@@ -75,7 +75,7 @@ async function promptForMissingOptions ({ tag, options: partialOptions }: { tag:
     const options = Object.keys(answers).reduce((options, k) => {
         options[k] = partialOptions[k] || answers[k];
         return options;
-    }, {...partialOptions});
+    }, { ...partialOptions });
 
     return { tag, options };
 

@@ -97,8 +97,9 @@ describe('The fse CLI project', () => {
                 done(error);
             })
             .finally(() => {
-                if (existsSync(dirToBeRemoved))
+                try {
                     rmdirSync(dirToBeRemoved, { recursive: true });
+                } catch (e) { /* do nothing */ }
             });
     });
 
@@ -181,7 +182,9 @@ describe('The fse CLI project', () => {
             })
             .finally(() => {
                 // to avoid ENOTEMPTY with the latter rmdirSync, even with `recursive: true`
-                if (existsSync(fileToBeCreated)) unlinkSync(fileToBeCreated);
+                try {
+                    unlinkSync(fileToBeCreated);
+                } catch (e) { /* do nothing */ }
                 rmdirSync(baseDir, { recursive: true });
             });
     });
@@ -204,8 +207,8 @@ describe('The fse CLI project', () => {
         const destDirPath = join(baseDir, destDirName);
         const fileToBeCopied = join(baseDir, srcFileName);
         // dixit fs-extra doc, "if src is a file, dest cannot be a directory"
-        const fileCopy = join(destDirPath, destFileName); 
- 
+        const fileCopy = join(destDirPath, destFileName);
+
         try {
             mkdirSync(join(newDirPath, destDirName));
         } catch (e) {
@@ -243,8 +246,12 @@ describe('The fse CLI project', () => {
             })
             .finally(() => {
                 // to avoid ENOTEMPTY with the latter rmdirSync-s, even with `recursive: true`
-                if (existsSync(fileCopy)) unlinkSync(fileCopy);
-                if (existsSync(fileToBeCopied)) unlinkSync(fileToBeCopied);
+                try {
+                    unlinkSync(fileCopy);
+                } catch (e) { /* do nothing */ }
+                try {
+                    unlinkSync(fileToBeCopied);
+                } catch (e) { /* do nothing */ }
                 rmdirSync(destDirPath, { recursive: true });
                 rmdirSync(baseDir, { recursive: true });
             });
@@ -267,7 +274,7 @@ describe('The fse CLI project', () => {
         const destDirPath = join(baseDir, destDirName);
         const fileToBeMovedPath = join(baseDir, srcFileName);
         const movedFilePath = join(destDirPath, srcFileName);
- 
+
         try {
             mkdirSync(join(newDirPath, destDirName));
         } catch (e) {
@@ -306,8 +313,13 @@ describe('The fse CLI project', () => {
             })
             .finally(() => {
                 // to avoid ENOTEMPTY with the latter rmdirSync-s, even with `recursive: true`
-                if (existsSync(movedFilePath)) unlinkSync(movedFilePath);
-                if (existsSync(fileToBeMovedPath)) unlinkSync(fileToBeMovedPath);
+                try {
+                    unlinkSync(movedFilePath);
+                } catch (e) { /* do nothing */ }
+                try {
+                    unlinkSync(fileToBeMovedPath);
+                } catch (e) { /* do nothing */ }
+
                 rmdirSync(destDirPath, { recursive: true });
                 rmdirSync(baseDir, { recursive: true });
             });
