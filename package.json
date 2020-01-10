@@ -37,6 +37,12 @@
     "MANUAL.md",
     "CONTRIBUTING.md"
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run fullcheck"
+    }
+  },
   "scripts": {
     "start": "npm run test",
     "rimraf": "ts-node scripts/rmdir.ts",
@@ -56,8 +62,6 @@
     "test:dev:watch": "nodemon --config ./nodemon-it.json",
     "test": "npm run test:dev:watch",
     "fullcheck": "npm run test:dev && npm run lint",
-    "pre-commit": "npm run lint",
-    "pre-push": "npm run fullcheck",
     "preversion": "npm run fullcheck",
     "version": "npm run build && git add -A",
     "postversion": "git push && git push --tags",
@@ -145,6 +149,7 @@
     "eslint": "^6.7.1",
     "eslint-config-node": "^4.0.0",
     "eslint-plugin-import": "^2.18.2",
+    "husky": "^4.0.6",
     "mocha": "^6.2.2",
     "nodemon": "^2.0.2",
     "source-map-support": "^0.5.16",
