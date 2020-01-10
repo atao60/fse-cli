@@ -1,7 +1,8 @@
 import chalk from 'chalk';
 import { copy, CopyOptions } from 'fs-extra';
 
-export const copyDef = {
+const copyDef = {
+    name: 'copy',
     spec: {
         '--all': Boolean,
         '--keepExisting': Boolean,
@@ -87,34 +88,36 @@ export const copyDef = {
     }
 };
 
+export const def = copyDef;
+
 /**
  * Wrapper for node-fs-exta copy function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/copy.md
  */
-export function fseCopy ({ src, dest, ...otherOptions }: 
+export function job ({ src, dest, ...otherOptions }:
     { src: string; dest: string; otherOptions: { [tag: string]: any } }) {
 
     const showAll = (otherOptions as any).askAll;
 
-    (otherOptions as any).overwrite = !(otherOptions as any).keepExisting; 
+    (otherOptions as any).overwrite = !(otherOptions as any).keepExisting;
     delete ((otherOptions as any).keepExisting);
     delete ((otherOptions as any).askAll);
 
-    console.info(`Copying file or directory ... from '${src}' to '${dest}'${showAll ? " with options: " : "." }`);
+    console.info(`Copying file or directory ... from '${src}' to '${dest}'${showAll ? " with options: " : "."}`);
     if (showAll) {
-        for(const o of Object.entries(otherOptions)) {
+        for (const o of Object.entries(otherOptions)) {
             console.info(`- ${o[0]}: ${o[1]}`);
         }
     }
 
-    function mainMessageFromError(error: Error | string): string {
+    function mainMessageFromError (error: Error | string): string {
         const msg = error.toString();
         const groups = msg.match(/^\s*Error\s*:\s*(.*?\s+already\s+exists\s*)$/);
         if (groups) {
             return groups[1];
         }
         // only if under Linux TODO what about other os?
-        if ((error as any).code === 'EISDIR' && (error as any).syscall === 'unlink') { 
+        if ((error as any).code === 'EISDIR' && (error as any).syscall === 'unlink') {
             return `it seems your're trying to copy a file on the directory '${(error as any).path}'`
                 + ', which is not allowed';
         }

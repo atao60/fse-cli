@@ -1,7 +1,8 @@
 import chalk from 'chalk';
 import { ensureFile } from 'fs-extra';
 
-export const ensureFileDef = {
+const ensureFileDef = {
+    name: 'ensureFile',
     spec: {},
     'default': {},
     options: (args) => ({
@@ -21,11 +22,13 @@ export const ensureFileDef = {
     }
 };
 
+export const def = ensureFileDef;
+
 /**
  * Wrapper for node-fs-exta ensureFile function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/ensureFile.md
  */
-export function fseEnsureFile ({ file }: { file: string }) {
+export function job ({ file }: { file: string }) {
 
     console.info(`Checking if existing and, if not, creating file ${file} ...`);
 

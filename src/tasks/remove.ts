@@ -1,7 +1,8 @@
 import chalk from 'chalk';
 import { remove } from 'fs-extra';
 
-export const removeDef = {
+const removeDef = {
+    name: 'remove',
     spec: {},
     'default': {},
     options: (args) => ({
@@ -9,7 +10,7 @@ export const removeDef = {
     }),
     questions: (options) => {
         const questions = [];
-        if(!options.dir) {
+        if (!options.dir) {
             questions.push({
                 type: 'input',
                 name: 'dir',
@@ -21,11 +22,13 @@ export const removeDef = {
     }
 };
 
+export const def = removeDef;
+
 /**
  * Wrapper for node-fs-exta remove function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/remove.md
  */
-export function fseRemove ({ dir }: { dir: string }) {
+export function job ({ dir }: { dir: string }) {
     console.info('Be gone rapscalian...');
 
     remove(dir, error => {

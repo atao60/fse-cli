@@ -173,8 +173,8 @@ describe('The fse CLI project', () => {
             options
         )
             .then(() => {
-                expect(existsSync(fileToBeCreated), "no new file").to.be.true;
-                expect(statSync(fileToBeCreated).isFile(), "new item is not a file").to.be.true;
+                expect(existsSync(fileToBeCreated), "No new file").to.be.true;
+                expect(statSync(fileToBeCreated).isFile(), "New item is not a file").to.be.true;
                 done();
             })
             .catch(error => {
@@ -319,7 +319,6 @@ describe('The fse CLI project', () => {
                 try {
                     unlinkSync(fileToBeMovedPath);
                 } catch (e) { /* do nothing */ }
-
                 rmdirSync(destDirPath, { recursive: true });
                 rmdirSync(baseDir, { recursive: true });
             });

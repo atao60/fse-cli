@@ -1,8 +1,9 @@
 import chalk from 'chalk';
 import { emptyDir } from 'fs-extra';
 
-export const emptyDirDef = {
-    spec: { },
+const emptyDirDef = {
+    name: 'emptyDir',
+    spec: {},
     options: (args) => ({
         dir: args._[0]  // TODO a list of directories?
     }),
@@ -20,11 +21,13 @@ export const emptyDirDef = {
     }
 };
 
+export const def = emptyDirDef;
+
 /**
  * Wrapper for node-fs-exta emptyDir function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/emptyDir.md
  */
-export function fseEmptyDir ({ directory }: { directory: string }) {
+export function job ({ directory }: { directory: string }) {
     console.info('Be gone rapscalian...');
 
     emptyDir(directory, error => {

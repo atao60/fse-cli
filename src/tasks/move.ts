@@ -1,7 +1,8 @@
 import chalk from 'chalk';
 import { move, MoveOptions } from 'fs-extra';
 
-export const moveDef = {
+const moveDef = {
+    name: 'move',
     spec: {
         '--all': Boolean,
         '--overwrite': Boolean,
@@ -50,25 +51,27 @@ export const moveDef = {
     }
 };
 
+export const def = moveDef;
+
 /**
  * Wrapper for node-fs-exta move function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/move.md
  */
-export function fseMove ({ src, dest, ...otherOptions }: 
+export function job ({ src, dest, ...otherOptions }:
     { src: string; dest: string; otherOptions: { [tag: string]: any } }) {
 
     const showAll = (otherOptions as any).askAll;
 
     delete ((otherOptions as any).askAll);
 
-    console.info(`Moving file or directory... from '${src}' to '${dest}'${showAll ? " with options: " : "." }`);
+    console.info(`Moving file or directory... from '${src}' to '${dest}'${showAll ? " with options: " : "."}`);
     if (showAll) {
-        for(const o of Object.entries(otherOptions)) {
+        for (const o of Object.entries(otherOptions)) {
             console.info(`- ${o[0]}: ${o[1]}`);
         }
     }
 
-    function mainMessageFromError(error: Error | string): string {
+    function mainMessageFromError (error: Error | string): string {
         const msg = error.toString();
         const groups = msg.match(/^\s*Error\s*:\s*(.*?\s+dest\s+already\s+exists.\s*)$/);
         if (!groups) {

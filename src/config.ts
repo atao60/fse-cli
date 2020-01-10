@@ -4,28 +4,24 @@ import { prompt } from 'inquirer';
 import { basename, join } from 'path';
 import { exit } from 'process';
 
-import { copyDef, emptyDirDef, ensureDirDef, ensureFileDef, moveDef, removeDef } from './tasks';
+import { JobDef } from './job-def';
 
-// TODO: load the list of files under ./tasks but index.ts then lazy load the required ones
-//       create handle task file for the aliases
-//       create at least one test per jobDef to check than even the bin list in package.json is up-to-date
-//       do it even for the aliases
-//       create a npm script in package.json to update the bin list in itself?
-const jobDefs = {
-    copy: copyDef,
-    remove: removeDef,
-    rimraf: { alias: 'remove' },
-    ensureDir: ensureDirDef,
-    mkdirs: { alias: 'ensureDir' },
-    mkdirp: { alias: 'ensureDir' },
-    emptyDir: emptyDirDef,
-    ensureFile: ensureFileDef,
-    touch: { alias: 'ensureFile' },
-    move: moveDef
+// !!! ⚠️ Don't forget to update the section 'bin' of package.json for any change of jobLinks ⚠️ !!!
+const jobLinks = {
+    copy: 'copy',
+    remove: 'remove',
+    rimraf: 'remove',
+    ensureDir: 'ensureDir',
+    mkdirs: 'ensureDir',
+    mkdirp: 'ensureDir',
+    emptyDir: 'emptyDir',
+    ensureFile: 'ensureFile',
+    touch: 'ensureFile',
+    move: 'move'
 }
 
 // 'cli' must not be used as task name
-const allowedScriptPrefixes = ['fse-cli', 'fse',];  // longer first
+const allowedScriptPrefixes = ['fse-cli', 'fse'];  // longer first
 
 function extractScriptAndTask (scriptPath: string) {
 
@@ -44,7 +40,7 @@ function extractScriptAndTask (scriptPath: string) {
     return [scriptName];
 }
 
-function parseArgumentsIntoOptions (rawArgs: string[]) {
+async function parseArgumentsIntoOptions (rawArgs: string[]) {
 
     const fullCommand = extractScriptAndTask(rawArgs[1]);
     const finalArgs = [rawArgs[0], ...fullCommand, ...rawArgs.splice(2)]
@@ -53,23 +49,26 @@ function parseArgumentsIntoOptions (rawArgs: string[]) {
         console.error("%s: No task specified", chalk.red.bold('ERROR'));
         exit(1);
     };
-    if (!jobDefs[jobName]) {
+    const jobTag = jobLinks[jobName];
+    if (!jobTag) {
         console.error("%s: Unknown task '" + jobName + "'", chalk.red.bold('ERROR'));
         exit(1);
     };
 
-    const jobTag = jobDefs[jobName].alias || jobName;
     const argv = finalArgs.slice(3);
+    const modulePath = join(__dirname, 'tasks', jobTag);
+    const module = await import(modulePath);
+    const jobDef = module.def;
     const args = arg(
-        jobDefs[jobTag].spec,
+        jobDef.spec,
         { argv }
     )
-    return { tag: jobTag, options: jobDefs[jobTag].options(args) };
+    return { jobDef, options: jobDef.options(args) };
 }
 
-async function promptForMissingOptions ({ tag, options: partialOptions }: { tag: string, options: {} }) {
+async function promptForMissingOptions ({ jobDef, options: partialOptions }: { jobDef: JobDef, options: {} }) {
 
-    const questions = jobDefs[tag].questions(partialOptions);
+    const questions = jobDef.questions(partialOptions);
     const answers = await prompt(questions);
 
     const options = Object.keys(answers).reduce((options, k) => {
@@ -77,11 +76,11 @@ async function promptForMissingOptions ({ tag, options: partialOptions }: { tag:
         return options;
     }, { ...partialOptions });
 
-    return { tag, options };
+    return { jobTag: jobDef.name, options };
 
 }
 
 export async function fetchOptionsFrom (args: string[]) {
-    const options = parseArgumentsIntoOptions(args);
-    return await promptForMissingOptions(options);
+    const data = await parseArgumentsIntoOptions(args);
+    return await promptForMissingOptions(data);
 }

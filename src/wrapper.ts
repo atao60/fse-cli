@@ -1,16 +1,9 @@
-import { fseCopy, fseEmptyDir, fseEnsureDir, fseEnsureFile, fseMove, fseRemove } from './tasks';
+import { join } from 'path';
 
-// TODO: load the list of files under ./tasks but index.ts then lazy load the required ones
-const jobDefs = {
-    copy: fseCopy,
-    remove: fseRemove,
-    ensureDir: fseEnsureDir,
-    emptyDir: fseEmptyDir,
-    ensureFile: fseEnsureFile,
-    move: fseMove
-}
+export async function doit ({ jobTag, options }: { jobTag: string, options: {} }) {
 
-export function doit ({ tag, options }: { tag: string, options: {} }) {
-    const job = jobDefs[tag];
-    job(options);
+    const modulePath = join(__dirname, 'tasks', jobTag);
+    const module = await import(modulePath);
+
+    module.job(options);
 }

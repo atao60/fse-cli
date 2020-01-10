@@ -1,7 +1,8 @@
 import chalk from 'chalk';
 import { ensureDir } from 'fs-extra';
 
-export const ensureDirDef = {
+const ensureDirDef = {
+    name: 'ensureDir',
     spec: {
         '--all': Boolean,
         '--mode': Number, // let fse check it's a valid number
@@ -39,11 +40,13 @@ export const ensureDirDef = {
     }
 };
 
+export const def = ensureDirDef;
+
 /**
  * Wrapper for node-fs-exta ensureDir function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/ensureDir.md
  */
-export function fseEnsureDir ({ dir: directory, mode }:
+export function job ({ dir: directory, mode }:
     { dir: string; mode: number }) {
 
     console.info(`Checking if existing and, if not, creating directory ${directory} ...`);
