@@ -90,18 +90,24 @@ const copyDef = {
 
 export const def = copyDef;
 
+interface CliCopyOptions extends CopyOptions {
+    askAll?: boolean;
+    keepExisting?: boolean;
+}
+
 /**
  * Wrapper for node-fs-exta copy function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/copy.md
  */
-export function job ({ src, dest, ...otherOptions }:
-    { src: string; dest: string; otherOptions: { [tag: string]: any } }) {
+export function job ({ src, dest, ...copyOptions }:
+    { src: string; dest: string; copyOptions: { [tag: string]: any } }) {
 
-    const showAll = (otherOptions as any).askAll;
+    const otherOptions = copyOptions as CliCopyOptions;
+    const showAll = otherOptions.askAll;
 
-    (otherOptions as any).overwrite = !(otherOptions as any).keepExisting;
-    delete ((otherOptions as any).keepExisting);
-    delete ((otherOptions as any).askAll);
+    otherOptions.overwrite = !otherOptions.keepExisting;
+    delete otherOptions.keepExisting;
+    delete otherOptions.askAll;
 
     console.info(`Copying file or directory ... from '${src}' to '${dest}'${showAll ? " with options: " : "."}`);
     if (showAll) {
@@ -123,7 +129,7 @@ export function job ({ src, dest, ...otherOptions }:
         }
     }
 
-    copy(src, dest, otherOptions as CopyOptions, error => {
+    copy(src, dest, otherOptions, error => {
         if (!error) {
             console.info('Copy complete...');
             return;

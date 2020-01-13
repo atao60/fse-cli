@@ -39,7 +39,7 @@ const moveDef = {
             });
         }
         if (!options.askAll) { return questions; }
-        if (!options.keepExisting) {
+        if (!options.overwrite) {
             questions.push({
                 type: 'confirm',
                 name: 'overwrite',
@@ -53,16 +53,20 @@ const moveDef = {
 
 export const def = moveDef;
 
+interface CliMoveOptions extends MoveOptions {
+    askAll?: boolean;
+}
+
 /**
  * Wrapper for node-fs-exta move function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/move.md
  */
-export function job ({ src, dest, ...otherOptions }:
-    { src: string; dest: string; otherOptions: { [tag: string]: any } }) {
+export function job ({ src, dest, ...moveOptions }:
+    { src: string; dest: string; moveOptions: { [tag: string]: any } }) {
 
-    const showAll = (otherOptions as any).askAll;
-
-    delete ((otherOptions as any).askAll);
+    const otherOptions = moveOptions as CliMoveOptions; 
+    const showAll = otherOptions.askAll;
+    delete otherOptions.askAll;
 
     console.info(`Moving file or directory... from '${src}' to '${dest}'${showAll ? " with options: " : "."}`);
     if (showAll) {
@@ -80,7 +84,7 @@ export function job ({ src, dest, ...otherOptions }:
         return groups[1];
     }
 
-    move(src, dest, otherOptions as MoveOptions, error => {
+    move(src, dest, otherOptions, error => {
         if (!error) {
             console.info('Move complete...');
             return;
