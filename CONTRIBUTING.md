@@ -7,7 +7,7 @@ Welcome!
 * [Npm](https://www.npmjs.com/) - comes with Node.js
 * [Npx](https://github.com/npm/npx#readme) - comes with Node.js
 
-and indeed:
+and possibly:
 * a [GitHub account](https://github.com/)
 
 The shell used here is [Bash](https://www.gnu.org/software/bash/) under [Linux](https://www.linuxfoundation.org/). However it should be straightforward to work under any other usual OS as Windows or Mac OS X.
@@ -41,11 +41,9 @@ The scripts `start` and `test` are aliases for `test:dev:watch`.
 ```bash
 npm uninstall -g @atao60/fse-cli ### if needed; required to avoid any issue with `npm link`, see below
 
-# git clone https://github.com/atao-web/fse-cli.git atao60-fse-cli
+git clone https://github.com/atao-web/fse-cli.git atao60-fse-cli
 
-git clone <my-forked-repo> <my-local-repo>
-
-cd <my-local-repo>
+cd atao60-fse-cli
 
 npm install
 
@@ -55,15 +53,11 @@ npm install
 
 # npx depcheck
 
-git checkout -b <my-branch>
-
 ```
 
 ### Watch changes
 
 ```bash
-
-git checkout <my-branch>
 
 sudo npm link
 
@@ -76,31 +70,43 @@ Doing it from an other console (°), use package from local repository:
 
 ```bash
 
-fse mkdirp <my-new-folder>
+fse mkdirp
 
 ```
 
-> (°) Under any wished location, even the directory <my-local-repo> above. 
+> (°) Under any wished location, even the directory `atao60-fse-cli` above. 
 
-### Publish
-
-***TODO*** Split this § in two parts: owner contribution and pull request
-
-![WARNING: Don't do it](https://via.placeholder.com/500x50/FF0000/FFFFFF?text=WARNING:+Don't+do+it!)
-
-That is... don't do as me with the present package! :innocent: See [Pull Request](#pull-request) below.
-
-If you want to go forward:
-- either you have the access rights for the package on the npm public registry and for the non forked repository on github, then:
-  - reset the remote's URL to the non forked repository;
-- or you own a personal account on the npm public registry, then:
-  - change the name of this forked package to create a new package with this name on the npm public registry.
+### Pull request
 
 ```bash
 
-git checkout <my-branch>
+pwd  ### checking if in the forked project folder
+# <path to>/atao60-fse-cli
 
-# jq '.name="new-npm-package-name"' package.json | sponge package.json ### to be done once before the first publish if in the latter case above
+git checkout -b my-branch
+
+### do here the wanted changes
+
+git add --all
+
+git commit -m "closing pull request message"
+
+git push origin my-branch
+
+```
+Lastly open a pull request on Github.
+
+### Publish
+
+To publish, you must have the access rights for:
+- the package on the [npm](https://www.npmjs.com/) public registry, ie [@atao60/fse-cli](https://www.npmjs.com/package/@atao60/fse-cli),
+- the repository on [Github](https://github.com), ie [atao-web/fse-cli](https://github.com/atao-web/fse-cli).
+
+> The script `npm run version` will push a new version in `package.json` and a new tag with this version as label.
+
+```bash
+
+git checkout my-branch
 
 npm version patch ### if wished, use 'minor' or 'major' in place of 'patch'
 
@@ -108,24 +114,8 @@ npm publish
 
 ### check that everything is fine:
 
-rm -rf tmp-dir && mkdir tmp-dir && cd tmp-dir
+cd <any suitable folder>
 
-npx @atao60/fse-cli  ### or <new-npm-package-name> if in the latter case above
-
-ls -al
+npx @atao60/fse-cli
 
 ```
-
-### Pull request
-
-From the forked repository where some changes have been made on the branch 'my-branch' and <ins>all of them commited</ins>:
-
-```bash
-
-git checkout <my-branch>
-
-git push origin <my-branch>
-
-```
-Lastly open a pull request on Github.
-
