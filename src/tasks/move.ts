@@ -12,7 +12,7 @@ const moveDef = {
     'default': {
         overwrite: false
     },
-    options: (args: { _: unknown[] }): {} => {
+    options: (args: { _: unknown[] }): Record<string, unknown> => {
         return {
             askAll: args['--all'] || false,
             overwrite: args['--overwrite'] || moveDef.default.overwrite,
@@ -20,7 +20,7 @@ const moveDef = {
             dest: args._[1]
         };
     },
-    questions: (options: { [_: string]: unknown }): {}[] => {
+    questions: (options: { [_: string]: unknown }): Record<string, unknown>[] => {
         const questions = [];
         if (!options.src) {
             questions.push({

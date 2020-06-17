@@ -5,10 +5,10 @@ const ensureFileDef = {
     name: 'ensureFile',
     spec: {},
     'default': {},
-    options: (args: { _: unknown[] }): {} => ({
+    options: (args: { _: unknown[] }): Record<string, unknown> => ({
         file: args._[0]
     }),
-    questions: (options: { file: unknown }): {}[] => {
+    questions: (options: { file: unknown }): Record<string, unknown>[] => {
         const questions = [];
         if (!options.file) {
             questions.push({

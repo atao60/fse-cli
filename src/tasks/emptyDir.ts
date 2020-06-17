@@ -4,10 +4,10 @@ import { emptyDir } from 'fs-extra';
 const emptyDirDef = {
     name: 'emptyDir',
     spec: {},
-    options: (args: { _: unknown[] }): {} => ({
+    options: (args: { _: unknown[] }): Record<string, unknown> => ({
         dir: args._[0]  // TODO a list of directories?
     }),
-    questions: (options: { dir: unknown }): {}[] => {
+    questions: (options: { dir: unknown }): Record<string, unknown>[] => {
         const questions = [];
         if (!options.dir) {
             questions.push({

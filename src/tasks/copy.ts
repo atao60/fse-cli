@@ -21,7 +21,7 @@ const copyDef = {
         dereference: false,
         preserveTimestamps: false
     },
-    options: (args: { _: unknown[] }): {} => {
+    options: (args: { _: unknown[] }): Record<string, unknown> => {
         return {
             askAll: args['--all'] || false,
             keepExisting: args['--keepExisting'] || copyDef.default.keepExisting,
@@ -32,7 +32,7 @@ const copyDef = {
             dest: args._[1]
         };
     },
-    questions: (options: { [_: string]: unknown }): {}[] => {
+    questions: (options: { [_: string]: unknown }): Record<string, unknown>[] => {
         const questions = [];
         if (!options.src) {
             questions.push({

@@ -73,7 +73,10 @@ export function createProcess (processPath: string,
  * @param {Object} opts (Optional) Environment variables
  */
 function executeWithInput (processPath: string,
-    args: {} | [] = {}, inputs: unknown[] = [], opts?: ProcessOptions): ProcessPromise<unknown> {
+    args: Record<string, unknown> | [] = {}, 
+    inputs: unknown[] = [], 
+    opts?: ProcessOptions): ProcessPromise<unknown> {
+
     // Handle case if user decides not to pass input data
     // A.k.a. backwards compatibility
     if (!Array.isArray(inputs)) {
@@ -189,8 +192,8 @@ export const execute = executeWithInput;
  * A wrapper to curry 'execute' for argument 'processPath'
  * @param processPath
  */
-export function create (processPath: string): { execute: Function} {
-    const fn = (...args: unknown[]): ProcessPromise<unknown> => executeWithInput(processPath, ...args);
+export function create (processPath: string): { execute: (...args: any[]) => ProcessPromise<unknown> } {
+    const fn = (...args: any[]): ProcessPromise<unknown> => executeWithInput(processPath, ...args);
 
     return {
         execute: fn

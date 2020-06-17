@@ -12,12 +12,12 @@ const ensureDirDef = {
     'default': {
         mode: undefined
     },
-    options: (args: { _: unknown[] }): {} => ({
+    options: (args: { _: unknown[] }): Record<string, unknown> => ({
         askAll: args['--all'] || false,
         mode: args['--mode'] || ensureDirDef.default.mode,
         dir: args._[0]
     }),
-    questions: (options: { [_: string]: unknown }): {}[] => {
+    questions: (options: { [_: string]: unknown }): Record<string, unknown>[] => {
         const questions = [];
         if (!options.dir) {
             questions.push({
