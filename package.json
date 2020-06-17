@@ -66,8 +66,9 @@
     "version": "npm run build && git add -A",
     "postversion": "cross-env HUSKY_SKIP_HOOKS=1 git push && git push --tags",
     "prepublishOnly": "npm run build",
-    "lint": "tsc --project src && eslint src/**/* --ext .js,.ts --quiet && eslint test/**/* --ext .js,.ts --quiet",
-    "lint:fix": "eslint --fix src/ && eslint --fix test/"
+    "lint": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts --quiet",
+    "lint:fix": "eslint --fix src/ test/ scripts/",
+    "lint:verbose": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts"
   },
   "keywords": [
     "fse",
