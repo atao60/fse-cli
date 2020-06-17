@@ -1,17 +1,17 @@
 # @atao/fse-cli
 
-<span style="font-size:3em;">🏗</span>A cli for [fs-extra](https://github.com/jprichardson/node-fs-extra). 
+<span style="font-size:3em;">🏗</span>A cli for [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra). 
 
 ## 💡 Rational
 
 Everyone needs simple file system operations like copy, remove, clean, ... that can be used from the terminal or via [npm](https://www.npmjs.com) scripts. 
 
-While there are many [Node.js](https://nodejs.org) utils that provide this, all are meant to be used as part of an app, and does not have a CLI.
+While there are many [Npm](https://www.npmjs.com/) packages that provide this, all are meant to be used as part of an app, and does not have a CLI.
 
-This CLI is based on [fs-extra](https://github.com/jprichardson/node-fs-extra). It is available as [Node.js](https://nodejs.org) package from [Node.js: fs-extra](https://www.npmjs.com/package/fs-extra).
+This CLI is based on [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra). It is available as [Npm](https://www.npmjs.com/) package from [Node.js: fs-extra](https://www.npmjs.com/package/fs-extra).
 
-> Note. It's a work in progress:
-* not all functions are mapped yet, see [Commands](#Commands) below;
+The available [Commands](#-commands) are fully functional and tested. However it's still a work in progress:
+* not all functions are mapped yet,
 * more tests still to be created, even if they will only cover the cli part.
 
 ## 🏁 Quickstart
@@ -26,7 +26,7 @@ Each function is available:
 - either as a stand alone one, eg `fse-copy`,
 - or as a sub command, eg `fse copy`.
 
-The arguments are those of [fs-extra](https://github.com/jprichardson/node-fs-extra) as far as possible.
+The arguments are those of [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra) as far as possible.
 
 For more details, see the [manual](MANUAL.md).
 
@@ -49,7 +49,7 @@ See [Contributing](CONTRIBUTING.md).
 
 ## 📜 Credits
 
-Indeed [node-fs-extra](https://github.com/jprichardson/node-fs-extra).
+Indeed [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra).
 
 Amongst several dead attempts to create a CLI : [node-fs-extra-cli](https://www.npmjs.com/package/fs-extra-cli).
 
