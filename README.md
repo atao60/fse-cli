@@ -10,9 +10,9 @@ While there are many [Npm](https://www.npmjs.com/) packages that provide this, a
 
 This CLI is based on [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra). It is available as [Npm](https://www.npmjs.com/) package from [Node.js: fs-extra](https://www.npmjs.com/package/fs-extra).
 
-The available [Commands](#-commands) are fully functional and tested. However it's still a work in progress:
-* not all functions are mapped yet,
-* more tests still to be created, even if they will only cover the cli part.
+The [available CLI commands](#-commands) are fully functional and tested. However it's still a work in progress:
+* not all [fs-extra](https://github.com/jprichardson/node-fs-extra) functions are mapped yet,
+* more tests still to be created, even if they will only concern the cli part.
 
 ## 🏁 Quickstart
 
