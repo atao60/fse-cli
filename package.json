@@ -157,10 +157,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/atao-web/fse-cli.git"
+    "url": "git+https://github.com/atao60/fse-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/atao-web/fse-cli/issues"
+    "url": "https://github.com/atao60/fse-cli/issues"
   },
-  "homepage": "https://github.com/atao-web/fse-cli#readme"
+  "homepage": "https://github.com/atao60/fse-cli#readme"
 }

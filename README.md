@@ -1,6 +1,6 @@
 # @atao/fse-cli
 
-<span style="font-size:3em;">🏗</span>A cli for [node-fs-extra](https://github.com/jprichardson/node-fs-extra). 
+<span style="font-size:3em;">🏗</span>A cli for [fs-extra](https://github.com/jprichardson/node-fs-extra). 
 
 ## 💡 Rational
 
@@ -8,13 +8,15 @@ Everyone needs simple file system operations like copy, remove, clean, ... that 
 
 While there are many [Node.js](https://nodejs.org) utils that provide this, all are meant to be used as part of an app, and does not have a CLI.
 
-This CLI is based on [fs-extra](https://github.com/jprichardson/node-fs-extra).
+This CLI is based on [fs-extra](https://github.com/jprichardson/node-fs-extra). It is available as [Node.js](https://nodejs.org) package from [Node.js: fs-extra](https://www.npmjs.com/package/fs-extra).
 
-Note. It's a work in progress:
+> Note. It's a work in progress:
 * not all functions are mapped yet, see [Commands](#Commands) below;
-* a lot of tests still to be created, even if they will only cover the cli part.
+* more tests still to be created, even if they will only cover the cli part.
 
 ## 🏁 Quickstart
+
+Add this package to a project:
 
 ```
 npm install @atao60/fse-cli

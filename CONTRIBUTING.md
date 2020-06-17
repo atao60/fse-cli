@@ -1,4 +1,12 @@
+# atao60/fse-cli - Development
+
 Welcome!
+
+This project uses:
+- [Typescript](https://www.typescriptlang.org/) as far as possible, otherwise [ES2018](https://www.ecma-international.org/ecma-262/9.0/index.html).
+- [ESLint](https://eslint.org/) in place of [TSLint](https://palantir.github.io/tslint/).
+
+Hence the use of [Babel7](https://babeljs.io/blog/2018/08/27/7.0.0).
 
 ## Prerequisites 
 
@@ -41,7 +49,7 @@ The scripts `start` and `test` are aliases for `test:dev:watch`.
 ```bash
 npm uninstall -g @atao60/fse-cli ### if needed; required to avoid any issue with `npm link`, see below
 
-git clone https://github.com/atao-web/fse-cli.git atao60-fse-cli
+git clone https://github.com/atao60/fse-cli.git atao60-fse-cli
 
 cd atao60-fse-cli
 
@@ -100,7 +108,7 @@ Lastly open a pull request on Github.
 
 To publish, you must have the access rights for:
 - the package on the [npm](https://www.npmjs.com/) public registry, ie [@atao60/fse-cli](https://www.npmjs.com/package/@atao60/fse-cli),
-- the repository on [Github](https://github.com), ie [atao-web/fse-cli](https://github.com/atao-web/fse-cli).
+- the repository on [Github](https://github.com), ie [atao60/fse-cli](https://github.com/atao60/fse-cli).
 
 > The script `npm run version` will push a new version in `package.json` and a new tag with this version as label.
 
@@ -112,9 +120,9 @@ npm version patch ### if wished, use 'minor' or 'major' in place of 'patch'
 
 npm publish
 
-### check that everything is fine:
+### check the published package runs fine:
 
-cd <any suitable folder>
+cd <any suitable folder, even the local repo one>
 
 npx @atao60/fse-cli
 
