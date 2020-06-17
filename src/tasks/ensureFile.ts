@@ -5,10 +5,10 @@ const ensureFileDef = {
     name: 'ensureFile',
     spec: {},
     'default': {},
-    options: (args) => ({
+    options: (args: { _: unknown[] }): {} => ({
         file: args._[0]
     }),
-    questions: (options) => {
+    questions: (options: { file: unknown }): {}[] => {
         const questions = [];
         if (!options.file) {
             questions.push({
@@ -28,7 +28,7 @@ export const def = ensureFileDef;
  * Wrapper for node-fs-exta ensureFile function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/ensureFile.md
  */
-export function job ({ file }: { file: string }) {
+export function job ({ file }: { file: string }): void {
 
     console.info(`Checking if existing and, if not, creating file ${file} ...`);
 

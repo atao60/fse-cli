@@ -4,10 +4,10 @@ import { emptyDir } from 'fs-extra';
 const emptyDirDef = {
     name: 'emptyDir',
     spec: {},
-    options: (args) => ({
+    options: (args: { _: unknown[] }): {} => ({
         dir: args._[0]  // TODO a list of directories?
     }),
-    questions: (options) => {
+    questions: (options: { dir: unknown }): {}[] => {
         const questions = [];
         if (!options.dir) {
             questions.push({
@@ -27,7 +27,7 @@ export const def = emptyDirDef;
  * Wrapper for node-fs-exta emptyDir function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/emptyDir.md
  */
-export function job ({ directory }: { directory: string }) {
+export function job ({ directory }: { directory: string }): void {
     console.info('Be gone rapscalian...');
 
     emptyDir(directory, error => {

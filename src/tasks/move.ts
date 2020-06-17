@@ -12,7 +12,7 @@ const moveDef = {
     'default': {
         overwrite: false
     },
-    options: (args) => {
+    options: (args: { _: unknown[] }): {} => {
         return {
             askAll: args['--all'] || false,
             overwrite: args['--overwrite'] || moveDef.default.overwrite,
@@ -20,7 +20,7 @@ const moveDef = {
             dest: args._[1]
         };
     },
-    questions: (options) => {
+    questions: (options: { [_: string]: unknown }): {}[] => {
         const questions = [];
         if (!options.src) {
             questions.push({
@@ -62,7 +62,7 @@ interface CliMoveOptions extends MoveOptions {
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/move.md
  */
 export function job ({ src, dest, ...moveOptions }:
-    { src: string; dest: string; moveOptions: { [tag: string]: any } }) {
+    { src: string; dest: string; moveOptions: { [_: string]: unknown } }): void {
 
     const otherOptions = moveOptions as CliMoveOptions; 
     const showAll = otherOptions.askAll;

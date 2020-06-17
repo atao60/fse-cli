@@ -5,10 +5,10 @@ const removeDef = {
     name: 'remove',
     spec: {},
     'default': {},
-    options: (args) => ({
+    options: (args: { _: unknown[] }): {} => ({
         dir: args._[0]  // TODO a list of directories?
     }),
-    questions: (options) => {
+    questions: (options: { dir: unknown }): {}[] => {
         const questions = [];
         if (!options.dir) {
             questions.push({
@@ -28,7 +28,7 @@ export const def = removeDef;
  * Wrapper for node-fs-exta remove function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/remove.md
  */
-export function job ({ dir }: { dir: string }) {
+export function job ({ dir }: { dir: string }): void {
     console.info('Be gone rapscalian...');
 
     remove(dir, error => {

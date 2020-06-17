@@ -21,7 +21,7 @@ const copyDef = {
         dereference: false,
         preserveTimestamps: false
     },
-    options: (args) => {
+    options: (args: { _: unknown[] }): {} => {
         return {
             askAll: args['--all'] || false,
             keepExisting: args['--keepExisting'] || copyDef.default.keepExisting,
@@ -32,7 +32,7 @@ const copyDef = {
             dest: args._[1]
         };
     },
-    questions: (options) => {
+    questions: (options: { [_: string]: unknown }): {}[] => {
         const questions = [];
         if (!options.src) {
             questions.push({
@@ -100,7 +100,7 @@ interface CliCopyOptions extends CopyOptions {
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/copy.md
  */
 export function job ({ src, dest, ...copyOptions }:
-    { src: string; dest: string; copyOptions: { [tag: string]: any } }) {
+    { src: string; dest: string; copyOptions: { [_: string]: unknown } }): void {
 
     const otherOptions = copyOptions as CliCopyOptions;
     const showAll = otherOptions.askAll;
@@ -116,15 +116,17 @@ export function job ({ src, dest, ...copyOptions }:
         }
     }
 
-    function mainMessageFromError (error: Error | string): string {
+    function mainMessageFromError (error: Error | string | { code: string; syscall: string; path: string }): string {
         const msg = error.toString();
         const groups = msg.match(/^\s*Error\s*:\s*(.*?\s+already\s+exists\s*)$/);
         if (groups) {
             return groups[1];
         }
-        // only if under Linux TODO what about other os?
-        if ((error as any).code === 'EISDIR' && (error as any).syscall === 'unlink') {
-            return `it seems your're trying to copy a file on the directory '${(error as any).path}'`
+        // only if under Linux 
+        // TODO what about other os?
+        const linuxError = error as { code: string; syscall: string; path: string };
+        if (linuxError.code === 'EISDIR' && linuxError.syscall === 'unlink') {
+            return `it seems your're trying to copy a file on the directory '${linuxError.path}'`
                 + ', which is not allowed';
         }
     }

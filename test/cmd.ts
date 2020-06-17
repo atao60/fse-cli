@@ -1,4 +1,4 @@
-import { ChildProcessWithoutNullStreams, SpawnOptions } from 'child_process';
+import { ChildProcess, ChildProcessWithoutNullStreams, SpawnOptions } from 'child_process';
 import concat from 'concat-stream';
 import spawn from 'cross-spawn';
 import { existsSync } from 'fs';
@@ -30,7 +30,8 @@ export const DOWN = '\x1B\x5B\x42';
  * @param {Array} args Arguments to the command
  * @param {Object} env (optional) Environment variables
  */
-export function createProcess (processPath: string, args: { node?: []; app?: [] } | [] = {}, envvars = null) {
+export function createProcess (processPath: string,
+    args: { node?: []; app?: [] } | [] = {}, envvars = null): ChildProcess {
 
     const nodeArgs = Array.isArray(args) ? [] : (args && args.node ? args.node : []);
     const appArgs = Array.isArray(args) ? args : (args && args.app ? args.app : []);
@@ -71,7 +72,8 @@ export function createProcess (processPath: string, args: { node?: []; app?: [] 
  * @param {Array} inputs (Optional) Array of inputs (user responses)
  * @param {Object} opts (Optional) Environment variables
  */
-function executeWithInput (processPath: string, args: {} | [] = {}, inputs: any[] = [], opts?: ProcessOptions) {
+function executeWithInput (processPath: string,
+    args: {} | [] = {}, inputs: unknown[] = [], opts?: ProcessOptions): ProcessPromise<unknown> {
     // Handle case if user decides not to pass input data
     // A.k.a. backwards compatibility
     if (!Array.isArray(inputs)) {
@@ -91,7 +93,7 @@ function executeWithInput (processPath: string, args: {} | [] = {}, inputs: any[
     // Creates a loop to feed user inputs to the child process in order to get results from the tool
     // This code is heavily inspired (if not blantantly copied) from inquirer-test:
     // https://github.com/ewnd9/inquirer-test/blob/6e2c40bbd39a061d3e52a8b1ee52cdac88f8d7f7/index.js#L14
-    const loop = (currentinputs: any[]) => {
+    const loop = (currentinputs: unknown[]): void => {
         if (killIOTimeout) {
             clearTimeout(killIOTimeout);
         }
@@ -157,7 +159,7 @@ function executeWithInput (processPath: string, args: {} | [] = {}, inputs: any[
             resolve('Process exit code: ' + code);
         });
 
-        childProcess.on('error', (toto) => {
+        childProcess.on('error', () => {
             reject();
         });    // Kick off the process
 
@@ -172,13 +174,13 @@ function executeWithInput (processPath: string, args: {} | [] = {}, inputs: any[
                 resolve(result.toString());
             })
         );
-    });
+    }) as ProcessPromise<unknown>;
 
     // Appending the process to the promise, in order to
     // add additional parameters or behavior (such as IPC communication)
-    (promise as any).attachedProcess = childProcess;
+    promise.attachedProcess = childProcess;
 
-    return promise as ProcessPromise<unknown>;
+    return promise;
 }
 
 export const execute = executeWithInput;
@@ -187,8 +189,8 @@ export const execute = executeWithInput;
  * A wrapper to curry 'execute' for argument 'processPath'
  * @param processPath
  */
-export function create (processPath: string) {
-    const fn = (...args: any[]) => executeWithInput(processPath, ...args);
+export function create (processPath: string): { execute: Function} {
+    const fn = (...args: unknown[]): ProcessPromise<unknown> => executeWithInput(processPath, ...args);
 
     return {
         execute: fn

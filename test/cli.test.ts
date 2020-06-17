@@ -4,7 +4,7 @@ import { describe, it } from 'mocha';
 import { join } from 'path';
 import { env } from 'process';
 
-import { ENTER, execute as run } from './cmd';
+import { execute as run } from './cmd';
 
 const LIB_DIR = join(__dirname, env.APP_CODE_PATH || '../../dist');
 const TMP_DIR = join(__dirname, env.PROJECT_TARGET_PATH || '../.tmp-dir');

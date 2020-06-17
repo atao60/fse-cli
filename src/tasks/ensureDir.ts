@@ -12,12 +12,12 @@ const ensureDirDef = {
     'default': {
         mode: undefined
     },
-    options: (args) => ({
+    options: (args: { _: unknown[] }): {} => ({
         askAll: args['--all'] || false,
         mode: args['--mode'] || ensureDirDef.default.mode,
         dir: args._[0]
     }),
-    questions: (options) => {
+    questions: (options: { [_: string]: unknown }): {}[] => {
         const questions = [];
         if (!options.dir) {
             questions.push({
@@ -47,7 +47,7 @@ export const def = ensureDirDef;
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/ensureDir.md
  */
 export function job ({ dir: directory, mode }:
-    { dir: string; mode: number }) {
+    { dir: string; mode: number }): void {
 
     console.info(`Checking if existing and, if not, creating directory ${directory} ...`);
 
