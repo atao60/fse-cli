@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { closeSync, existsSync, mkdtempSync, mkdirSync, openSync, rmdirSync, statSync, unlinkSync } from 'fs';
+import { closeSync, existsSync, mkdtempSync, mkdirSync, openSync, rmdirSync, statSync, unlinkSync } from 'graceful-fs';
 import { describe, it } from 'mocha';
 import { join } from 'path';
 import { env } from 'process';

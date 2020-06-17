@@ -1,13 +1,13 @@
 /**
  *   Required under Windows, as rimraf can't delete itself under folder ./node_modules
  */
-import { existsSync, lstatSync, readdirSync, rmdirSync, unlinkSync } from 'fs';
+import { existsSync, lstatSync, readdirSync, rmdirSync, unlinkSync } from 'graceful-fs';
 import { join } from 'path';
 import { argv, exit } from 'process';
 
 const folderPathList = argv.slice(2);
 
-function folderDeepDelete(folderPath: string) {
+function folderDeepDelete(folderPath: string): void {
     const subfiles = readdirSync(folderPath);
     subfiles.forEach(filename => {
         const curPath = join(folderPath, filename);
@@ -17,7 +17,7 @@ function folderDeepDelete(folderPath: string) {
     rmdirSync(folderPath);
 }
 
-function deepDelete(folderPaths: string[]) {
+function deepDelete(folderPaths: string[]): void {
     if (!folderPaths || folderPaths.length < 1) return;
 
     folderPaths.forEach(p => {

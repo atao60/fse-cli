@@ -1,7 +1,7 @@
 import { ChildProcess, ChildProcessWithoutNullStreams, SpawnOptions } from 'child_process';
 import concat from 'concat-stream';
 import spawn from 'cross-spawn';
-import { existsSync } from 'fs';
+import { existsSync } from 'graceful-fs';
 import { constants } from 'os';
 import { env } from 'process';
 
