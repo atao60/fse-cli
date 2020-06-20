@@ -1,6 +1,6 @@
 {
   "name": "@atao60/fse-cli",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "A cli for fs-extra",
   "main": "./dist/index.js",
   "types": "./dist/index-types.d.ts",
