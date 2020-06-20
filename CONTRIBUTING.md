@@ -1,12 +1,71 @@
-# atao60/fse-cli - Development
+# atao60/fse-cli - Contributing
 
 Welcome!
 
-This project uses:
-- [Typescript](https://www.typescriptlang.org/) as far as possible, otherwise [ES2018](https://www.ecma-international.org/ecma-262/9.0/index.html).
-- [ESLint](https://eslint.org/) in place of [TSLint](https://palantir.github.io/tslint/).
+:tada::+1: First, thank you for considering contributing to `fse-cli`! :tada::+1:
 
-Hence the use of [Babel7](https://babeljs.io/blog/2018/08/27/7.0.0).
+**Table of Content**
+
+- [Guidelines](#guidelines)
+  - [Code of Conduct](#code-of-conduct)
+  - [Coding Rules](#coding-rules)
+  - [License](#license)
+- [Codebase Overview](#codebase-overview)
+- [Prerequisites](#Prerequisites)
+- [Development](#development)
+  - [Main Scripts](#main-scripts)
+  - [Fork](#fork)
+  - [Watch changes](#watch-changes)
+  - [Usage](#usage)
+  - [Pull Request](#pull-request)
+  - [Publish](#publish)
+
+## Guidelines
+
+We'd like to emphasize these points:
+
+  1. Be Respectful
+     * We appreciate contributions to `fse-cli` and we ask you to respect one another.
+  2. Be Responsible
+     * You are responsible for your Pull Request submission
+  3. Give Credit
+     * If any submissions or contributions are built upon other work (e.g. research papers, open sourced projects, public code), please cite or attach any information about the original source. People should be credited for the work they've done.
+
+### Code of Conduct
+
+This project is driven by the [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+### Coding Rules
+
+Before each commit, a static analysis of the code is done with:
+* typescript compiler,
+* eslint.
+
+Both **must** pass.
+
+Moreover, even if it's not mandatory, it is expected this analysis will not rise any warning. 
+
+### License
+
+By contributing to `fse-cli`, you agree that your contributions will be licensed under its [MIT](LICENSE) license.
+
+## Codebase Overview
+
+Each main `fs-extra` function is wrapped in a `task`, each one with a dedicated sub-folder under [src/tasks](src/tasks).
+
+Aliases are defined in the associative array `jobLinks` inside [src/config.ts](src/config.ts).
+
+> ⚠️ Don't forget to update the section `bin` of [package.json](package.json) for any change of `jobLinks` ⚠️ 
+
+This project uses:
+- [Npm](https://www.npmjs.com/) as package manager,
+- [Typescript](https://www.typescriptlang.org/) as far as possible, otherwise [ES2018](https://www.ecma-international.org/ecma-262/9.0/index.html),
+- [ESLint](https://eslint.org/) **and** [TSLint](https://palantir.github.io/tslint/) as static code analysers,
+- [Babel7](https://babeljs.io/blog/2018/08/27/7.0.0) as compiler.
+
+Each `task` is tested without duplicating [fs-extra](https://github.com/jprichardson/node-fs-extra) tests.
+
+At the moment there is no CI/Build configuration. But thanks to [Husky](github.com/typicode/husky#readme), a [code analysis](#coding-rules) and a full test + build are done before each push on the [github repository](https://github.com/atao60/fse-cli).
 
 ## Prerequisites 
 
@@ -18,22 +77,22 @@ Hence the use of [Babel7](https://babeljs.io/blog/2018/08/27/7.0.0).
 and possibly:
 * a [GitHub account](https://github.com/)
 
-The shell used here is [Bash](https://www.gnu.org/software/bash/) under [Linux](https://www.linuxfoundation.org/). However it should be straightforward to work under any other usual OS as Windows or Mac OS X.
+The shell used here is [Bash](https://www.gnu.org/software/bash/) under [Linux](https://www.linuxfoundation.org/). However it should be straightforward to work under any other usual OS as [Windows](https://www.microsoft.com/windows/) or [Mac OS X](https://www.apple.com/macos).
 
 Check prerequisites' status:
 ```bash
 npm doctor # will show information about git, node, npm...
 git --version
-npm list -g --depth 0 2>&1 | grep create-project # (°)
+npm list -g --depth 0 2>&1 | grep fse-cli # (°)
 ```
 
-> (°) replace `2>&1 | grep ...` by its counterpart under Windows or Mac OS X
+> (°) replace `2>&1 | grep ...` by its counterpart under [Windows](https://www.microsoft.com/windows/) or [Mac OS X](https://www.apple.com/macos).
 
 ## Development
 
-### Main scripts
+### Main Scripts
 
-The main available npm scripts are:
+The main available scripts are:
 
 - `npm run build` - create a production ready build,
 - `npm version <new version>` - check as much as possible before pushing with the new version
@@ -74,22 +133,25 @@ npm start ### will rebuild and test after each code change
 
 ### Usage
 
-Doing it from an other console (°), use package from local repository:
+Doing it from an other console (°), use package from local repository, eg:
 
 ```bash
 
-fse mkdirp
+fse mkdirp my_new_folder
 
 ```
 
 > (°) Under any wished location, even the directory `atao60-fse-cli` above. 
 
-### Pull request
+### Pull Request
 
 ```bash
 
 pwd  ### checking if in the forked project folder
 # <path to>/atao60-fse-cli
+
+git branch ### checking if in 'master' branch before creating the new one for pull request
+# * master
 
 git checkout -b my-branch
 
@@ -97,16 +159,18 @@ git checkout -b my-branch
 
 git add --all
 
-git commit -m "closing pull request message"
+git commit -m "<closing pull request message>"
 
 git push origin my-branch
 
 ```
-Lastly open a pull request on Github.
+Lastly open this branch on the Github fork and create a pull request.
+
+Once the pull request merged, delete this branch.
 
 ### Publish
 
-To publish, you must have the access rights for:
+To publish on [npm](https://www.npmjs.com/) public registry, you must be an administor with access rights for:
 - the package on the [npm](https://www.npmjs.com/) public registry, ie [@atao60/fse-cli](https://www.npmjs.com/package/@atao60/fse-cli),
 - the repository on [Github](https://github.com), ie [atao60/fse-cli](https://github.com/atao60/fse-cli).
 

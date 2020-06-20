@@ -30,7 +30,7 @@ From the [fs-extra documentation](https://github.com/jprichardson/node-fs-extra/
 
 "Ensures that the directory exists. If the directory structure does not exist, it is created. Like mkdir -p."
 
-Aliases: ensureDir, mkdirs, mkdirp
+Aliases: ***ensureDir***, ***mkdirs***, ***mkdirp***
 
 *Follow the prompts*
 
@@ -68,7 +68,7 @@ From the [fs-extra documentation](https://github.com/jprichardson/node-fs-extra/
 
 "Removes a file or directory. The directory can have contents. If the path does not exist, silently does nothing. Like rm -rf."
 
-Aliases: remove, rimraf
+Aliases: ***remove***, ***rimraf***
 
 *Follow the prompts*
 
@@ -88,7 +88,7 @@ From the [fs-extra documentation](https://github.com/jprichardson/node-fs-extra/
 
 "Ensures that the file exists. If the file that is requested to be created is in directories that do not exist, these directories are created. If the file already exists, it is NOT MODIFIED."
 
-Aliases: ensureFile, touch
+Aliases: ***ensureFile***, ***touch***
 
 *Follow the prompts*
 

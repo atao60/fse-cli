@@ -66,9 +66,9 @@
     "version": "npm run build && git add -A",
     "postversion": "cross-env HUSKY_SKIP_HOOKS=1 git push && git push --tags",
     "prepublishOnly": "npm run build",
-    "lint": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts --quiet",
+    "lint:quiet": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts --quiet",
     "lint:fix": "eslint --fix src/ test/ scripts/",
-    "lint:verbose": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts"
+    "lint": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts"
   },
   "keywords": [
     "fse",
@@ -101,7 +101,7 @@
     "output",
     "move"
   ],
-  "author": "Pierre Raoul <atao60.web@gmail.com>",
+  "author": "Pierre Raoul <atao60.dev@gmail.com>",
   "license": "MIT",
   "engines": {
     "node": "10.15.3",
