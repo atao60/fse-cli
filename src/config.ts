@@ -18,7 +18,7 @@ const jobLinks = {
     ensureFile: 'ensureFile',
     touch: 'ensureFile',
     move: 'move'
-}
+};
 
 // 'cli' must not be used as task name
 const allowedScriptPrefixes = ['fse-cli', 'fse'];  // longer first
@@ -30,11 +30,11 @@ function extractScriptAndTask (scriptPath: string) {
         return [scriptPath];
     }
 
-    const prefixes = allowedScriptPrefixes.map(p => p + '-')
+    const prefixes = allowedScriptPrefixes.map(p => p + '-');
     for (const p of prefixes) {
         if (scriptName.startsWith(p)) {
             const fromEnd = p.length - scriptName.length - 1;
-            return [scriptPath.slice(0, fromEnd), scriptName.slice(p.length)]
+            return [scriptPath.slice(0, fromEnd), scriptName.slice(p.length)];
         }
     }
     return [scriptName];
@@ -43,17 +43,17 @@ function extractScriptAndTask (scriptPath: string) {
 async function parseArgumentsIntoOptions (rawArgs: string[]) {
 
     const fullCommand = extractScriptAndTask(rawArgs[1]);
-    const finalArgs = [rawArgs[0], ...fullCommand, ...rawArgs.splice(2)]
+    const finalArgs = [rawArgs[0], ...fullCommand, ...rawArgs.splice(2)];
     const jobName = finalArgs[2];
     if (!jobName) {
         console.error("%s: No task specified", chalk.red.bold('ERROR'));
         exit(1);
-    };
+    }
     const jobTag = jobLinks[jobName];
     if (!jobTag) {
         console.error("%s: Unknown task '" + jobName + "'", chalk.red.bold('ERROR'));
         exit(1);
-    };
+    }
 
     const argv = finalArgs.slice(3);
     const modulePath = join(__dirname, 'tasks', jobTag);
@@ -62,11 +62,17 @@ async function parseArgumentsIntoOptions (rawArgs: string[]) {
     const args = arg(
         jobDef.spec,
         { argv }
-    )
+    );
     return { jobDef, options: jobDef.options(args) };
 }
 
-async function promptForMissingOptions ({ jobDef, options: partialOptions }: { jobDef: JobDef, options: {} }) {
+interface JobOptions { 
+    jobTag: string;
+    options: Record<string, unknown>;
+ }
+
+async function promptForMissingOptions ({ jobDef, options: partialOptions }: 
+    { jobDef: JobDef, options: Record<string, unknown> }): Promise<JobOptions> {
 
     const questions = jobDef.questions(partialOptions);
     const answers = await prompt(questions);
@@ -80,7 +86,8 @@ async function promptForMissingOptions ({ jobDef, options: partialOptions }: { j
 
 }
 
-export async function fetchOptionsFrom (args: string[]) {
+export async function fetchOptionsFrom (args: string[]): Promise<JobOptions> {
     const data = await parseArgumentsIntoOptions(args);
-    return await promptForMissingOptions(data);
+    const options = await promptForMissingOptions(data);
+    return options;
 }

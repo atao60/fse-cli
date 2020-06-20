@@ -13,9 +13,5 @@
             "es2018",
             "dom"
         ]
-    },
-    "exclude": [
-        "dist",
-        "node_modules"
-    ]
+    }
 }

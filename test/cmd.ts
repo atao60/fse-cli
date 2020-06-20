@@ -73,8 +73,8 @@ export function createProcess (processPath: string,
  * @param {Object} opts (Optional) Environment variables
  */
 function executeWithInput (processPath: string,
-    args: Record<string, unknown> | [] = {}, 
-    inputs: unknown[] = [], 
+    args: Record<string, unknown> | [] = {},
+    inputs: unknown[] = [],
     opts?: ProcessOptions): ProcessPromise<unknown> {
 
     // Handle case if user decides not to pass input data
@@ -188,14 +188,20 @@ function executeWithInput (processPath: string,
 
 export const execute = executeWithInput;
 
+type ScriptRunner = (args: Record<string, unknown> | [],
+    inputs: unknown[],
+    opts?: ProcessOptions) => ProcessPromise<unknown>;
+
 /**
  * A wrapper to curry 'execute' for argument 'processPath'
  * @param processPath
  */
-export function create (processPath: string): { execute: (...args: any[]) => ProcessPromise<unknown> } {
-    const fn = (...args: any[]): ProcessPromise<unknown> => executeWithInput(processPath, ...args);
-
+export function create (processPath: string): { execute: ScriptRunner } {
+    const runner = (args?: Record<string, unknown> | [], inputs?: unknown[], opts?: ProcessOptions)
+        : ProcessPromise<unknown> => {
+        return executeWithInput(processPath, args, inputs, opts);
+    };
     return {
-        execute: fn
+        execute: runner
     };
 }
