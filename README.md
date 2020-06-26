@@ -1,16 +1,9 @@
-<h1 align="center">Welcome to @atao/fse-cli</h1>
+Welcome to @atao/fse-cli
+===
+[![NPM Version](https://img.shields.io/npm/v/@atao60/fse-cli?color=#0366d6)](https://github.com/atao60/fse-cli) [![License: MIT](https://img.shields.io/github/license/atao60/fse-cli)](https://github.com/atao60/fse-cli/blob/master/LICENSE)
 
-<p>
-  <a href="https://github.com/atao60/fse-cli#readme" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-  <a href="https://github.com/atao60/fse-cli/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
-  <a href="https://github.com/atao60/fse-cli/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/atao60/fse-cli" />
-  </a>
-</p>
+[![NPM](https://nodei.co/npm/@atao60/fse-cli.png?mini=true)](https://nodei.co/npm/@atao60/fse-cli/)
+
 
 <span style="font-size:3em;">🏗</span>A cli for [fs-extra](https://github.com/jprichardson/node-fs-extra). 
 
@@ -22,11 +15,9 @@ While there are many [Npm](https://www.npmjs.com/) packages that provide this, a
 
 This CLI is based on [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra). 
 
-It is available as [Npm](https://www.npmjs.com/) package from [fse-cli](https://www.npmjs.com/package/@atao60/fse-cli).
-
 The [available CLI commands](#-commands) are fully functional and tested. However it's still a work in progress:
-* not all [fs-extra](https://github.com/jprichardson/node-fs-extra) functions are mapped yet,
-* more tests, even if they will only concern the CLI part.
+* Not all [fs-extra](https://github.com/jprichardson/node-fs-extra) functions are mapped yet. Please, feel free to open an issue if there is something you would like supported.
+* More tests to come, even if they will only concern the CLI part without overlapping [fs-extra](https://github.com/jprichardson/node-fs-extra)'s tests.
 
 ## 🏁 Quickstart
 
@@ -65,4 +56,4 @@ See [MIT](LICENSE)
 
 Indeed [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra).
 
-[node-fs-extra-cli](https://www.npmjs.com/package/fs-extra-cli) was very useful to start this project.
+Furthermore [node-fs-extra-cli](https://www.npmjs.com/package/fs-extra-cli) was very useful to start this project.

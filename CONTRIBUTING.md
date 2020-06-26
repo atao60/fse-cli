@@ -65,7 +65,7 @@ This project uses:
 
 Each `task` is tested without duplicating [fs-extra](https://github.com/jprichardson/node-fs-extra) tests.
 
-At the moment there is no CI/Build configuration. But thanks to [Husky](github.com/typicode/husky#readme), a [code analysis](#coding-rules) and a full test + build are done before each push on the [github repository](https://github.com/atao60/fse-cli).
+At the moment there is no CI/Build configuration on [Github](https://github.com) side. But thanks to [Husky](github.com/typicode/husky#readme), a [code analysis](#coding-rules) and a full test + build are done before each push on the [github repository](https://github.com/atao60/fse-cli).
 
 ## Prerequisites 
 
@@ -86,7 +86,8 @@ git --version
 npm list -g --depth 0 2>&1 | grep fse-cli # (°)
 ```
 
-> (°) replace `2>&1 | grep ...` by its counterpart under [Windows](https://www.microsoft.com/windows/) or [Mac OS X](https://www.apple.com/macos).
+> (°) replace `2>&1 | grep ...` by its counterpart under [Windows](https://www.microsoft.com/windows/),
+[Mac OS X](https://www.apple.com/macos), ... Or simply use `npm list -g --depth 0` and check if `fse-cli` is present.
 
 ## Development
 
@@ -178,15 +179,19 @@ To publish on [npm](https://www.npmjs.com/) public registry, you must be an admi
 
 ```bash
 
-git checkout my-branch
+git checkout master
 
-npm version patch ### if wished, use 'minor' or 'major' in place of 'patch'
+git merge my-branch
+
+npm run version
 
 npm publish
 
+git branch -D my-branch
+
 ### check the published package runs fine:
 
-cd <any suitable folder, even the local repo one>
+cd <any suitable folder, even your local repository>
 
 npx @atao60/fse-cli
 
