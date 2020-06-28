@@ -12,7 +12,7 @@ Welcome to @atao/fse-cli
 Everyone needs simple file system operations like copy, remove, clean, ... that can be used from the terminal or via scripts. 
 
 There are many [Npm](https://www.npmjs.com/) packages that provide all or any of this:
-- either as an API to be used as part of an application, but without associated [CLI](https://en.wikipedia.org/wiki/Command-line_interface),
+- either as an [API](https://en.wikipedia.org/wiki/Application_programming_interface) to be used as part of an application, but without associated [CLI](https://en.wikipedia.org/wiki/Command-line_interface),
 - or as [CLI](https://en.wikipedia.org/wiki/Command-line_interface) but in separate [Npm](https://www.npmjs.com/) packages such as [rimraf](https://www.npmjs.com/package/rimraf), [mkdirp](https://www.npmjs.com/package/mkdirp), [cpy-cli](https://www.npmjs.com/package/cpy-cli), ...
 
 [This package](https://www.npmjs.com/package/@atao60/fse-cli) provides all of them from a unique [CLI](https://en.wikipedia.org/wiki/Command-line_interface).
