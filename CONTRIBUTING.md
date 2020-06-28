@@ -95,14 +95,14 @@ npm list -g --depth 0 2>&1 | grep fse-cli # (°)
 
 The main available scripts are:
 
+- `npm start` - alias for `npm run test`
+- `npm run test` - rerun build and test after any code changes and made them available through `npm link`,
 - `npm run build` - create a production ready build,
-- `npm version <new version>` - check as much as possible before pushing with the new version
+- `npm run release` - run test, lint and build before pushing with the new version
 - `npm run clean` - remove temporary folders as dist, .build, ...
 - `npm run refresh` - remove node modules, package-lock.json, dist, ... and re-installs upgraded dependencies,
 - `npm run lint` - check of code,
-- `npm run test:dev:watch` - rerun build and test after any code changes and made them available through `npm link`.
-
-The scripts `start` and `test` are aliases for `test:dev:watch`.
+- `npm run fullcheck` - run test and lint.
 
 ### Fork
 
@@ -183,7 +183,7 @@ git checkout master
 
 git merge my-branch
 
-npm run version
+npm run release
 
 npm publish
 

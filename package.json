@@ -64,7 +64,7 @@
     "fullcheck": "npm run test:dev && npm run lint",
     "unstaged:check": "git diff-index --quiet HEAD --",
     "preversion": "npm run unstaged:check && npm run fullcheck && npm run build && git add -A",
-    "version": "cross-env HUSKY_SKIP_HOOKS=1 standard-version",
+    "release": "cross-env HUSKY_SKIP_HOOKS=1 standard-version",
     "postversion": "cross-env HUSKY_SKIP_HOOKS=1 git push && cross-env HUSKY_SKIP_HOOKS=1 git push --tags",
     "prepublishOnly": "npm run build",
     "lint:quiet": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts --quiet",
