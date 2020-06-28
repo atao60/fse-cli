@@ -5,17 +5,17 @@ Welcome to @atao/fse-cli
 [![NPM](https://nodei.co/npm/@atao60/fse-cli.png?mini=true)](https://nodei.co/npm/@atao60/fse-cli/)
 
 
-<span style="font-size:3em;">🏗</span>A cli for [fs-extra](https://github.com/jprichardson/node-fs-extra). 
+<span style="font-size:3em;">🏗</span>A [CLI](https://en.wikipedia.org/wiki/Command-line_interface) for [fs-extra](https://github.com/jprichardson/node-fs-extra). 
 
 ## 💡 Rational
 
 Everyone needs simple file system operations like copy, remove, clean, ... that can be used from the terminal or via scripts. 
 
 There are many [Npm](https://www.npmjs.com/) packages that provide all or any of this:
-- either as an API to be used as part of an application, but without associated CLI,
-- or as separate CLI such as [rimraf](https://www.npmjs.com/package/rimraf), [mkdirp](https://www.npmjs.com/package/mkdirp), [cpy-cli](https://www.npmjs.com/package/cpy-cli), ...
+- either as an API to be used as part of an application, but without associated [CLI](https://en.wikipedia.org/wiki/Command-line_interface),
+- or as [CLI](https://en.wikipedia.org/wiki/Command-line_interface) but in separate [Npm](https://www.npmjs.com/) packages such as [rimraf](https://www.npmjs.com/package/rimraf), [mkdirp](https://www.npmjs.com/package/mkdirp), [cpy-cli](https://www.npmjs.com/package/cpy-cli), ...
 
-[This package](https://www.npmjs.com/package/@atao60/fse-cli) provides all of them from a unique CLI.
+[This package](https://www.npmjs.com/package/@atao60/fse-cli) provides all of them from a unique [CLI](https://en.wikipedia.org/wiki/Command-line_interface).
 
 It is based on [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra). 
 

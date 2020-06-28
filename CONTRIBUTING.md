@@ -9,8 +9,9 @@ Welcome!
 - [Guidelines](#guidelines)
   - [Code of Conduct](#code-of-conduct)
   - [Coding Rules](#coding-rules)
+  - [Commit Guidelines](#commit-guidelines)
   - [License](#license)
-- [Codebase Overview](#codebase-overview)
+- [Code Overview](#code-overview)
 - [Prerequisites](#Prerequisites)
 - [Development](#development)
   - [Main Scripts](#main-scripts)
@@ -53,7 +54,7 @@ The [changelog file](CHANGELOG.md) is updated with [standard-version](https://gi
 
 By contributing to `fse-cli`, you agree that your contributions will be licensed under its [MIT](LICENSE) license.
 
-## Codebase Overview
+## Code Overview
 
 Each main `fs-extra` function is wrapped in a `task`, each one with a dedicated sub-folder under [src/tasks](src/tasks).
 
