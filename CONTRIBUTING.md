@@ -45,6 +45,10 @@ Both **must** pass.
 
 Moreover, even if it's not mandatory, it is expected this analysis will not rise any warning. 
 
+### Commit Guidelines
+
+The [changelog file](CHANGELOG.md) is updated with [standard-version](https://github.com/conventional-changelog/standard-version#readme) using [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/). See [`@commitlint/config-conventional` types](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/HEAD/versions/2.1.0/README.md#types).
+
 ### License
 
 By contributing to `fse-cli`, you agree that your contributions will be licensed under its [MIT](LICENSE) license.
