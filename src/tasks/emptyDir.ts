@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import { red } from 'chalk';
 import { emptyDir } from 'fs-extra';
 
 const emptyDirDef = {
@@ -8,7 +8,7 @@ const emptyDirDef = {
         dir: args._[0]  // TODO a list of directories?
     }),
     questions: (options: { dir: unknown }): Record<string, unknown>[] => {
-        const questions = [];
+        const questions: Record<string, unknown>[] = [];
         if (!options.dir) {
             questions.push({
                 type: 'input',
@@ -32,7 +32,7 @@ export function job ({ directory }: { directory: string }): void {
 
     emptyDir(directory, error => {
         if (error) {
-            return console.error(`${chalk.red.bold('ERROR')} thrown while emptying directory: `, error);
+            return console.error(`${red.bold('ERROR')} thrown while emptying directory: `, error);
         }
         console.info(`Directory ${directory} gone.`);
     });

@@ -1,6 +1,6 @@
 import { ChildProcess, ChildProcessWithoutNullStreams, SpawnOptions } from 'child_process';
 import concat from 'concat-stream';
-import spawn from 'cross-spawn';
+import { spawn } from 'cross-spawn';
 import { existsSync } from 'graceful-fs';
 import { constants } from 'os';
 import { env } from 'process';
@@ -36,7 +36,7 @@ export function createProcess (processPath: string,
     const nodeArgs = Array.isArray(args) ? [] : (args && args.node ? args.node : []);
     const appArgs = Array.isArray(args) ? args : (args && args.app ? args.app : []);
 
-    const lastNodeArg: string = (nodeArgs.slice(-1)[0] || '').trim();
+    const lastNodeArg: string = ((nodeArgs.slice(-1)[0] as string) || '').trim();
     const isExp2Eval = lastNodeArg === '-e' || lastNodeArg.startsWith('--eval');
 
     if (!(isExp2Eval || (processPath && existsSync(processPath)))) {
@@ -133,6 +133,8 @@ function executeWithInput (processPath: string,
         childProcess.stderr.on('data', data => {
             // Log debug I/O statements on tests
             if (envvars.DEBUG) {
+                // eslint-disable-next-line max-len
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
                 console.log('error: ', data.toString());
             }
         });
@@ -141,6 +143,8 @@ function executeWithInput (processPath: string,
         childProcess.stdout.on('data', data => {
             // Log debug I/O statements on tests
             if (envvars.DEBUG) {
+                // eslint-disable-next-line max-len
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
                 console.log('output: ', data.toString());
             }
         });
@@ -154,12 +158,14 @@ function executeWithInput (processPath: string,
                 clearTimeout(currentInputTimeout);
                 inputs = [];
             }
+            // eslint-disable-next-line max-len
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
             resolve(err.toString()); // don't reject here, it's not an exception
             // TODO may be return an object with a property 'type'
         });
 
         childProcess.on('close', (code) => {
-            resolve('Process exit code: ' + code);
+            resolve(`Process exit code: ${code}`);
         });
 
         childProcess.on('error', () => {
@@ -169,11 +175,14 @@ function executeWithInput (processPath: string,
         loop(inputs);
 
         childProcess.stdout.pipe(
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
             concat(result => {
                 if (killIOTimeout) {
                     clearTimeout(killIOTimeout);
                 }
 
+                // eslint-disable-next-line max-len
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
                 resolve(result.toString());
             })
         );

@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import { red } from 'chalk';
 import { ensureDir } from 'fs-extra';
 
 const ensureDirDef = {
@@ -18,7 +18,7 @@ const ensureDirDef = {
         dir: args._[0]
     }),
     questions: (options: { [_: string]: unknown }): Record<string, unknown>[] => {
-        const questions = [];
+        const questions: Record<string, unknown>[] = [];
         if (!options.dir) {
             questions.push({
                 type: 'input',
@@ -53,7 +53,7 @@ export function job ({ dir: directory, mode }:
 
     ensureDir(directory, mode, error => {
         if (error) {
-            return console.error(`${chalk.red.bold('ERROR')} thrown while emptying directory: `, error);
+            return console.error(`${red.bold('ERROR')} thrown while emptying directory: `, error);
         }
         console.info(`Directory ${directory} created`);
     });

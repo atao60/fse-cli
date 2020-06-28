@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import { red } from 'chalk';
 import { move, MoveOptions } from 'fs-extra';
 
 const moveDef = {
@@ -21,7 +21,7 @@ const moveDef = {
         };
     },
     questions: (options: { [_: string]: unknown }): Record<string, unknown>[] => {
-        const questions = [];
+        const questions: Record<string, unknown>[] = [];
         if (!options.src) {
             questions.push({
                 type: 'input',
@@ -71,13 +71,15 @@ export function job ({ src, dest, ...moveOptions }:
     console.info(`Moving file or directory... from '${src}' to '${dest}'${showAll ? " with options: " : "."}`);
     if (showAll) {
         for (const o of Object.entries(otherOptions)) {
-            console.info(`- ${o[0]}: ${o[1]}`);
+            const key = o[0];
+            const value = JSON.stringify(o[1]);
+            console.info(`- ${key}: ${value}`);
         }
     }
 
     function mainMessageFromError (error: Error | string): string {
         const msg = error.toString();
-        const groups = msg.match(/^\s*Error\s*:\s*(.*?\s+dest\s+already\s+exists.\s*)$/);
+        const groups = /^\s*Error\s*:\s*(.*?\s+dest\s+already\s+exists.\s*)$/.exec(msg);
         if (!groups) {
             return null;
         }
@@ -90,7 +92,7 @@ export function job ({ src, dest, ...moveOptions }:
             return;
         }
         const mainMsg = mainMessageFromError(error) || error;
-        return console.error(`${chalk.red.bold('ERROR')} thrown while moving file or directory: `, mainMsg);
+        return console.error(`${red.bold('ERROR')} thrown while moving file or directory: `, mainMsg);
     });
 
 }

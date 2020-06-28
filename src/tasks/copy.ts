@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import { red } from 'chalk';
 import { copy, CopyOptions } from 'fs-extra';
 
 const copyDef = {
@@ -33,7 +33,7 @@ const copyDef = {
         };
     },
     questions: (options: { [_: string]: unknown }): Record<string, unknown>[] => {
-        const questions = [];
+        const questions: Record<string, unknown>[] = [];
         if (!options.src) {
             questions.push({
                 type: 'input',
@@ -63,7 +63,7 @@ const copyDef = {
             questions.push({
                 type: 'confirm',
                 name: 'errorOnExist',
-                when: answers => !answers.keepExisting,
+                when: (answers: {keepExisting: boolean}) => !answers.keepExisting,
                 message: 'When the destination exists, throw an error?',
                 default: copyDef.default.errorOnExist
             });
@@ -111,14 +111,16 @@ export function job ({ src, dest, ...copyOptions }:
 
     console.info(`Copying file or directory ... from '${src}' to '${dest}'${showAll ? " with options: " : "."}`);
     if (showAll) {
-        for (const o of Object.entries(otherOptions)) {
-            console.info(`- ${o[0]}: ${o[1]}`);
-        }
+        Object.entries(otherOptions).forEach(o => {
+            const key = o[0];
+            const value = JSON.stringify(o[1]);
+            console.info(`- ${key}: ${value}`);
+        });
     }
 
     function mainMessageFromError (error: Error | string | { code: string; syscall: string; path: string }): string {
         const msg = error.toString();
-        const groups = msg.match(/^\s*Error\s*:\s*(.*?\s+already\s+exists\s*)$/);
+        const groups = /^\s*Error\s*:\s*(.*?\s+already\s+exists\s*)$/.exec(msg);
         if (groups) {
             return groups[1];
         }
@@ -137,7 +139,7 @@ export function job ({ src, dest, ...copyOptions }:
             return;
         }
         const mainMsg = mainMessageFromError(error) || error;
-        return console.error(`${chalk.red.bold('ERROR')} thrown while copying file or directory: `, mainMsg);
+        return console.error(`${red.bold('ERROR')} thrown while copying file or directory: `, mainMsg);
     });
 
 }

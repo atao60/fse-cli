@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import { red } from 'chalk';
 import { ensureFile } from 'fs-extra';
 
 const ensureFileDef = {
@@ -9,7 +9,7 @@ const ensureFileDef = {
         file: args._[0]
     }),
     questions: (options: { file: unknown }): Record<string, unknown>[] => {
-        const questions = [];
+        const questions: Record<string, unknown>[] = [];
         if (!options.file) {
             questions.push({
                 type: 'input',
@@ -34,7 +34,7 @@ export function job ({ file }: { file: string }): void {
 
     ensureFile(file, error => {
         if (error) {
-            return console.error(`${chalk.red.bold('ERROR')} thrown while creating: `, error);
+            return console.error(`${red.bold('ERROR')} thrown while creating: `, error);
         }
         console.info(`File ${file} created`);
     });

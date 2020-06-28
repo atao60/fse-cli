@@ -1,3 +1,5 @@
+/*eslint @typescript-eslint/restrict-template-expressions: ["off"]*/
+
 import { expect } from 'chai';
 import { closeSync, existsSync, mkdtempSync, mkdirSync, openSync, rmdirSync, statSync, unlinkSync } from 'graceful-fs';
 import { describe, it } from 'mocha';
