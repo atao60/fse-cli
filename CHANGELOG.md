@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.15](https://github.com/atao60/fse-cli/compare/v0.0.14...v0.0.15) (2020-06-28)
+
+
+### Bug Fixes
+
+* misplaced preset in babel config ([5e1d1f8](https://github.com/atao60/fse-cli/commit/5e1d1f8b81f77765cfe81ed80c3f2d0c333993ce))
+* vulnerabilities with yargs-parser ([6108063](https://github.com/atao60/fse-cli/commit/610806375042d62c01756bf17f9d4a503290ac1f))
+
 ### [0.0.14](https://github.com/atao60/fse-cli/compare/v0.0.13...v0.0.14) (2020-06-26)
 
 ### [0.0.13](https://github.com/atao60/fse-cli/compare/v0.0.12...v0.0.13) (2020-06-20)
