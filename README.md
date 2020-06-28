@@ -11,9 +11,13 @@ Welcome to @atao/fse-cli
 
 Everyone needs simple file system operations like copy, remove, clean, ... that can be used from the terminal or via scripts. 
 
-While there are many [Npm](https://www.npmjs.com/) packages that provide this, all are meant to be used as part of an application, and does not have a CLI.
+There are many [Npm](https://www.npmjs.com/) packages that provide all or any of this:
+- either as an API to be used as part of an application, but without associated CLI,
+- or as separate CLI such as [rimraf](https://www.npmjs.com/package/rimraf), [mkdirp](https://www.npmjs.com/package/mkdirp), [cpy-cli](https://www.npmjs.com/package/cpy-cli), ...
 
-This CLI is based on [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra). 
+[This package](https://www.npmjs.com/package/@atao60/fse-cli) provides all of them from a unique CLI.
+
+It is based on [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra). 
 
 The [available CLI commands](#-commands) are fully functional and tested. However it's still a work in progress:
 * Not all [fs-extra](https://github.com/jprichardson/node-fs-extra) functions are mapped yet. Please, feel free to open an issue if there is something you would like supported.
