@@ -1,6 +1,6 @@
 Welcome to @atao/fse-cli
 ===
-[![NPM Version](https://img.shields.io/npm/v/@atao60/fse-cli?color=#0366d6)](https://github.com/atao60/fse-cli) [![License: MIT](https://img.shields.io/github/license/atao60/fse-cli)](https://github.com/atao60/fse-cli/blob/master/LICENSE)
+[![NPM Version](https://img.shields.io/github/package-json/v/atao60/fse-cli?color=#0366d6)](https://github.com/atao60/fse-cli) [![NPM Version](https://img.shields.io/npm/v/@atao60/fse-cli?color=#0366d6)](https://www.npmjs.com/package/@atao60/fse-cli) [![License: MIT](https://img.shields.io/github/license/atao60/fse-cli)](https://github.com/atao60/fse-cli/blob/master/LICENSE)
 
 [![NPM](https://nodei.co/npm/@atao60/fse-cli.png?mini=true)](https://nodei.co/npm/@atao60/fse-cli/)
 
