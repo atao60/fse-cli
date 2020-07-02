@@ -1,6 +1,6 @@
 /** Entrypoint for production and development modes as both of them are launched with `babel`.
  * 
- * Using babel 7+ to work with ES2018 and TS (°) alike. Target node.
+ * Using babel 7+ to work with ES2018+ and TS (°) alike. Target node.
  * 
  * (°) Typescript compiler is only used to check types.
  *     It must be configured on its own with `"noEmit": true` in tsconfig.json.

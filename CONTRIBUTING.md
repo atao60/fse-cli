@@ -11,6 +11,7 @@ Welcome!
   - [Coding Rules](#coding-rules)
   - [Commit Guidelines](#commit-guidelines)
   - [License](#license)
+- [Roadmap](#roadmap)
 - [Code Overview](#code-overview)
 - [Prerequisites](#Prerequisites)
 - [Development](#development)
@@ -53,6 +54,12 @@ The [changelog file](CHANGELOG.md) is updated with [standard-version](https://gi
 ### License
 
 By contributing to `fse-cli`, you agree that your contributions will be licensed under its [MIT](LICENSE) license.
+
+## Roadmap
+
+* add a full help
+* add other functions from fs-extra
+* add functions other than from fs-extra, eg [tree-cli](https://www.npmjs.com/package/tree-cli)
 
 ## Code Overview
 

@@ -1,8 +1,8 @@
 Welcome to @atao/fse-cli
 ===
-[![Github Version](https://img.shields.io/github/package-json/v/atao60/fse-cli?label=github&color=#0366d6)](https://github.com/atao60/fse-cli) [![NPM Version](https://img.shields.io/npm/v/@atao60/fse-cli?color=#0366d6)](https://www.npmjs.com/package/@atao60/fse-cli) [![License: MIT](https://img.shields.io/github/license/atao60/fse-cli)](https://github.com/atao60/fse-cli/blob/master/LICENSE)
+[![Github Version](https://img.shields.io/github/package-json/v/atao60/fse-cli?label=github&color=#0366d6)](https://github.com/atao60/fse-cli) [![Github Version](https://img.shields.io/github/issues/atao60/fse-cli)](https://github.com/atao60/fse-cli/issue) [![License: MIT](https://img.shields.io/github/license/atao60/fse-cli)](https://github.com/atao60/fse-cli/blob/master/LICENSE) [![NPM Version](https://img.shields.io/npm/v/@atao60/fse-cli?color=#0366d6)](https://www.npmjs.com/package/@atao60/fse-cli)
 
-[![NPM](https://nodei.co/npm/@atao60/fse-cli.png?mini=true)](https://nodei.co/npm/@atao60/fse-cli/)
+[![NPM](https://nodei.co/npm/@atao60/fse-cli.png?mini=true)](https://www.npmjs.com/package/@atao60/fse-cli)
 
 
 <span style="font-size:3em;">🏗</span>A [CLI](https://en.wikipedia.org/wiki/Command-line_interface) for [fs-extra](https://github.com/jprichardson/node-fs-extra). 
@@ -12,10 +12,11 @@ Welcome to @atao/fse-cli
 Everyone needs simple file system operations like copy, remove, clean, ... that can be used from the terminal or via scripts. 
 
 There are many [Npm](https://www.npmjs.com/) packages that provide all or any of this:
-- either as an [API](https://en.wikipedia.org/wiki/Application_programming_interface) to be used as part of an application, but without associated [CLI](https://en.wikipedia.org/wiki/Command-line_interface),
-- or as [CLI](https://en.wikipedia.org/wiki/Command-line_interface) but in separate [Npm](https://www.npmjs.com/) packages such as [rimraf](https://www.npmjs.com/package/rimraf), [mkdirp](https://www.npmjs.com/package/mkdirp), [cpy-cli](https://www.npmjs.com/package/cpy-cli), ...
+- as an [API](https://en.wikipedia.org/wiki/Application_programming_interface) to be used as part of an application, but without associated [CLI](https://en.wikipedia.org/wiki/Command-line_interface),
+- as [CLI](https://en.wikipedia.org/wiki/Command-line_interface) but in separate [Npm](https://www.npmjs.com/) packages such as [rimraf](https://www.npmjs.com/package/rimraf), [mkdirp](https://www.npmjs.com/package/mkdirp), [cpy-cli](https://www.npmjs.com/package/cpy-cli), ...
+- or even as a full [shell](https://en.wikipedia.org/wiki/Shell_(computing)) with eg [shelljs](https://www.npmjs.com/package/shelljs), a Unix shell commands for Node.js.
 
-[This package](https://www.npmjs.com/package/@atao60/fse-cli) provides all of them from a unique [CLI](https://en.wikipedia.org/wiki/Command-line_interface).
+[This package](https://www.npmjs.com/package/@atao60/fse-cli) just provides many of them from a unique [CLI](https://en.wikipedia.org/wiki/Command-line_interface), without any pretention to be any kind of [shell](https://en.wikipedia.org/wiki/Shell_(computing)).
 
 It is based on [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra). 
 
@@ -25,10 +26,12 @@ The [available CLI commands](#-commands) are fully functional and tested. Howeve
 
 ## 🏁 Quickstart
 
-Add this package to a project:
-
+For example, create an empty file `dummy.txt`:
 ```
-npm install @atao60/fse-cli
+npx @atao60/fse-cli touch dummy.txt
+# Checking if existing and, if not, creating file dummy.txt ...
+# File dummy.txt created
+
 ```
 
 Each function is available:
@@ -36,8 +39,6 @@ Each function is available:
 - or as a sub command, eg `fse copy`.
 
 The arguments are those of [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra) as far as possible.
-
-For more details, see the [manual](MANUAL.md).
 
 ## 🎹 Commands
 
@@ -48,9 +49,23 @@ For more details, see the [manual](MANUAL.md).
 - [ensureFile](MANUAL.md#'creating-files'), alias *touch*,
 - [move](MANUAL.md#'move-file-or-directory').
 
+For more details, see the [manual](MANUAL.md).
+
 ## 🛠️ Development
 
-See [Contributing](CONTRIBUTING.md).
+Install this package,
+- either in global mode:
+```
+npm install --global @atao60/fse-cli
+```
+
+- or in a project:
+
+```
+npm install @atao60/fse-cli
+```
+
+See more on [Contributing](CONTRIBUTING.md).
 
 ## 🛡 License
 
