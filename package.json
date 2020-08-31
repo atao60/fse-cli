@@ -45,7 +45,7 @@
   },
   "scripts": {
     "start": "npm run test",
-    "rimraf": "ts-node scripts/rmdir.ts",
+    "rimraf": "node scripts/rmdir.js",
     "clean:deps": "npm run rimraf -- ./package-lock.json ./node_modules",
     "clean:dev": "npm run rimraf -- ./dist ./.build",
     "clean:full": "npm run clean:dev && npm run clean:deps",
