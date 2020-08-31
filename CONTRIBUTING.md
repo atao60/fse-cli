@@ -20,6 +20,8 @@ Welcome!
   - [Watch changes](#watch-changes)
   - [Usage](#usage)
   - [Pull Request](#pull-request)
+    - [Submit a pull request](#submit-a-pull-request)
+    - [Check a submitted pull request](#check-a-submitted-pull-request)
   - [Publish](#publish)
 
 ## Guidelines
@@ -29,7 +31,7 @@ We'd like to emphasize these points:
   1. Be Respectful
      * We appreciate contributions to `fse-cli` and we ask you to respect one another.
   2. Be Responsible
-     * You are responsible for your Pull Request submission
+     * You are responsible for your Pull Request submission.
   3. Give Credit
      * If any submissions or contributions are built upon other work (e.g. research papers, open sourced projects, public code), please cite or attach any information about the original source. People should be credited for the work they've done.
 
@@ -63,17 +65,19 @@ By contributing to `fse-cli`, you agree that your contributions will be licensed
 
 ## Code Overview
 
+This project uses:
+- [Typescript](https://www.typescriptlang.org/) as far as possible, otherwise [ES2018](https://www.ecma-international.org/ecma-262/9.0/index.html),
+- [Babel7](https://babeljs.io/blog/2018/08/27/7.0.0) as compiler (°).
+- [ESLint](https://eslint.org/) **and** [TSLint](https://palantir.github.io/tslint/) as static code analysers,
+- [Npm](https://www.npmjs.com/) as package manager.
+
+> (°) There are four TypeScript features that do not compile in Babel due to its single-file emit architecture, see § `It’s not a perfect marriage` of [TypeScript With Babel: A Beautiful Marriage](https://iamturns.com/typescript-babel/).
+
 Each main `fs-extra` function is wrapped in a `task`, each one with a dedicated sub-folder under [src/tasks](src/tasks).
 
 Aliases are defined in the associative array `jobLinks` inside [src/config.ts](src/config.ts).
 
 > ⚠️ Don't forget to update the section `bin` of [package.json](package.json) for any change of `jobLinks` ⚠️ 
-
-This project uses:
-- [Npm](https://www.npmjs.com/) as package manager,
-- [Typescript](https://www.typescriptlang.org/) as far as possible, otherwise [ES2018](https://www.ecma-international.org/ecma-262/9.0/index.html),
-- [ESLint](https://eslint.org/) **and** [TSLint](https://palantir.github.io/tslint/) as static code analysers,
-- [Babel7](https://babeljs.io/blog/2018/08/27/7.0.0) as compiler.
 
 Each `task` is tested without duplicating [fs-extra](https://github.com/jprichardson/node-fs-extra) tests.
 
@@ -93,7 +97,7 @@ The shell used here is [Bash](https://www.gnu.org/software/bash/) under [Linux](
 
 Check prerequisites' status:
 ```bash
-npm doctor # will show information about git, node, npm...
+npm doctor # will show information about git, node, npm... for the current user
 git --version
 npm list -g --depth 0 2>&1 | grep fse-cli # (°)
 ```
@@ -158,12 +162,14 @@ fse mkdirp my_new_folder
 
 ### Pull Request
 
+#### Submit a pull request
+
 ```bash
 
 pwd  ### checking if in the forked project folder
 # <path to>/atao60-fse-cli
 
-git branch ### checking if in 'master' branch before creating the new one for pull request
+git branch ### checking if current user is in 'master' branch before creating the new one for pull request
 # * master
 
 git checkout -b my-branch
@@ -180,6 +186,10 @@ git push origin my-branch
 Lastly open this branch on the Github fork and create a pull request.
 
 Once the pull request merged, delete this branch.
+
+#### Check a submitted pull request
+
+See [GitHub Docs - Checking out pull requests locally](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/checking-out-pull-requests-locally).
 
 ### Publish
 
