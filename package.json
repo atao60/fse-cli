@@ -69,8 +69,7 @@
     "prepublishOnly": "npm run build",
     "lint:quiet": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts --quiet",
     "lint:fix": "eslint --fix src/ test/ scripts/",
-    "lint": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts",
-    "preinstall": "npx npm-force-resolutions"
+    "lint": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts"
   },
   "keywords": [
     "fse",
@@ -157,7 +156,7 @@
     "mocha": "^8.0.1",
     "nodemon": "^2.0.4",
     "source-map-support": "^0.5.19",
-    "standard-version": "^8.0.0",
+    "standard-version": "^9.0.0",
     "ts-node": "^8.10.2",
     "typescript": "^3.9"
   },
@@ -168,8 +167,5 @@
   "bugs": {
     "url": "https://github.com/atao60/fse-cli/issues"
   },
-  "homepage": "https://github.com/atao60/fse-cli#readme",
-  "resolutions": {
-    "yargs-parser": "^18.1.3"
-  }
+  "homepage": "https://github.com/atao60/fse-cli#readme"
 }
