@@ -207,7 +207,11 @@ git merge my-branch
 
 npm run release
 
-npm publish
+npm login 
+
+npm publish --access public
+
+npm logout
 
 git branch -D my-branch
 
