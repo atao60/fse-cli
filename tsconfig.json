@@ -9,6 +9,7 @@
     "baseUrl": "./",
     "sourceMap": true,
     "declaration": false,
+    "isolatedModules": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es2015",
