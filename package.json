@@ -125,6 +125,7 @@
     "inquirer": "^7.2.0",
     "listr": "^0.14.3",
     "regenerator-runtime": "^0.13.5",
+    "source-map-support": "^0.5.19",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
@@ -166,7 +167,6 @@
     "husky": "^4.2.5",
     "mocha": "^8.0.1",
     "nodemon": "^2.0.4",
-    "source-map-support": "^0.5.19",
     "standard-version": "^9.0.0",
     "ts-node": "^8.10.2",
     "typescript": "^3.9"
