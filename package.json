@@ -40,7 +40,13 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint",
-      "pre-push": "npm run fullcheck"
+      "pre-push": "npm run fullcheck",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
     }
   },
   "scripts": {
@@ -63,10 +69,11 @@
     "test": "npm run test:dev:watch",
     "fullcheck": "npm run test:dev && npm run lint",
     "unstaged:check": "git diff-index --quiet HEAD --",
+    "commit": "git-cz",
     "prerelease": "npm run unstaged:check && npm run fullcheck && npm run build && git add -A",
-    "release": "cross-env HUSKY_SKIP_HOOKS=1 standard-version",
-    "postrelease": "cross-env HUSKY_SKIP_HOOKS=1 git push && cross-env HUSKY_SKIP_HOOKS=1 git push --tags",
-    "prepublishOnly": "npm run build",
+    "release": "cross-env HUSKY_SKIP_HOOKS=1 standard-version -a",
+    "postrelease": "cross-env HUSKY_SKIP_HOOKS=1 git push --follow-tags",
+    "prepublishOnly": "npm ci && npm run fullcheck && npm run build",
     "lint:quiet": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts --quiet",
     "lint:fix": "eslint --fix src/ test/ scripts/",
     "lint": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts"
@@ -129,6 +136,8 @@
     "@babel/preset-env": "^7.10.3",
     "@babel/preset-typescript": "^7.10.1",
     "@babel/register": "^7.10.3",
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^10.0.0",
     "@types/babel-types": "^7.0.7",
     "@types/chai": "^4.2.11",
     "@types/concat-stream": "^1.6.0",
@@ -146,9 +155,11 @@
     "babel-plugin-node-source-map-support": "0.0.1",
     "babel-plugin-transform-typescript-metadata": "^0.3.0",
     "chai": "^4.2.0",
+    "commitizen": "^4.2.1",
     "concat-stream": "^2.0.0",
     "cross-env": "^7.0.2",
     "cross-spawn": "^7.0.3",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.3.1",
     "eslint-config-node": "^4.1.0",
     "eslint-plugin-import": "^2.22.0",
