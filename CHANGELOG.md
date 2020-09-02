@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.26](https://github.com/atao60/fse-cli/compare/v0.0.25...v0.0.26) (2020-09-02)
+
+
+### Bug Fixes
+
+* move 'source-map-support' from devDeps to deps ([00f5828](https://github.com/atao60/fse-cli/commit/00f582814b51429ea7243371b257dd4355f67a1c)), closes [#5](https://github.com/atao60/fse-cli/issues/5)
+
 ### [0.0.25](https://github.com/atao60/fse-cli/compare/v0.0.24...v0.0.25) (2020-09-02)
 
 
