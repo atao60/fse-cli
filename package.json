@@ -112,8 +112,8 @@
   "author": "Pierre Raoul <atao60.dev@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": "10.15.3",
-    "npm": "6.4.1"
+    "node": ">=10.15.3",
+    "npm": ">=6.4.1"
   },
   "dependencies": {
     "arg": "^4.1.3",

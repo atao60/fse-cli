@@ -27,7 +27,7 @@ module.exports = (api) => {
             "@babel/env",
             {
                 "targets": {
-                    "node": "10.15.3" // Node version should be at least equal to engine.nodes in package.json
+                    "node": "10.15.3" // Node version should be at most equal to engine.nodes in package.json
                 },
                 // "debug": true,
                 "useBuiltIns": "usage",
