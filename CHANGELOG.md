@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.25](https://github.com/atao60/fse-cli/compare/v0.0.24...v0.0.25) (2020-09-02)
+
+
+### Bug Fixes
+
+* remove comment from json file '.versionrc' ([41d62de](https://github.com/atao60/fse-cli/commit/41d62deaa714f72275da92cf98f8fdf9df9f2cb7))
+
+
+### Others
+
+* add commitizen and commitlint ([c86a0af](https://github.com/atao60/fse-cli/commit/c86a0af654ae6121b04e9090dadcd3d7d68b2a50))
+
+
+### Docs
+
+* update README and CONTRIBUTING about commit, release and publish ([690ae6a](https://github.com/atao60/fse-cli/commit/690ae6a2474e33b9eefa50cb58ec47af8c502666))
+
 ### [0.0.24](https://github.com/atao60/fse-cli/compare/v0.0.23...v0.0.24) (2020-09-01)
 
 ### [0.0.23](https://github.com/atao60/fse-cli/compare/v0.0.22...v0.0.23) (2020-09-01)
