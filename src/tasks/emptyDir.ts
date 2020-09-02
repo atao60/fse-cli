@@ -13,7 +13,7 @@ const emptyDirDef = {
             questions.push({
                 type: 'input',
                 name: 'dir',
-                message: "Please fill in the directory to check",
+                message: "Please fill in the directory to clean up",
                 validate: (input: string) => (input && input.trim()) ? true : "A directory is required"
             });
         }
@@ -34,6 +34,6 @@ export function job ({ directory }: { directory: string }): void {
         if (error) {
             return console.error(`${red.bold('ERROR')} thrown while emptying directory: `, error);
         }
-        console.info(`Directory ${directory} gone.`);
+        console.info(`Directory ${directory} emptied.`);
     });
 }

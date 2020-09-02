@@ -6,7 +6,7 @@ const removeDef = {
     spec: {},
     'default': {},
     options: (args: { _: unknown[] }): Record<string, unknown> => ({
-        dir: args._[0]  // TODO a list of directories?
+        dir: args._[0]  // TODO a list of files or directories?
     }),
     questions: (options: { dir: unknown }): Record<string, unknown>[] => {
         const questions: Record<string, unknown>[] = [];
@@ -14,8 +14,8 @@ const removeDef = {
             questions.push({
                 type: 'input',
                 name: 'dir',
-                message: "Please fill in the directory to remove",
-                validate: (input: string) => (input && input.trim()) ? true : "A directory is required"
+                message: "Please fill in the file or directory to remove",
+                validate: (input: string) => (input && input.trim()) ? true : "A file or directory is required"
             });
         }
         return questions;
@@ -33,9 +33,9 @@ export function job ({ dir }: { dir: string }): void {
 
     remove(dir, error => {
         if (error) {
-            return console.error(`${red.bold('ERROR')} thrown while emptying directory: `, error);
+            return console.error(`${red.bold('ERROR')} thrown while removing file or directory: `, error);
         }
-        console.info(`Directory ${dir} gone.`);
+        console.info(`File or directory ${dir} gone.`);
     });
 
 }

@@ -62,7 +62,7 @@ fse emptyDir
 fse emptyDir <directory's path>
 ```
 
-### Deleting directories
+### Deleting files and directories
 
 From the [fs-extra documentation](https://github.com/jprichardson/node-fs-extra/blob/master/docs/remove.md):
 

@@ -53,8 +53,8 @@ export function job ({ dir: directory, mode }:
 
     ensureDir(directory, mode, error => {
         if (error) {
-            return console.error(`${red.bold('ERROR')} thrown while emptying directory: `, error);
+            return console.error(`${red.bold('ERROR')} thrown while creating directory: `, error);
         }
-        console.info(`Directory ${directory} created`);
+        console.info(`Directory ${directory} exists.`);
     });
 }

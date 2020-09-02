@@ -34,8 +34,8 @@ export function job ({ file }: { file: string }): void {
 
     ensureFile(file, error => {
         if (error) {
-            return console.error(`${red.bold('ERROR')} thrown while creating: `, error);
+            return console.error(`${red.bold('ERROR')} thrown while creating file: `, error);
         }
-        console.info(`File ${file} created`);
+        console.info(`File ${file} exists`);
     });
 }

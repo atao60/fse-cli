@@ -59,7 +59,7 @@ The arguments are those of [Node.js: fs-extra](https://github.com/jprichardson/n
 
 - [copy](MANUAL.md#'copy-file-or-directory'),
 - [ensureDir](MANUAL.md#'creating-directories'), alias *mkdirs* or *mkdirp*
-- [remove](MANUAL.md#'deleting-directories'), alias *rimraf*
+- [remove](MANUAL.md#'deleting-files-and-directories'), alias *rimraf*
 - [emptyDir](MANUAL.md#'Cleaning-directories'),
 - [ensureFile](MANUAL.md#'creating-files'), alias *touch*,
 - [move](MANUAL.md#'move-file-or-directory').

@@ -27,7 +27,7 @@ const moveDef = {
                 type: 'input',
                 name: 'src',
                 message: "Please fill in the source to move",
-                validate: (input: string) => (input && input.trim()) ? true : "A source directory is required"
+                validate: (input: string) => (input && input.trim()) ? true : "A source is required"
             });
         }
         if (!options.dest) {
@@ -35,7 +35,7 @@ const moveDef = {
                 type: 'input',
                 name: 'dest',
                 message: "Please fill in the destination of the move",
-                validate: (input: string) => (input && input.trim()) ? true : "A destination directory is required"
+                validate: (input: string) => (input && input.trim()) ? true : "A destination is required"
             });
         }
         if (!options.askAll) { return questions; }
