@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.27](https://github.com/atao60/fse-cli/compare/v0.0.26...v0.0.27) (2020-09-02)
+
+
+### Bug Fixes
+
+* avoid warning about recent node version ([7b957dc](https://github.com/atao60/fse-cli/commit/7b957dc26823162013c81f649daf4dbf7eaeeb72)), closes [#5](https://github.com/atao60/fse-cli/issues/5)
+
 ### [0.0.26](https://github.com/atao60/fse-cli/compare/v0.0.25...v0.0.26) (2020-09-02)
 
 
