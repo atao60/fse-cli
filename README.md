@@ -14,7 +14,7 @@ Everyone needs simple file system operations like copy, remove, clean, ... that 
 There are many [Npm](https://www.npmjs.com/) packages that provide all or any of this:
 - as an [API](https://en.wikipedia.org/wiki/Application_programming_interface) to be used as part of an application, but without associated [CLI](https://en.wikipedia.org/wiki/Command-line_interface),
 - as [CLI](https://en.wikipedia.org/wiki/Command-line_interface) but in separate [Npm](https://www.npmjs.com/) packages such as [rimraf](https://www.npmjs.com/package/rimraf), [mkdirp](https://www.npmjs.com/package/mkdirp), [cpy-cli](https://www.npmjs.com/package/cpy-cli), ...
-- or even as a full [shell](https://en.wikipedia.org/wiki/Shell_(computing)) with eg [shelljs](https://www.npmjs.com/package/shelljs), a [Unix shell](https://en.wikipedia.org/wiki/Unix_shell) commands for [Node.js](https://nodejs.org).
+- or even as a full [shell](https://en.wikipedia.org/wiki/Shell_(computing)) with e.g. [shelljs](https://www.npmjs.com/package/shelljs), a [Unix shell](https://en.wikipedia.org/wiki/Unix_shell) commands for [Node.js](https://nodejs.org).
 
 [This package](https://www.npmjs.com/package/@atao60/fse-cli) just provides many of them from a unique [CLI](https://en.wikipedia.org/wiki/Command-line_interface), without any pretention to be any kind of [shell](https://en.wikipedia.org/wiki/Shell_(computing)).
 
@@ -26,17 +26,32 @@ The [available CLI commands](#-commands) are fully functional and tested. Howeve
 
 ## 🏁 Quickstart
 
+
+Each command is available:
+- either as a stand alone one, e.g. `fse-copy`,
+- or as a sub command, e.g. `fse copy`.
+
 For example, create an empty file `dummy.txt`:
-```
+```bash
 npx @atao60/fse-cli touch dummy.txt
 # Checking if existing and, if not, creating file dummy.txt ...
 # File dummy.txt created
 
 ```
 
-Each function is available:
-- either as a stand alone one, eg `fse-copy`,
-- or as a sub command, eg `fse copy`.
+Otherwise install the package,
+
+- either in global mode:
+
+```
+npm install --global @atao60/fse-cli
+```
+
+- or in a project:
+
+```
+npm install @atao60/fse-cli
+```
 
 The arguments are those of [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra) as far as possible.
 
@@ -53,19 +68,7 @@ For more details, see the [manual](MANUAL.md).
 
 ## 🛠️ Development
 
-Install this package,
-- either in global mode:
-```
-npm install --global @atao60/fse-cli
-```
-
-- or in a project:
-
-```
-npm install @atao60/fse-cli
-```
-
-See more on [Contributing](CONTRIBUTING.md).
+See [Contributing](CONTRIBUTING.md).
 
 ## 🛡 License
 
