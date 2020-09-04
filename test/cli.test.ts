@@ -11,6 +11,10 @@ import { execute as run } from './cmd';
 const LIB_DIR = join(__dirname, env.APP_CODE_PATH || '../../dist');
 const TMP_DIR = join(__dirname, env.PROJECT_TARGET_PATH || '../.tmp-dir');
 
+// See https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
+/*eslint max-len: ["off"]*/
+const semverPattern = /(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(?:-((?:0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?/.source;
+
 describe('The fse CLI project', () => {
 
     it("A task must be specified", function (done) { // don't pass 'done' as argument if async/await
@@ -323,6 +327,60 @@ describe('The fse CLI project', () => {
                 } catch (e) { /* do nothing */ }
                 rmdirSync(destDirPath, { recursive: true });
                 rmdirSync(baseDir, { recursive: true });
+            });
+    });
+
+    it("Show version", function (done) { // don't pass 'done' as argument with async/await
+
+        const script = `${LIB_DIR}`; // ie index.js
+        const args = { app: ['version'] };
+        const userInputs = [];
+        const options = {
+            // env: { DEBUG: true },  // false by default
+            // timeout: 200,          // 100 ms by default
+            // maxTimeout: 0          // 10 s by default; if "0" then no timeout
+        };
+        const foundRegex = new RegExp(`^@atao60/fse-cli\\s+${semverPattern}\\s+\\(fs-extra\\s+${semverPattern}\\)$`);
+        run(
+            script,
+            args,
+            userInputs,
+            options
+        )
+            .then(result => {
+                expect((result as string).trim()).to.match(foundRegex);
+                done();
+            })
+            .catch(error => {
+                done(error);
+            });
+    });
+
+    it("Show help", function (done) { // don't pass 'done' as argument with async/await
+
+        const script = `${LIB_DIR}`; // ie index.js
+        const args = { app: ['help'] };
+        const userInputs = [];
+        const options = {
+            // env: { DEBUG: true },  // false by default
+            // timeout: 200,          // 100 ms by default
+            // maxTimeout: 0          // 10 s by default; if "0" then no timeout
+        };
+        const versionRegex = new RegExp(`^@atao60/fse-cli\\s+${semverPattern}\\s+\\(fs-extra\\s+${semverPattern}\\)`);
+        const manualRegex = new RegExp(`File system extra CLI - Usage`, 'm');
+        run(
+            script,
+            args,
+            userInputs,
+            options
+        )
+            .then(result => {
+                expect((result as string).trim()).to.match(versionRegex);
+                expect((result as string)).to.match(manualRegex);
+                done();
+            })
+            .catch(error => {
+                done(error);
             });
     });
 

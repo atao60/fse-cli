@@ -17,13 +17,15 @@ const jobLinks = {
     emptyDir: 'emptyDir',
     ensureFile: 'ensureFile',
     touch: 'ensureFile',
-    move: 'move'
+    move: 'move',
+    version: 'version',
+    help: 'help'
 };
 
 // 'cli' must not be used as task name
 const allowedScriptPrefixes = ['fse-cli', 'fse'];  // longer first
 
-function extractScriptAndTask (scriptPath: string) {
+function extractScriptAndTask(scriptPath: string) {
 
     const scriptName = basename(scriptPath);
     if (allowedScriptPrefixes.includes(scriptName)) {
@@ -40,18 +42,22 @@ function extractScriptAndTask (scriptPath: string) {
     return [scriptName];
 }
 
-async function parseArgumentsIntoOptions (rawArgs: string[]) {
+async function parseArgumentsIntoOptions(rawArgs: string[]) {
 
     const fullCommand = extractScriptAndTask(rawArgs[1]);
     const finalArgs = [rawArgs[0], ...fullCommand, ...rawArgs.splice(2)];
     const jobName = finalArgs[2];
     if (!jobName) {
-        console.error("%s: No task specified", chalk.red.bold('ERROR'));
+        console.error("%s: No task specified. Launch %s to get more help.",
+            chalk.red.bold('ERROR'),
+            chalk.yellowBright.bold('fse-cli help'));
         exit(1);
     }
     const jobTag = jobLinks[jobName];
     if (!jobTag) {
-        console.error("%s: Unknown task '" + jobName + "'", chalk.red.bold('ERROR'));
+        console.error("%s: Unknown task '" + jobName + "'. Launch %s to get more help.",
+            chalk.red.bold('ERROR'),
+            chalk.yellowBright.bold('fse-cli help'));
         exit(1);
     }
 
@@ -66,12 +72,12 @@ async function parseArgumentsIntoOptions (rawArgs: string[]) {
     return { jobDef, options: jobDef.options(args) };
 }
 
-interface JobOptions { 
+interface JobOptions {
     jobTag: string;
     options: Record<string, unknown>;
- }
+}
 
-async function promptForMissingOptions ({ jobDef, options: partialOptions }: 
+async function promptForMissingOptions({ jobDef, options: partialOptions }:
     { jobDef: JobDef, options: Record<string, unknown> }): Promise<JobOptions> {
 
     const questions = jobDef.questions(partialOptions);
@@ -86,7 +92,7 @@ async function promptForMissingOptions ({ jobDef, options: partialOptions }:
 
 }
 
-export async function fetchOptionsFrom (args: string[]): Promise<JobOptions> {
+export async function fetchOptionsFrom(args: string[]): Promise<JobOptions> {
     const data = await parseArgumentsIntoOptions(args);
     const options = await promptForMissingOptions(data);
     return options;

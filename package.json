@@ -17,6 +17,8 @@
     "fse-ensureFile": "./bin/fse",
     "fse-touch": "./bin/fse",
     "fse-move": "./bin/fse",
+    "fse-version": "./bin/fse",
+    "fse-help": "./bin/fse",
     "fse-cli-remove": "./bin/fse",
     "fse-cli-rimraf": "./bin/fse",
     "fse-cli-ensureDir": "./bin/fse",
@@ -26,7 +28,9 @@
     "fse-cli-copy": "./bin/fse",
     "fse-cli-ensureFile": "./bin/fse",
     "fse-cli-touch": "./bin/fse",
-    "fse-cli-move": "./bin/fse"
+    "fse-cli-move": "./bin/fse",
+    "fse-cli-version": "./bin/fse",
+    "fse-cli-help": "./bin/fse"
   },
   "publishConfig": {
     "access": "public"
@@ -35,7 +39,9 @@
     "bin/",
     "dist/",
     "MANUAL.md",
-    "CONTRIBUTING.md"
+    "USAGE",
+    "CONTRIBUTING.md",
+    "npm-shrinkwrap.json"
   ],
   "husky": {
     "hooks": {
@@ -52,7 +58,8 @@
   "scripts": {
     "start": "npm run test",
     "rimraf": "node scripts/rmdir.js",
-    "clean:deps": "npm run rimraf -- ./package-lock.json ./node_modules",
+    "clean:deps": "npm run rimraf -- ./package-lock.json ./npm-shrinkwrap.json ./node_modules",
+    "postinstall": "npm shrinkwrap",
     "clean:dev": "npm run rimraf -- ./dist ./.build",
     "clean:full": "npm run clean:dev && npm run clean:deps",
     "clean": "npm run clean:dev",
@@ -107,7 +114,9 @@
     "create",
     "text",
     "output",
-    "move"
+    "move",
+    "version",
+    "help"
   ],
   "author": "Pierre Raoul <atao60.dev@gmail.com>",
   "license": "MIT",
@@ -126,6 +135,7 @@
     "listr": "^0.14.3",
     "regenerator-runtime": "^0.13.5",
     "source-map-support": "^0.5.19",
+    "terminal-link": "^2.1.1",
     "tslib": "^2.0.0"
   },
   "devDependencies": {

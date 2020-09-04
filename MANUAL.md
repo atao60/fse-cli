@@ -1,8 +1,33 @@
-# File system extra CLI - Manual
+# 🏗  File system extra CLI - Manual
 
-## Commands
+## 🏁 Quickstart
 
-When lauching a job with prompting, by default the user is asked the arguments without default or inline value. To force prompting for all the arguments, add '--all'.
+Each command is available:
+- either as a stand alone one, e.g. `fse-copy` or `fse-cli-copy`,
+- or as a sub command, e.g. `fse copy` or `fse-cli copy`.
+
+The options and arguments are the same as those of [Node.js: fs-extra](https://www.npmjs.com/package/fs-extra) unless otherwise stated.
+
+## 🎹 Commands
+
+When lauching a job with prompting, by default the user is asked the arguments for which there is no default or inline value. 
+To force prompting for all the arguments, add the option '--all'.
+
+### Version
+
+Display [@atao60/fse-cli](https://www.npmjs.com/package/@atao60/fse-cli) version (and [Node.js: fs-extra](https://www.npmjs.com/package/fs-extra) version).
+
+```
+fse version
+```
+
+### Help
+
+Display the present manual.
+
+```
+fse help
+```
 
 ### Copy file or directory
 
@@ -19,7 +44,7 @@ fse copy
 *Power user style*
 
 ```
-fse copy --keepExisting --errorOnExist --preserveTimestamps <source path> <destination path>
+fse copy --all --keepExisting --errorOnExist --dereference --preserveTimestamps <source path> <destination path>
 ```
 
 > Note. `--keepExisting` behaves as the opposite of `fs-extra`'s `--overwrite`.
@@ -41,7 +66,7 @@ fse mkdirp
 *Power user style*
 
 ```
-fse mkdirp <new directory's path>
+fse mkdirp --mode <integer> <new directory's path>
 ```
 
 ### Cleaning directories
@@ -117,5 +142,5 @@ fse move
 *Power user style*
 
 ```
-fse move --overwrite <source path> <destination path>
+fse move --all --overwrite <source path> <destination path>
 ```

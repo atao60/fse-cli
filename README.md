@@ -28,32 +28,34 @@ The [available CLI commands](#-commands) are fully functional and tested. Howeve
 
 
 Each command is available:
-- either as a stand alone one, e.g. `fse-copy`,
-- or as a sub command, e.g. `fse copy`.
+- either as a stand alone one, e.g. `fse-copy` or `fse-cli-copy`,
+- or as a sub command, e.g. `fse copy` or `fse-cli copy`.
 
 For example, create an empty file `dummy.txt`:
 ```bash
-npx @atao60/fse-cli touch dummy.txt
-# Checking if existing and, if not, creating file dummy.txt ...
-# File dummy.txt created
+npx @atao60/fse-cli version
 
 ```
 
-Otherwise install the package,
+Otherwise after installing the package,
 
 - either in global mode:
 
 ```
 npm install --global @atao60/fse-cli
+
+fse version
 ```
 
 - or in a project:
 
 ```
 npm install @atao60/fse-cli
+
+fse version
 ```
 
-The arguments are those of [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra) as far as possible.
+The arguments and options are those of [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra) as far as possible.
 
 ## 🎹 Commands
 

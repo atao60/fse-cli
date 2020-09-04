@@ -23,8 +23,9 @@ const TS_OVERRIDE = {
     ],
     rules: {
         "@typescript-eslint/no-explicit-any": lint.on,
-        "@typescript-eslint/no-unsafe-assignment": lint.off
+        "@typescript-eslint/no-unsafe-assignment": lint.off,
         // "@typescript-eslint/restrict-template-expressions": lint.off
+        "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
     }
 };
 

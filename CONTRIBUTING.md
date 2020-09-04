@@ -64,9 +64,9 @@ By contributing to `fse-cli`, you agree that your contributions will be licensed
 
 ## Roadmap
 
-* add a full help
 * add other functions from fs-extra
 * add functions other than from fs-extra, e.g. [tree-cli](https://www.npmjs.com/package/tree-cli)
+* add i18n
 
 ## Code Overview
 
@@ -102,9 +102,13 @@ The shell used here is [Bash](https://www.gnu.org/software/bash/) under [Linux](
 
 Check prerequisites' status:
 ```bash
+
 npm doctor # will show information about git, node, npm... for the current user
+
 git --version
+
 npm list -g --depth 0 2>&1 | grep fse-cli # (°)
+
 ```
 
 > (°) replace `2>&1 | grep ...` by its counterpart under [Windows](https://www.microsoft.com/windows/),
@@ -115,7 +119,7 @@ npm list -g --depth 0 2>&1 | grep fse-cli # (°)
 ### Fork
 
 ```bash
-npm uninstall -g @atao60/fse-cli ### if needed; required to avoid any issue with `npm link`, see below
+sudo npm uninstall -g @atao60/fse-cli ### if needed; required to avoid any issue with `npm link`, see below
 
 git clone https://github.com/atao60/fse-cli.git atao60-fse-cli
 

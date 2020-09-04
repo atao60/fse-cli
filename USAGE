@@ -1,0 +1,46 @@
+🏗  File system extra CLI - Usage
+
+🏁 Each command is available:
+    * either as a stand alone one, e.g. `fse-copy` or `fse-cli-copy`,
+    * or as a sub command, e.g. `fse copy` or `fse-cli copy`.
+
+🎹 When lauching a job, by default each argument without default or inline value will be prompted. 
+To force prompting for all the arguments, add the option '--all'.
+
+    * version          Displays [@atao60/fse-cli](https://github.com/atao60/fse-cli/blob/HEAD/CHANGELOG.md) version (and [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra/blob/HEAD/CHANGELOG.md) version).
+
+        `fse version`
+
+    * help             Displays the present manual.
+
+        `fse help`
+
+    * copy             Copies a file or directory. The directory can have contents. Like 'cp -r'.
+                       Note. `--keepExisting` behaves as the opposite of `fs-extra`'s `--overwrite`.
+
+        `fse copy --all --keepExisting --dereference --errorOnExist --preserveTimestamps <source path> <destination path>`
+                       
+    * mkdirp           Ensures that the directory exists. If the directory structure does not exist, it is created. Like 'mkdir -p'.
+                       Aliases: ***ensureDir***, ***mkdirs***, ***mkdirp***
+
+        `fse mkdirp --mode <integer> <new directory's path>`
+
+    * emptyDir          Ensures that a directory is empty. Deletes directory contents if the directory is not empty. 
+                        If the directory does not exist, it is created. The directory itself is not deleted.
+
+        `fse emptyDir <directory's path>`
+
+    * remove            Removes a file or directory. The directory can have contents. If the path does not exist, silently does nothing. Like rm -rf.
+                        Aliases: ***remove***, ***rimraf***
+
+        `fse remove <directory's path>`
+
+    * touch             Ensures that the file exists. If the file that is requested to be created is in directories that do not exist, 
+                        these directories are created. If the file already exists, it is NOT MODIFIED."
+                        Aliases: ***ensureFile***, ***touch***
+
+        `fse touch <new file's path>`
+
+    * move              Moves a file or directory, even across devices.
+
+        `fse move --all --overwrite <source path> <destination path>`

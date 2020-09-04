@@ -9,6 +9,7 @@
     "baseUrl": "./",
     "sourceMap": true,
     "declaration": false,
+    "esModuleInterop": true,
     "isolatedModules": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
