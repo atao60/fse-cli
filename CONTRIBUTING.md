@@ -140,7 +140,7 @@ npm install
 The main available scripts are:
 
 - `npm start` - alias for `npm run test`
-- `npm run test` - rerun build and test after any code changes and made them available through `npm link`,
+- `npm test` - rerun build and test after any code changes and made them available through `npm link`,
 - `npm run build` - create a production ready build,
 - `npm run commit` - commit instead of `git commit`,
 - `npm run release` - run test, lint and build before creating a new release version,
@@ -160,9 +160,11 @@ npm start ### will rebuild and test after each code change
 
 ### Check package locally
 
-Create a symbol link in npm global installation:
+Create a symbol link in npm global installation and watch any changes:
 
 ```bash
+
+cd <path to @atao60/fse-cli folder>
 
 npm link
 # [...]
@@ -180,20 +182,42 @@ npm link
 # ~/.nvm/versions/node/v12.18.3/bin/fse-cli-move -> ~/.nvm/versions/node/v12.18.3/lib/node_modules/@atao60/fse-cli/bin/fse
 # ~/.nvm/versions/node/v12.18.3/lib/node_modules/@atao60/fse-cli -> [...]/atao60-fse-cli
 
+npm test
+
 ```
 
 Try it from an other console (°), e.g.:
 
 ```bash
 
-fse mkdirp my_new_folder
-# Checking if existing and, if not, creating directory my_new_folder ...
-# Directory my_new_folder created
+fse version
+# @atao60/fse-cli 0.0.30 (fs-extra 9.0.1)
 
 ```
 
 > (°) Under any wished location, even the directory `atao60-fse-cli` above. 
 
+Or try it as a dependency:
+
+```bash
+
+cd <path to the using project folder>
+
+npm link @atao60/fse-cli
+# <path to the using project folder>/node_modules/@atao60/fse-cli -> ~/.nvm/versions/node/v12.18.3/lib/node_modules/@atao60/fse-cli -> <path to atao60-fse-cli folder>
+
+npm install -D @atao60/fse-cli
+# npm notice created a lockfile as package-lock.json. You should commit this file.
+# [...]
+#
+# audited 126 packages in 7.741s
+#
+# 72 packages are looking for funding
+#   run `npm fund` for details
+#
+# found 0 vulnerabilities
+
+```
 
 ### Commit
 
