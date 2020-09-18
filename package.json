@@ -56,14 +56,13 @@
     }
   },
   "scripts": {
-    "start": "npm run test",
+    "start": "npm test",
     "rimraf": "node scripts/rmdir.js",
     "clean:deps": "npm run rimraf -- ./package-lock.json ./npm-shrinkwrap.json ./node_modules",
-    "postinstall": "npm shrinkwrap",
     "clean:dev": "npm run rimraf -- ./dist ./.build",
     "clean:full": "npm run clean:dev && npm run clean:deps",
     "clean": "npm run clean:dev",
-    "refresh": "npm run clean:full && npm install",
+    "refresh": "npm run clean:full && npm install && npm shrinkwrap",
     "compile:app:prod": "babel ./src --out-dir ./dist --extensions '.ts,.js' --delete-dir-on-start --source-maps",
     "compile:app:types": "tsc --project ./src/tsconfig.types.json",
     "compile:prod": "npm run compile:app:prod && npm run compile:app:types",
