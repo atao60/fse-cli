@@ -32,7 +32,8 @@ export function job ({ directory }: { directory: string }): void {
 
     emptyDir(directory, error => {
         if (error) {
-            return console.error(`${red.bold('ERROR')} thrown while emptying directory: `, error);
+            console.error(`${red.bold('ERROR')} thrown while emptying directory: `, error);
+            return;
         }
         console.info(`Directory ${directory} emptied.`);
     });

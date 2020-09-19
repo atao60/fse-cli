@@ -33,7 +33,8 @@ export function job ({ dir }: { dir: string }): void {
 
     remove(dir, error => {
         if (error) {
-            return console.error(`${red.bold('ERROR')} thrown while removing file or directory: `, error);
+            console.error(`${red.bold('ERROR')} thrown while removing file or directory: `, error);
+            return;
         }
         console.info(`File or directory ${dir} gone.`);
     });

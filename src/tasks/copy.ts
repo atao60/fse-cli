@@ -63,7 +63,7 @@ const copyDef = {
             questions.push({
                 type: 'confirm',
                 name: 'errorOnExist',
-                when: (answers: {keepExisting: boolean}) => !answers.keepExisting,
+                when: (answers: { keepExisting: boolean }) => !answers.keepExisting,
                 message: 'When the destination exists, throw an error?',
                 default: copyDef.default.errorOnExist
             });
@@ -99,7 +99,7 @@ interface CliCopyOptions extends CopyOptions {
  * Wrapper for node-fs-exta copy function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/copy.md
  */
-export function job ({ src, dest, ...copyOptions }:
+export function job({ src, dest, ...copyOptions }:
     { src: string; dest: string; copyOptions: { [_: string]: unknown } }): void {
 
     const otherOptions = copyOptions as CliCopyOptions;
@@ -118,28 +118,31 @@ export function job ({ src, dest, ...copyOptions }:
         });
     }
 
-    function mainMessageFromError (error: Error | string | { code: string; syscall: string; path: string }): string {
+    function mainMessageFromError(error: Error | string | { code: string; syscall: string; path: string }): string {
         const msg = error.toString();
         const groups = /^\s*Error\s*:\s*(.*?\s+already\s+exists\s*)$/.exec(msg);
-        if (groups) {
-            return groups[1];
+        if (!groups) {
+            // only if under Linux 
+            // TODO what about other os?
+            const linuxError = error as { code: string; syscall: string; path: string };
+            if (linuxError.code === 'EISDIR' && linuxError.syscall === 'unlink') {
+                return `it seems your're trying to copy a file to the directory '${linuxError.path}'`
+                    + ', which is not allowed';
+            }
+            return;
         }
-        // only if under Linux 
-        // TODO what about other os?
-        const linuxError = error as { code: string; syscall: string; path: string };
-        if (linuxError.code === 'EISDIR' && linuxError.syscall === 'unlink') {
-            return `it seems your're trying to copy a file on the directory '${linuxError.path}'`
-                + ', which is not allowed';
-        }
+
+        return groups[1];
     }
 
     copy(src, dest, otherOptions, error => {
-        if (!error) {
-            console.info('Copy complete...');
+        if (error) {
+            const mainMsg = mainMessageFromError(error) || error;
+            console.error(`${red.bold('ERROR')} thrown while copying file or directory: `, mainMsg);
             return;
         }
-        const mainMsg = mainMessageFromError(error) || error;
-        return console.error(`${red.bold('ERROR')} thrown while copying file or directory: `, mainMsg);
+        console.info('Copy complete...');
+        return;
     });
 
 }

@@ -1,8 +1,10 @@
 import { join } from 'path';
 
-export async function doit ({ jobTag, options }: { jobTag: string, options: {} }) {
+const tasksSubDir = 'tasks';
 
-    const modulePath = join(__dirname, 'tasks', jobTag);
+export async function doit (jobTag: string, options: {} ) {
+
+    const modulePath = join(__dirname, tasksSubDir, jobTag);
     const module = await import(modulePath);
 
     module.job(options);

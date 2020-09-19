@@ -87,12 +87,12 @@ export function job ({ src, dest, ...moveOptions }:
     }
 
     move(src, dest, otherOptions, error => {
-        if (!error) {
-            console.info('Move complete...');
-            return;
+        if (error) {
+            const mainMsg = mainMessageFromError(error) || error;
+            return console.error(`${red.bold('ERROR')} thrown while moving file or directory: `, mainMsg);
         }
-        const mainMsg = mainMessageFromError(error) || error;
-        return console.error(`${red.bold('ERROR')} thrown while moving file or directory: `, mainMsg);
+        console.info('Move complete...');
+        return;
     });
 
 }
