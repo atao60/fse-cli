@@ -65,7 +65,9 @@ The arguments and options are those of [Node.js: fs-extra](https://github.com/jp
 - [remove](MANUAL.md#'deleting-files-and-directories'), alias *rimraf*
 - [emptyDir](MANUAL.md#'Cleaning-directories'),
 - [ensureFile](MANUAL.md#'creating-files'), alias *touch*,
-- [move](MANUAL.md#'move-file-or-directory').
+- [move](MANUAL.md#'move-file-or-directory'),
+- [move](MANUAL.md#'help'),
+- [move](MANUAL.md#'version').
 
 For more details, see the [manual](MANUAL.md).
 
