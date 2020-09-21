@@ -31,7 +31,8 @@ Each command is available:
 - either as a stand alone one, e.g. `fse-copy` or `fse-cli-copy`,
 - or as a sub command, e.g. `fse copy` or `fse-cli copy`.
 
-For example, create an empty file `dummy.txt`:
+For example show the versions of [@atao60/fse-cli](https://github.com/atao60/fse-cli) and of [fs-extra](https://github.com/jprichardson/node-fs-extra):
+
 ```bash
 npx @atao60/fse-cli version
 
