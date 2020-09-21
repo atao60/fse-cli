@@ -82,7 +82,8 @@
     "prepublishOnly": "npm ci && npm run fullcheck && npm run build",
     "lint:quiet": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts --quiet",
     "lint:fix": "eslint --fix src/ test/ scripts/",
-    "lint": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts"
+    "lint": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts",
+    "analyse": "npx pkgfiles && npm list"
   },
   "keywords": [
     "fse",
