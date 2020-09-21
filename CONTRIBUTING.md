@@ -139,7 +139,7 @@ npm install
 
 The main available scripts are:
 
-- `npm start` - alias for `npm run test`
+- `npm start` - alias for `npm test`
 - `npm test` - rerun build and test after any code changes and made them available through `npm link`,
 - `npm run build` - create a production ready build,
 - `npm run commit` - commit instead of `git commit`,
@@ -147,8 +147,8 @@ The main available scripts are:
 - `npm run clean` - remove temporary folders as dist, .build, ...
 - `npm run refresh` - remove node modules, package-lock.json, dist, ... and re-installs upgraded dependencies,
 - `npm run lint` - check of code,
-- `npm run fullcheck` - run test and lint.
-
+- `npm run fullcheck` - run test and lint,
+- `npm run analyse` - check dependencies and publish content.
 
 ### Watch changes
 
