@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.30](https://github.com/atao60/fse-cli/compare/v0.0.29...v0.0.30) (2020-09-21)
+
+
+### Others
+
+* remove script 'postinstall' ([42bb5ce](https://github.com/atao60/fse-cli/commit/42bb5ce51b53add454406897acdb8803b442b45f))
+
+
+### Code Refactoring
+
+* extract magic const, clarify args, asserts first ([b4b9621](https://github.com/atao60/fse-cli/commit/b4b96210e706448aeb82b1503e6e4c9eaca11ce5))
+
+
+### Docs
+
+* correct README ([160237c](https://github.com/atao60/fse-cli/commit/160237ceddaa676831df0506610050a5f310b098))
+* update README and CONTRIBUTING ([6c172e4](https://github.com/atao60/fse-cli/commit/6c172e43b6b462bc830c521661264bb201ddcd0d))
+
 ### [0.0.29](https://github.com/atao60/fse-cli/compare/v0.0.28...v0.0.29) (2020-09-04)
 
 
