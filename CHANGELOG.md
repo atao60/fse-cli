@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.31](https://github.com/atao60/fse-cli/compare/v0.0.30...v0.0.31) (2020-09-21)
+
+
+### Others
+
+* add script "analyse" ([bb1e342](https://github.com/atao60/fse-cli/commit/bb1e342fe5df792f1670e3aca947c0f0bfd50a35))
+* remove unused deps 'execa' and 'listr' ([425a99b](https://github.com/atao60/fse-cli/commit/425a99b220479bec0c3051abca812ef24020c26e))
+
+
+### Docs
+
+* add in README links to help and version entries in MANUAL ([31b828f](https://github.com/atao60/fse-cli/commit/31b828f33a733708c132d3d65f302c9299389906))
+* update CONTRIBUTING ([43d4769](https://github.com/atao60/fse-cli/commit/43d47699f7133bba60ce688bfda8434b72d90413))
+
 ### [0.0.30](https://github.com/atao60/fse-cli/compare/v0.0.29...v0.0.30) (2020-09-21)
 
 
