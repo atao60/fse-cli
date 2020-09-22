@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.32](https://github.com/atao60/fse-cli/compare/v0.0.31...v0.0.32) (2020-09-22)
+
+
+### Docs
+
+* add 'analyse dependencies' to CONTRIBUTING ([fdefa6a](https://github.com/atao60/fse-cli/commit/fdefa6a7d90292c7cc7c9c2986a075931cfb3f84))
+
+
+### Tests
+
+* enhance test descriptions and messages ([d6c98d6](https://github.com/atao60/fse-cli/commit/d6c98d6ac6ce6c3f8cbee93f8cff67a19b7310a6))
+
 ### [0.0.31](https://github.com/atao60/fse-cli/compare/v0.0.30...v0.0.31) (2020-09-21)
 
 
