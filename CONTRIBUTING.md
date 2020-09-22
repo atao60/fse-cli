@@ -182,8 +182,6 @@ npm link
 # ~/.nvm/versions/node/v12.18.3/bin/fse-cli-move -> ~/.nvm/versions/node/v12.18.3/lib/node_modules/@atao60/fse-cli/bin/fse
 # ~/.nvm/versions/node/v12.18.3/lib/node_modules/@atao60/fse-cli -> [...]/atao60-fse-cli
 
-npm test
-
 ```
 
 Try it from an other console (°), e.g.:
@@ -218,6 +216,21 @@ npm install -D @atao60/fse-cli
 # found 0 vulnerabilities
 
 ```
+
+### Analyse dependencies
+
+To get dependencies tree and packaging details:
+
+```bash
+npm run analyse 
+```
+
+To get only first level production dependencies:
+
+```bash
+npm run analyse -- --depth=0 --prod
+```
+
 
 ### Commit
 
@@ -300,6 +313,8 @@ git branch -D my-branch
 
 ```bash
 cd <any suitable folder, even your local repository>
+
+npm unlink @atao60/fse-cli ### remove existing link
 
 npx @atao60/fse-cli
 
