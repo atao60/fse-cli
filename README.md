@@ -14,11 +14,14 @@ Everyone needs simple file system operations like copy, remove, clean, ... that 
 There are many [Npm](https://www.npmjs.com/) packages that provide all or any of this:
 - as an [API](https://en.wikipedia.org/wiki/Application_programming_interface) to be used as part of an application, but without associated [CLI](https://en.wikipedia.org/wiki/Command-line_interface),
 - as [CLI](https://en.wikipedia.org/wiki/Command-line_interface) but in separate [Npm](https://www.npmjs.com/) packages such as [rimraf](https://www.npmjs.com/package/rimraf), [mkdirp](https://www.npmjs.com/package/mkdirp), [cpy-cli](https://www.npmjs.com/package/cpy-cli), ...
-- or even as a full [shell](https://en.wikipedia.org/wiki/Shell_(computing)) with e.g. [shelljs](https://www.npmjs.com/package/shelljs), a [Unix shell](https://en.wikipedia.org/wiki/Unix_shell) commands for [Node.js](https://nodejs.org).
+- or even as a full [shell](https://en.wikipedia.org/wiki/Shell_(computing)) with e.g. [shx](https://www.npmjs.com/package/shx) based on [shelljs](https://www.npmjs.com/package/shelljs), a [Unix shell](https://en.wikipedia.org/wiki/Unix_shell) commands for [Node.js](https://nodejs.org).
 
 [This package](https://www.npmjs.com/package/@atao60/fse-cli) just provides many of them from a unique [CLI](https://en.wikipedia.org/wiki/Command-line_interface), without any pretention to be any kind of [shell](https://en.wikipedia.org/wiki/Shell_(computing)).
 
-It is based on [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra). 
+It is based on the API [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra). 
+
+> [@atao60/fse-cli](https://www.npmjs.com/package/@atao60/fse-cli) is not a library and should not be used as such. [Node.js: fs-extra](https://www.npmjs.com/package/fs-extra) is there for that. 
+
 
 The [available CLI commands](#-commands) are fully functional and tested. However it's still a work in progress:
 * Not all [fs-extra](https://github.com/jprichardson/node-fs-extra) functions are mapped yet. Please, feel free to open an [issue](https://github.com/atao60/fse-cli/issues) if there is something you would like supported.
@@ -28,19 +31,19 @@ The [available CLI commands](#-commands) are fully functional and tested. Howeve
 
 
 Each command is available:
-- either as a stand alone one, e.g. `fse-copy` or `fse-cli-copy`,
-- or as a sub command, e.g. `fse copy` or `fse-cli copy`.
+- either as a stand alone one, i.g. `fse-<command>` or `fse-cli-<command>`,
+- or as a sub command, i.g. `fse <command>` or `fse-cli <command>`.
 
-For example show the versions of [@atao60/fse-cli](https://github.com/atao60/fse-cli) and of [fs-extra](https://github.com/jprichardson/node-fs-extra):
+
+Let's start with displaying the versions of both [@atao60/fse-cli](https://github.com/atao60/fse-cli) and [fs-extra](https://github.com/jprichardson/node-fs-extra):
+
+- without installing the package:
 
 ```bash
 npx @atao60/fse-cli version
-
 ```
 
-Otherwise after installing the package,
-
-- either in global mode:
+- otherwise after installing the package either in global mode:
 
 ```
 npm install --global @atao60/fse-cli
@@ -81,6 +84,6 @@ See [MIT](LICENSE).
 
 ## 📜 Credits
 
-Indeed [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra).
+Indeed the API [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra).
 
 Furthermore [node-fs-extra-cli](https://www.npmjs.com/package/fs-extra-cli) was very useful to start this project.

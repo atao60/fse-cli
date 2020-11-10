@@ -67,6 +67,7 @@ By contributing to `fse-cli`, you agree that your contributions will be licensed
 * add other functions from fs-extra
 * add functions other than from fs-extra, e.g. [tree-cli](https://www.npmjs.com/package/tree-cli)
 * add i18n
+* CI with Github Action
 
 ## Code Overview
 
@@ -98,7 +99,9 @@ At the moment there is no CI/Build configuration on [Github](https://github.com)
 and possibly:
 * a [GitHub account](https://github.com/)
 
-The shell used here is [Bash](https://www.gnu.org/software/bash/) under [Linux](https://www.linuxfoundation.org/). However it should be straightforward to work under any other usual OS as [Windows](https://www.microsoft.com/windows/) or [Mac OS X](https://www.apple.com/macos).
+The shell used here is [Bash](https://www.gnu.org/software/bash/) under [Linux](https://www.linuxfoundation.org/). However it should be straightforward to work under any other usual OS (°) as [Windows](https://www.microsoft.com/windows/) or [Mac OS X](https://www.apple.com/macos).
+
+> (°) All the scripts in package.json are cross-platform. 
 
 Check prerequisites' status:
 ```bash
@@ -107,11 +110,11 @@ npm doctor # will show information about git, node, npm... for the current user
 
 git --version
 
-npm list -g --depth 0 2>&1 | grep fse-cli # (°)
+npm list -g --depth 0 2>&1 | grep fse-cli # (°°)
 
 ```
 
-> (°) replace `2>&1 | grep ...` by its counterpart under [Windows](https://www.microsoft.com/windows/),
+> (°°) replace `2>&1 | grep ...` by its counterpart under [Windows](https://www.microsoft.com/windows/),
 [Mac OS X](https://www.apple.com/macos), ... Or simply use `npm list -g --depth 0` and check if `fse-cli` is present.
 
 ## Development
@@ -316,6 +319,6 @@ cd <any suitable folder, even your local repository>
 
 npm unlink @atao60/fse-cli ### remove existing link
 
-npx @atao60/fse-cli
+npx @atao60/fse-cli version  ### or any other fse-cli command
 
 ```
