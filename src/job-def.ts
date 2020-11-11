@@ -1,6 +1,6 @@
 export interface JobDef {
     name: string;
-    spec: {};
+    spec: {[key: string]: any};
     'default'?: {},
     options: Function;
     questions: Function

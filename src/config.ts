@@ -7,7 +7,7 @@ import { exit } from 'process';
 import { JobDef } from './job-def';
 
 // !!! ⚠️ Don't forget to update the section 'bin' of package.json for any change of jobLinks ⚠️ !!!
-const jobLinks = {
+const jobLinks = Object.freeze({
     copy: 'copy',
     remove: 'remove',
     rimraf: 'remove',
@@ -20,7 +20,7 @@ const jobLinks = {
     move: 'move',
     version: 'version',
     help: 'help'
-};
+} as {[key: string]: string});
 
 // 'cli' must not be used as task name
 const allowedScriptPrefixes = ['fse-cli', 'fse'];  // longer first
@@ -81,7 +81,7 @@ async function promptForMissingOptions({ jobDef, options: partialOptions }:
     { jobDef: JobDef, options: Record<string, unknown> }): Promise<JobOptions> {
 
     const questions = jobDef.questions(partialOptions);
-    const answers = await prompt(questions);
+    const answers = await prompt<{[key: string]: any}>(questions); 
 
     const options = Object.keys(answers).reduce((options, k) => {
         options[k] = partialOptions[k] || answers[k];

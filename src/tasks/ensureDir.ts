@@ -12,7 +12,7 @@ const ensureDirDef = {
     'default': {
         mode: undefined
     },
-    options: (args: { _: unknown[] }): Record<string, unknown> => ({
+    options: (args: { _: unknown[], [key: string]: unknown }): Record<string, unknown> => ({
         askAll: args['--all'] || false,
         mode: args['--mode'] || ensureDirDef.default.mode,
         dir: args._[0]

@@ -5,6 +5,7 @@
         "skipLibCheck": true,
         "allowJs": true,
         "allowSyntheticDefaultImports": true,
+        "strict": true,
         "outDir": "../dist",
         "baseUrl": "",
         "module": "commonjs",

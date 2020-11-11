@@ -12,7 +12,7 @@ const moveDef = {
     'default': {
         overwrite: false
     },
-    options: (args: { _: unknown[] }): Record<string, unknown> => {
+    options: (args: { _: unknown[], [key: string]: unknown }): Record<string, unknown> => {
         return {
             askAll: args['--all'] || false,
             overwrite: args['--overwrite'] || moveDef.default.overwrite,
@@ -81,7 +81,7 @@ export function job ({ src, dest, ...moveOptions }:
         const msg = error.toString();
         const groups = /^\s*Error\s*:\s*(.*?\s+dest\s+already\s+exists.\s*)$/.exec(msg);
         if (!groups) {
-            return null;
+            return undefined as unknown as string;
         }
         return groups[1];
     }

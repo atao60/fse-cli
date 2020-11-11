@@ -21,7 +21,7 @@ const copyDef = {
         dereference: false,
         preserveTimestamps: false
     },
-    options: (args: { _: unknown[] }): Record<string, unknown> => {
+    options: (args: { _: unknown[], [key: string]: unknown }): Record<string, unknown> => {
         return {
             askAll: args['--all'] || false,
             keepExisting: args['--keepExisting'] || copyDef.default.keepExisting,
@@ -129,7 +129,7 @@ export function job({ src, dest, ...copyOptions }:
                 return `it seems your're trying to copy a file to the directory '${linuxError.path}'`
                     + ', which is not allowed';
             }
-            return;
+            return undefined as unknown as string;
         }
 
         return groups[1];

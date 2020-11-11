@@ -40,7 +40,7 @@ function showHelp() {
             // styles provided with first parameter are taken in account as it
             const styles: string[] = property.split('.');
             const styling: Chalk = styles.reduce((o: Chalk, i: string) => {
-                return o[i] as Chalk;
+                return (o as unknown as {[key: string]: Chalk})[i];
             }, chalk);
             return styling(value);
         })
