@@ -10,7 +10,10 @@ export interface ProcessPromise<T> extends Promise<T> {
 }
 
 interface ProcessOptions {
-    env?: { DEBUG: boolean };
+    env?: { 
+        DEBUG?: boolean;
+        FORCE_COLOR?: number
+    };
     timeout?: number;
     maxTimeout?: number;
 }
@@ -87,6 +90,7 @@ function executeWithInput (processPath: string,
     const defaultEnvVars = { DEBUG: false };
     const { env: envvars = defaultEnvVars, timeout = DEFAULT_TIMEOUT, maxTimeout = DEFAULT_MAX_TIMEOUT } = opts
         || { env: defaultEnvVars };
+    envvars.DEBUG = envvars.DEBUG || false;
     const childProcess = createProcess(processPath, args, envvars);
     childProcess.stdin.setDefaultEncoding('utf-8');
 

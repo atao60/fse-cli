@@ -5,6 +5,7 @@ import { closeSync, existsSync, mkdtempSync, mkdirSync, openSync, readFileSync, 
 import { describe, it } from 'mocha';
 import { join } from 'path';
 import { env } from 'process';
+import supportsColor from 'supports-color';
 
 import { execute as run } from './cmd';
 
@@ -386,9 +387,12 @@ describe("The fs-extra CLI", () => {
             const args = { app: ['help'] };
             const userInputs = [];
             const options = {
-                // env: { DEBUG: true },  // false by default
                 // timeout: 200,          // 100 ms by default
-                // maxTimeout: 0          // 10 s by default; if "0" then no timeout
+                // maxTimeout: 0,          // 10 s by default; if "0" then no timeout
+                env: { 
+                    // DEBUG: true,   // false by default
+                    FORCE_COLOR: supportsColor.stdout.level  // 
+                }            
             };
             const versionRegex = new RegExp(`^@atao60/fse-cli\\s+${semverPattern}\\s+\\(fs-extra\\s+${semverPattern}\\)`);
             const manualRegex = new RegExp(`File system extra CLI - Usage`, 'm');
@@ -399,8 +403,11 @@ describe("The fs-extra CLI", () => {
                 options
             )
                 .then(result => {
-                    expect((result as string).trim()).to.match(versionRegex);
-                    expect((result as string)).to.match(manualRegex);
+                    const help = result as string;
+                    expect(help.trim()).to.match(versionRegex); // check package version was retrieved from npm-shrinkwrap.json
+                    expect(help).to.match(manualRegex); // check help content was retrieved from USAGE file
+                    // eslint-disable-next-line no-control-regex
+                    expect(help.replace(/\x1b\[([0-9;]*[mGKF])/g, '\\x1b[$1')).to.match(/\\x1b\[[0-9;]*[mGKF]/); // just check if at least one style ANSI code is present
                     done();
                 })
                 .catch(error => {
