@@ -134,7 +134,10 @@ npm install
 
 # npm audit
 
-# npx depcheck
+# npx depcheck  ### good to detect missing dependencies,
+                #   but many false errors about unused dependencies such as e.g. runtime ones (tslib, @babel/runtime)
+
+# npx rimraf node_modules_bak && npx cost-of-modules
 
 ```
 
