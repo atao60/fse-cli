@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.34](https://github.com/atao60/fse-cli/compare/v0.0.33...v0.0.34) (2020-11-13)
+
+
+### Code Refactoring
+
+* remove babel-register.js and update babel.config.js ([aec23ee](https://github.com/atao60/fse-cli/commit/aec23eec3bec8fa7ad33ed6a951a63383315ea05))
+* setup typescript in strict mode for source code (under ./src) ([11e2958](https://github.com/atao60/fse-cli/commit/11e29584c686b3bc9b49207f598131ae425dc25f))
+
+
+### Docs
+
+* rewrite some docs & add .gitattributes with linguist-vendored ([1ac7bcf](https://github.com/atao60/fse-cli/commit/1ac7bcf8217a92a923304181669704be78e8596d))
+* update docs with package 'cost-of-modules' ([df2df3d](https://github.com/atao60/fse-cli/commit/df2df3d475f0f2893dcd03a81a62c2aa9fd8310a))
+
+
+### Styling
+
+* rename a npm script and remove ts types ([9d1f8c6](https://github.com/atao60/fse-cli/commit/9d1f8c63a89ac5cca0a7106977e7f49a1744b8d9))
+
+
+### Tests
+
+* add checking highlighting in help content ([cd6d6ea](https://github.com/atao60/fse-cli/commit/cd6d6eac15905fe9f7fa77d988f15a2642465947))
+
 ### [0.0.33](https://github.com/atao60/fse-cli/compare/v0.0.32...v0.0.33) (2020-09-22)
 
 
