@@ -31,8 +31,8 @@ The [available CLI commands](#-commands) are fully functional and tested. Howeve
 
 
 Each command is available:
-- either as a stand alone one, i.g. `fse-<command>` or `fse-cli-<command>`,
-- or as a sub command, i.g. `fse <command>` or `fse-cli <command>`.
+- either as a stand alone one, i.e. `fse-<command>` or `fse-cli-<command>`,
+- or as a sub command, i.e. `fse <command>` or `fse-cli <command>`.
 
 
 Let's start with displaying the versions of both [@atao60/fse-cli](https://github.com/atao60/fse-cli) and [fs-extra](https://github.com/jprichardson/node-fs-extra):
