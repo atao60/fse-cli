@@ -39,13 +39,13 @@ function showHelp() {
         .replace(/%%%([A-Za-z.]*):(.*?)%%%/gm, (_match, property: string, value: string, _offset, _source): string => {
             // styles provided with first parameter are taken in account as it
             const styles: string[] = property.split('.');
-            const styling: Chalk = styles.reduce((o: Chalk, i: string) => {
+            const styling = styles.reduce((o: Chalk, i: string) => {
                 return (o as unknown as {[key: string]: Chalk})[i];
             }, chalk);
             return styling(value);
         })
         .replace(/(?<!\[)\[(.*?)\]\((.*?)\)/gm, (_match, title: string, url: string, _offset, _source) => {
-            const link: string = terminalLink(title, url);
+            const link = terminalLink(title, url);
             return chalk.blue(link);
         });
     console.log(usage);
