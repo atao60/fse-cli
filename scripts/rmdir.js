@@ -1,8 +1,9 @@
 /**
- *   Required under Windows, as `rimraf` can't delete itself under folder `./node_modules`.
+ *   Required under Windows, as <a href="https://www.npmjs.com/package/cpy-cli">rimraf</a> 
+ *   can't delete itself under folder `./node_modules`.
  *   
  *   As this script is supposed to remove `node_modules`, don't use ts-node or any
- *   dependencies (not even graceful-fs), as it'd block the script, even under Linux.
+ *   dependencies (not even graceful-fs... or extra-fs!), as it'd block the script, even under Linux.
  */
 import { existsSync, lstatSync, readdirSync, rmdirSync, unlinkSync } from 'fs';
 import { join } from 'path';

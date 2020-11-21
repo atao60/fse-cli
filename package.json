@@ -58,7 +58,7 @@
   "scripts": {
     "start": "npm test",
     "rimraf": "node scripts/rmdir.js",
-    "clean:deps": "npm run rimraf -- ./package-lock.json ./npm-shrinkwrap.json ./node_modules",
+    "clean:deps": "npm run rimraf -- ./package-lock.json ./npm-shrinkwrap.json ./node_modules ./node_modules_bak",
     "clean:dev": "npm run rimraf -- ./dist ./.build",
     "clean:full": "npm run clean:dev && npm run clean:deps",
     "clean": "npm run clean:dev",

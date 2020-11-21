@@ -16,7 +16,8 @@ Welcome!
 - [Prerequisites](#Prerequisites)
 - [Development](#development)
   - [Fork](#fork)
-  - [Main Scripts](#main-scripts)
+  - [Scripts](#scripts)
+  - [Cross Platform Concerns](#cross-platform-concerns)
   - [Watch changes](#watch-changes)
   - [Check package locally](#check-package-locally)
   - [Commit](#commit)
@@ -81,6 +82,8 @@ This project uses:
 
 Each main `fs-extra` function is wrapped in a `task`, each one with a dedicated sub-folder under [src/tasks](src/tasks).
 
+When a `fse-cli <command>` is launched, only the required task is loaded through a dynamic import.
+
 Aliases are defined in the associative array `jobLinks` inside [src/config.ts](src/config.ts).
 
 > ⚠️ Don't forget to update the section `bin` of [package.json](package.json) for any change of `jobLinks` ⚠️ 
@@ -99,9 +102,7 @@ At the moment there is no CI/Build configuration on [Github](https://github.com)
 and possibly:
 * a [GitHub account](https://github.com/)
 
-The shell used here is [Bash](https://www.gnu.org/software/bash/) under [Linux](https://www.linuxfoundation.org/). However it should be straightforward to work under any other usual OS (°) as [Windows](https://www.microsoft.com/windows/) or [Mac OS X](https://www.apple.com/macos).
-
-> (°) All the scripts in package.json are cross-platform. 
+The shell used here is [Bash](https://www.gnu.org/software/bash/) under [Linux](https://www.linuxfoundation.org/). However it should be straightforward to work under any other usual OS, see [Cross Platform Concerns](#cross-platform-concerns).
 
 Check prerequisites' status:
 ```bash
@@ -137,11 +138,11 @@ npm install
 # npx depcheck  ### good to detect missing dependencies,
                 #   but many false errors about unused dependencies such as e.g. runtime ones (tslib, @babel/runtime)
 
-# npx rimraf node_modules_bak && npx cost-of-modules
+# npm run rimraf -- ./node_modules_bak && npx cost-of-modules
 
 ```
 
-### Main Scripts
+### Scripts
 
 The main available scripts are:
 
@@ -155,6 +156,29 @@ The main available scripts are:
 - `npm run lint` - check of code,
 - `npm run fullcheck` - run test and lint,
 - `npm run analyse` - check dependencies and publish content.
+
+### Cross Platform Concerns
+
+##### Code
+
+Libraries [graceful-fs](https://www.npmjs.com/package/graceful-fs) and [cross-spawn](https://www.npmjs.com/package/cross-spawn) have been used to improve Windows support.
+
+##### Scripts
+
+All the scripts in package.json are cross-platform, at least under [Linux](https://www.linuxfoundation.org/) ([Bash](https://www.gnu.org/software/bash/)), [Windows](https://www.microsoft.com/windows/) and [Mac OS X](https://www.apple.com/macos).
+
+To make sure your npm scripts work across different platforms, you cannot rely on environment specific tools. This can be solved by using a task runner to hide the differences. Alternately, you can use a collection of npm packages which expose small CLI interface. The list below contains several of them (src: [survivejs.com](https://survivejs.com/maintenance/packaging/building/#cross-platform-concerns)):
+
+* [cross-env]() - Set environment variables.
+* [npm-run-all](https://www.npmjs.com/package/npm-run-all) or [concurrently](https://www.npmjs.com/package/concurrently) - Running npm scripts in series and parallel is problematic as there’s no native support for that and you have to rely on OS level semantics. npm-run-all solves this problem by hiding it behind a small CLI interface. Example: npm-run-all clean build:*.
+
+Not forgetting, of course...:
+
+* [cpy-cli](https://www.npmjs.com/package/cpy-cli) - Copy files and folders.
+* [mkdirp](https://www.npmjs.com/package/mkdirp) - mkdirp equals to Unix mkdir -p <path> which creates all directories given to it. A normal mkdir <path> would fail if any of the parents are missing. -p stands for --parents.
+* [rimraf](https://www.npmjs.com/package/rimraf) - rimraf equals to rm -rf <path> which in Unix terms removes the given path and its contents without any confirmation. The command is both powerful and dangerous.
+
+> A special case here with [rimraf](https://www.npmjs.com/package/rimraf): it can't be used under [Windows](https://www.microsoft.com/windows/) to delete folder `./node_modules`. See the script `./scripts/rmdir.js`.
 
 ### Watch changes
 
