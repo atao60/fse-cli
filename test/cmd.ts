@@ -12,7 +12,7 @@ export interface ProcessPromise<T> extends Promise<T> {
 }
 
 interface ProcessOptions {
-    env?: { 
+    env?: {
         DEBUG?: boolean;
         FORCE_COLOR?: number
     };
@@ -35,8 +35,9 @@ export const DOWN = '\x1B\x5B\x42';
  * @param {Array} args Arguments to the command
  * @param {Object} env (optional) Environment variables
  */
-export function createProcess (processPath: string,
-    args: { node?: []; app?: [] } | [] = {}, envvars = null): ChildProcess {
+export function createProcess(processPath: string,
+    args: { node?: []; app?: [] } | [] = {},
+    envvars = null): ChildProcess {
 
     const nodeArgs = Array.isArray(args) ? [] : (args && args.node ? args.node : []);
     const appArgs = Array.isArray(args) ? args : (args && args.app ? args.app : []);
@@ -77,7 +78,7 @@ export function createProcess (processPath: string,
  * @param {Array} inputs (Optional) Array of inputs (user responses)
  * @param {Object} opts (Optional) Environment variables
  */
-function executeWithInput (processPath: string,
+function executeWithInput(processPath: string,
     args: Record<string, unknown> | [] = {},
     inputs: unknown[] = [],
     opts?: ProcessOptions): ProcessPromise<unknown> {
@@ -139,9 +140,8 @@ function executeWithInput (processPath: string,
         childProcess.stderr.on('data', data => {
             // Log debug I/O statements on tests
             if (envvars.DEBUG) {
-                // eslint-disable-next-line max-len
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-                console.log('error: ', data.toString());
+                // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                console.log(`error: ${data}`);
             }
         });
 
@@ -149,13 +149,12 @@ function executeWithInput (processPath: string,
         childProcess.stdout.on('data', data => {
             // Log debug I/O statements on tests
             if (envvars.DEBUG) {
-                // eslint-disable-next-line max-len
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-                console.log('output: ', data.toString());
+                // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                console.log(`output: ${data}`);
             }
         });
 
-        childProcess.stderr.once('data', err => {
+        childProcess.stderr.once('data', (err: Error) => {
             // If childProcess errors out, stop all
             // the pending inputs if any
             childProcess.stdin.end();
@@ -164,8 +163,6 @@ function executeWithInput (processPath: string,
                 clearTimeout(currentInputTimeout);
                 inputs = [];
             }
-            // eslint-disable-next-line max-len
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
             resolve(err.toString()); // don't reject here, it's not an exception
             // TODO may be return an object with a property 'type'
         });
@@ -181,14 +178,10 @@ function executeWithInput (processPath: string,
         loop(inputs);
 
         childProcess.stdout.pipe(
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
             concat(result => {
                 if (killIOTimeout) {
                     clearTimeout(killIOTimeout);
                 }
-
-                // eslint-disable-next-line max-len
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
                 resolve(result.toString());
             })
         );
@@ -211,7 +204,7 @@ type ScriptRunner = (args: Record<string, unknown> | [],
  * A wrapper to curry 'execute' for argument 'processPath'
  * @param processPath
  */
-export function create (processPath: string): { execute: ScriptRunner } {
+export function create(processPath: string): { execute: ScriptRunner } {
     const runner = (args?: Record<string, unknown> | [], inputs?: unknown[], opts?: ProcessOptions)
         : ProcessPromise<unknown> => {
         return executeWithInput(processPath, args, inputs, opts);
