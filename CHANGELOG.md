@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.36](https://github.com/atao60/fse-cli/compare/v0.0.35...v0.0.36) (2021-01-19)
+
+
+### Performance Improvements
+
+* stop publishing file npm-shrinkwrap.json ([83ee913](https://github.com/atao60/fse-cli/commit/83ee9132edda629d6599b91561609d85fe9e0588))
+
+
+### Styling
+
+* **es-lint:** remove es-lint exceptions ([7f8e79c](https://github.com/atao60/fse-cli/commit/7f8e79cf460b2242a47ebe17ff024d4036dd5686))
+
+
+### Others
+
+* add VSC configuration ([182ae96](https://github.com/atao60/fse-cli/commit/182ae96424e9b8f6e00151492deab7893b0829d6))
+* remove dependency on babel-eslint ([7f812d1](https://github.com/atao60/fse-cli/commit/7f812d10547c669f7ba46ee263eed756f4dc05c0))
+* replace linguist-vendored with '-linguist-detectable' for config files in js ([f111d87](https://github.com/atao60/fse-cli/commit/f111d871fa50fc7220a55c5a85e9d3f16ebf84a9))
+
+
+### Code Refactoring
+
+* **tests:** remove some eslint exceptions ([f9ac158](https://github.com/atao60/fse-cli/commit/f9ac15892918bafab3d3800c4f43eca45b9c57de))
+* rewrite index file with TS ([b04f170](https://github.com/atao60/fse-cli/commit/b04f17058820be837580c25b2253e940193ba805))
+
+
+### Docs
+
+* add first architecture decision records ([1b70354](https://github.com/atao60/fse-cli/commit/1b70354e233d39856960f82ac5e313830caddb2d))
+* change README with some rephrasing ([d7d9066](https://github.com/atao60/fse-cli/commit/d7d906601c6443b201b000db35836fbc02aa0c3e))
+* cross platform concerns ([22ef5cf](https://github.com/atao60/fse-cli/commit/22ef5cfd3b8d94de9f05e4198242379b463260ec))
+
 ### [0.0.35](https://github.com/atao60/fse-cli/compare/v0.0.34...v0.0.35) (2020-11-13)
 
 
