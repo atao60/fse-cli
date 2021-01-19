@@ -41,7 +41,7 @@
     "MANUAL.md",
     "USAGE",
     "CONTRIBUTING.md",
-    "npm-shrinkwrap.json"
+    "RELEASE.json"
   ],
   "husky": {
     "hooks": {
@@ -75,6 +75,7 @@
     "test": "npm run test:dev:watch",
     "fullcheck": "npm run test:dev && npm run lint",
     "unstaged:check": "git diff-index --quiet HEAD --",
+    "release:versions": "ts-node tools/release.ts",
     "commit": "git-cz",
     "prerelease": "npm run unstaged:check && npm run fullcheck && npm run build && git add -A",
     "release": "cross-env HUSKY_SKIP_HOOKS=1 standard-version -a",

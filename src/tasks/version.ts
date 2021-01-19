@@ -1,4 +1,4 @@
-import { version, dependencies } from '../../npm-shrinkwrap.json';
+import { fse_cli_version, fs_extra_version} from '../../RELEASE.json';
 
 const versionDef = {
     name: 'version',
@@ -11,6 +11,5 @@ const versionDef = {
 export const def = versionDef;
 
 export function job(): void {
-    console.log(`@atao60/fse-cli ${version} (fs-extra ${dependencies['fs-extra'].version})`);
+    console.log(`@atao60/fse-cli ${ fse_cli_version } (fs-extra ${ fs_extra_version })`);
 }
-
