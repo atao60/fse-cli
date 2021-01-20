@@ -40,8 +40,7 @@
     "dist/",
     "MANUAL.md",
     "USAGE",
-    "CONTRIBUTING.md",
-    "RELEASE.json"
+    "CONTRIBUTING.md"
   ],
   "husky": {
     "hooks": {
@@ -75,16 +74,18 @@
     "test": "npm run test:dev:watch",
     "fullcheck": "npm run test:dev && npm run lint",
     "unstaged:check": "git diff-index --quiet HEAD --",
-    "release:versions": "ts-node tools/release.ts",
     "commit": "git-cz",
     "prerelease": "npm run unstaged:check && npm run fullcheck && npm run build && git add -A",
     "release": "cross-env HUSKY_SKIP_HOOKS=1 standard-version -a",
     "postrelease": "cross-env HUSKY_SKIP_HOOKS=1 git push --follow-tags",
-    "prepublishOnly": "npm ci && npm run fullcheck && npm run build",
+    "prepublishOnly": "npm run prepublish:build && npm run prepublish:pack",
     "lint:quiet": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts --quiet",
     "lint:fix": "eslint --fix src/ test/ scripts/",
     "lint": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts",
-    "analyse": "npx pkgfiles && npm list"
+    "analyse": "npx pkgfiles && npm list",
+    "postpublish": "npm run rimraf npm-shrinkwrap.json && npx cpy-cli package-lock.json.0 package-lock.json && npm ci",
+    "prepublish:build": "npm ci && npm run fullcheck && npm run build",
+    "prepublish:pack": "npx cpy-cli package-lock.json package-lock.json.0 && npm dedupe && npm prune --production && npm shrinkwrap"
   },
   "keywords": [
     "fse",

@@ -20,7 +20,7 @@ There are many [Npm](https://www.npmjs.com/) packages that provide all or any of
 
 It is based on the `API` [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra). 
 
-> If an `API` is needed, use [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra), **not** [@atao60/fse-cli](https://www.npmjs.com/package/@atao60/fse-cli). If only because the latter uses `npm-shrinkwrap.json`, not `package-lock.json`, see [shrinkwrap.json - A publishable lockfile](https://docs.npmjs.com/cli/v6/configuring-npm/shrinkwrap-json).
+> If an `API` is needed, use [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra), **not** [@atao60/fse-cli](https://www.npmjs.com/package/@atao60/fse-cli). If only because the latter embeds a `npm-shrinkwrap.json` expunged from dev dependencies.
 
 
 The [available CLI commands](#-commands) are fully functional and tested. However it's still a work in progress:
@@ -34,6 +34,7 @@ Each command is available:
 - either as a stand alone one, i.e. `fse-<command>` or `fse-cli-<command>`,
 - or as a sub command, i.e. `fse <command>` or `fse-cli <command>`.
 
+> The arguments and options of each command are those of [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra) as far as possible.
 
 Let's start with displaying the versions of both [@atao60/fse-cli](https://github.com/atao60/fse-cli) and [fs-extra](https://github.com/jprichardson/node-fs-extra):
 
@@ -45,7 +46,7 @@ npx @atao60/fse-cli version
 
 - otherwise after installing the package either in global mode:
 
-```
+```bash
 npm install --global @atao60/fse-cli
 
 fse version
@@ -53,13 +54,11 @@ fse version
 
 - or in a project:
 
-```
+```bash
 npm install @atao60/fse-cli
 
 fse version
 ```
-
-The arguments and options are those of [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra) as far as possible.
 
 ## 🎹 Commands
 

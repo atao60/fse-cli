@@ -1,4 +1,5 @@
-import { fse_cli_version, fs_extra_version} from '../../RELEASE.json';
+import { existsSync, readFileSync } from 'fs';
+import { join } from 'path';
 
 const versionDef = {
     name: 'version',
@@ -8,8 +9,17 @@ const versionDef = {
     questions: (_: { [_: string]: unknown }): Record<string, unknown>[] => []
 };
 
+const shrinkwrapPath = join(__dirname, '../../npm-shrinkwrap.json');
+const packagelockPath = join(__dirname, '../../package-lock.json');
+
 export const def = versionDef;
 
 export function job(): void {
-    console.log(`@atao60/fse-cli ${ fse_cli_version } (fs-extra ${ fs_extra_version })`);
+    const packagePath = existsSync(shrinkwrapPath) ? shrinkwrapPath : packagelockPath;
+    const content = readFileSync(packagePath, { encoding: 'utf8' });
+    const { version, dependencies } = JSON.parse(content);
+    const cliVersion = version as string;
+    const libVersion = (dependencies as {[_:string]: {version: string}})['fs-extra'].version;
+
+    console.log(`@atao60/fse-cli ${cliVersion} (fs-extra ${libVersion})`);
 }
