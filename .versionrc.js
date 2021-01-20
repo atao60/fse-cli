@@ -1,6 +1,9 @@
+/** See standard-version */
+
 module.exports = {
     scripts: {
-        postbump: "npm run release:versions"
+        postbump: "npm run release:versions",
+        precommit: "git add RELEASE.json"
     },
     types: [
         { "type": "chore", "section": "Others", "hidden": false },
