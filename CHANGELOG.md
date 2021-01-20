@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.38](https://github.com/atao60/fse-cli/compare/v0.0.37...v0.0.38) (2021-01-20)
+
+
+### Performance Improvements
+
+* publish npm-shrinkwrap.json expunged from dev deps ([e4edc96](https://github.com/atao60/fse-cli/commit/e4edc967b77e907f98f7315a28a965d1a69ee107)), closes [#6](https://github.com/atao60/fse-cli/issues/6)
+
 ### [0.0.37](https://github.com/atao60/fse-cli/compare/v0.0.36...v0.0.37) (2021-01-20)
 
 
