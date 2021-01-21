@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.39](https://github.com/atao60/fse-cli/compare/v0.0.38...v0.0.39) (2021-01-21)
+
+
+### Bug Fixes
+
+* don't use internal rimraf during publishing ([d21f215](https://github.com/atao60/fse-cli/commit/d21f21563518aeb8d4f26466401eefee308b9b2b))
+
 ### [0.0.38](https://github.com/atao60/fse-cli/compare/v0.0.37...v0.0.38) (2021-01-20)
 
 
