@@ -83,7 +83,7 @@
     "lint:fix": "eslint --fix src/ test/ scripts/",
     "lint": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --ext .js,.ts",
     "analyse": "npx pkgfiles && npm list",
-    "postpublish": "npm run rimraf npm-shrinkwrap.json && npx cpy-cli package-lock.json.0 package-lock.json && npm ci",
+    "postpublish": "npx rimraf npm-shrinkwrap.json && npx move-file-cli package-lock.json.0 package-lock.json && npm ci",
     "prepublish:build": "npm ci && npm run fullcheck && npm run build",
     "prepublish:pack": "npx cpy-cli package-lock.json package-lock.json.0 && npm dedupe && npm prune --production && npm shrinkwrap"
   },
