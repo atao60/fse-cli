@@ -70,6 +70,7 @@
     "compile:test:dev": "babel ./test --out-dir ./.build/test --extensions '.ts,.js' --delete-dir-on-start --source-maps",
     "compile:dev": "npm run compile:app:dev && npm run compile:test:dev",
     "test:dev": "npm run compile:dev && mocha --config ./.mocharc.json",
+    "test:dev:debug": "cross-env CLI_TEST_DEBUG=true npm run test:dev",
     "test:dev:watch": "nodemon --config ./nodemon-it.json",
     "test": "npm run test:dev:watch",
     "fullcheck": "npm run test:dev && npm run lint",
