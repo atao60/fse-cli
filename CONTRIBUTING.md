@@ -332,7 +332,7 @@ npm run release # push a new version in `package.json` and a new tag with this v
 
 npm login
 
-npm publish --access public
+npm run cli:publish
 
 npm logout
 
@@ -342,9 +342,13 @@ git branch -D my-branch
 ### Check the published package runs fine
 
 ```bash
-cd <any suitable folder, even your local repository>
+cd <your local repository for @atao60/fse-cli>
 
 npm unlink @atao60/fse-cli ### remove existing link
+
+cd <any suitable folder, even your local repository>
+
+npm -g un @atao60/fse-cli ### to force access to the npm registry
 
 npx @atao60/fse-cli version  ### or any other fse-cli command
 
