@@ -4,6 +4,7 @@ import { emptyDir } from 'fs-extra';
 const emptyDirDef = {
     name: 'emptyDir',
     spec: {},
+    'default': {},
     options: (args: { _: unknown[] }): Record<string, unknown> => ({
         dir: args._[0]  // TODO a list of directories?
     }),
@@ -27,8 +28,8 @@ export const def = emptyDirDef;
  * Wrapper for node-fs-exta emptyDir function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/emptyDir.md
  */
-export function job ({ directory }: { directory: string }): void {
-    console.info(`Cleaning directory ${directory} ...`);
+export function job ({ dir: directory }: { dir: string }): void {
+    console.info(`Cleaning up directory ${directory} ...`);
     
     emptyDir(directory, error => {
         if (error) {
