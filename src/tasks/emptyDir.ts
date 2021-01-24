@@ -28,8 +28,8 @@ export const def = emptyDirDef;
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/emptyDir.md
  */
 export function job ({ directory }: { directory: string }): void {
-    console.info('Be gone rapscalian...');
-
+    console.info(`Cleaning directory ${directory} ...`);
+    
     emptyDir(directory, error => {
         if (error) {
             console.error(`${red.bold('ERROR')} thrown while emptying directory: `, error);

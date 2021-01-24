@@ -29,7 +29,7 @@ export const def = removeDef;
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/remove.md
  */
 export function job ({ dir }: { dir: string }): void {
-    console.info('Be gone rapscalian...');
+    console.info(`Removing directory ${dir} ...`);
 
     remove(dir, error => {
         if (error) {
