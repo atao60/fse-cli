@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.40](https://github.com/atao60/fse-cli/compare/v0.0.39...v0.0.40) (2021-01-24)
+
+
+### Bug Fixes
+
+* **emptydir:** allow access to task 'emptyDir' with the right parameter ([82c3ee2](https://github.com/atao60/fse-cli/commit/82c3ee2ec5aab4aecac7332bbd5032915d09632e)), closes [#8](https://github.com/atao60/fse-cli/issues/8)
+
+
+### Code Refactoring
+
+* move import-s from 'fs' to 'fs-extra' ([6cf1d21](https://github.com/atao60/fse-cli/commit/6cf1d21881c709dee418da73d2ae44ef3ed0ef42))
+
+
+### Styling
+
+* **remove:** change console log message ([1372a8a](https://github.com/atao60/fse-cli/commit/1372a8a182d440ed60bbaff1a25b4c2d5dbc895f))
+* **test:** explicit missing type var in test/cmd.ts ([05711d1](https://github.com/atao60/fse-cli/commit/05711d15d8bcc1fbfa1bada975c39f3104f00fab))
+* change console log messages ([2a2ea1e](https://github.com/atao60/fse-cli/commit/2a2ea1eb3ec73afeb43058ecd15a0cbbdfcdef08))
+
+
+### Tests
+
+* **emptydir:** add minimal testing of task emptyDir ([eaadb82](https://github.com/atao60/fse-cli/commit/eaadb82aa28d3a820fc0fc2d91d5c800ab9c5202)), closes [#8](https://github.com/atao60/fse-cli/issues/8)
+
+
+### Build System
+
+* **scripts:** add launching 'publish' with the right parameters ([8f185b3](https://github.com/atao60/fse-cli/commit/8f185b31e4f8c7fc3f1baeee2cefa0bcd19981f0))
+* **scripts:** add launching 'test:dev' in debug mode ([571d6fc](https://github.com/atao60/fse-cli/commit/571d6fcc9801c6aae27be37427508e98dc3010d4))
+
 ### [0.0.39](https://github.com/atao60/fse-cli/compare/v0.0.38...v0.0.39) (2021-01-21)
 
 
