@@ -98,7 +98,7 @@ function executeWithInput(processPath: string,
     childProcess.stdin.setDefaultEncoding('utf-8');
 
     let currentInputTimeout: ReturnType<typeof setTimeout>;
-    let killIOTimeout;
+    let killIOTimeout: ReturnType<typeof setTimeout>;
 
     // Creates a loop to feed user inputs to the child process in order to get results from the tool
     // This code is heavily inspired (if not blantantly copied) from inquirer-test:
