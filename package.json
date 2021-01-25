@@ -83,10 +83,9 @@
     "lint:fix": "eslint --fix src/ test/ scripts/",
     "lint": "tsc --project src && eslint src/**/* test/**/* scripts/**/*",
     "analyse": "npx pkgfiles && npm list",
-    "prepublishOnly": "npm run publish:build && npm run publish:pack",
-    "publish:build": "npm ci && npm run fullcheck && npm run build",
-    "publish:pack": "ts-node ./tools/prepublish '' '../..'",
-    "cli:publish": "npm publish ./publish --access public"
+    "cli:publish:build": "npm ci && npm run fullcheck && npm run build",
+    "cli:publish:pack": "ts-node ./tools/prepublish '' '../..'",
+    "cli:publish": "npm run cli:publish:build && npm run cli:publish:pack && npm publish ./publish --access public"
   },
   "keywords": [
     "fse",
