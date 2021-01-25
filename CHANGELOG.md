@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.41](https://github.com/atao60/fse-cli/compare/v0.0.40...v0.0.41) (2021-01-25)
+
+
+### Bug Fixes
+
+* **scripts:** store package-lock.json in the right place during publishing ([02484d0](https://github.com/atao60/fse-cli/commit/02484d01ba753f0e7cd813bc9188d00b91f24168))
+
+
+### Performance Improvements
+
+* **publishing:** publish a version of fse-cli without dev stuff ([3872fad](https://github.com/atao60/fse-cli/commit/3872fadf76d5bef5787f1971b8435f2452153058)), closes [#6](https://github.com/atao60/fse-cli/issues/6)
+
 ### [0.0.40](https://github.com/atao60/fse-cli/compare/v0.0.39...v0.0.40) (2021-01-24)
 
 
