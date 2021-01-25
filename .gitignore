@@ -84,10 +84,11 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-# npm package build
+# npm package build & publish
 dist
 .build
 .tmp-dir
+publish
 
 # misc
 .follow-up

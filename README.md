@@ -4,8 +4,7 @@ Welcome to @atao/fse-cli
 
 [![NPM](https://nodei.co/npm/@atao60/fse-cli.png?mini=true)](https://www.npmjs.com/package/@atao60/fse-cli)
 
-
-<span style="font-size:3em;">🏗</span>A [CLI](https://en.wikipedia.org/wiki/Command-line_interface) for [fs-extra](https://github.com/jprichardson/node-fs-extra). 
+🏗A [CLI](https://en.wikipedia.org/wiki/Command-line_interface) for [fs-extra](https://github.com/jprichardson/node-fs-extra). 
 
 ## 💡 Rational
 
@@ -14,6 +13,7 @@ Everyone needs simple file system operations like copy, remove, clean, ... that 
 There are many [Npm](https://www.npmjs.com/) packages that provide all or any of this:
 - as an [API](https://en.wikipedia.org/wiki/Application_programming_interface) to be used as part of an application, but without associated [CLI](https://en.wikipedia.org/wiki/Command-line_interface),
 - as [CLI](https://en.wikipedia.org/wiki/Command-line_interface) but in separate [Npm](https://www.npmjs.com/) packages such as [rimraf](https://www.npmjs.com/package/rimraf), [mkdirp](https://www.npmjs.com/package/mkdirp), [cpy-cli](https://www.npmjs.com/package/cpy-cli), ...
+- as [CLI](https://en.wikipedia.org/wiki/Command-line_interface) but in separate [Npm](https://www.npmjs.com/) packages such as [del-cli](https://www.npmjs.com/package/del-cli), [rimraf](https://www.npmjs.com/package/rimraf), [make-dir-cli](https://www.npmjs.com/package/make-dir-cli), [mkdirp](https://www.npmjs.com/package/mkdirp), [cpy-cli](https://www.npmjs.com/package/cpy-cli), [move-file-cli](https://www.npmjs.com/package/move-file-cli)...
 - or even as a full [shell](https://en.wikipedia.org/wiki/Shell_(computing)) with e.g. [shx](https://www.npmjs.com/package/shx) based on [shelljs](https://www.npmjs.com/package/shelljs), a [Unix shell](https://en.wikipedia.org/wiki/Unix_shell) commands for [Node.js](https://nodejs.org).
 
 [This package](https://www.npmjs.com/package/@atao60/fse-cli) just provides many of them from a unique [CLI](https://en.wikipedia.org/wiki/Command-line_interface), without any pretention to be any kind of [shell](https://en.wikipedia.org/wiki/Shell_(computing)).
@@ -23,7 +23,7 @@ It is based on the `API` [Node.js: fs-extra](https://github.com/jprichardson/nod
 > If an `API` is needed, use [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra), **not** [@atao60/fse-cli](https://www.npmjs.com/package/@atao60/fse-cli). If only because the latter embeds a `npm-shrinkwrap.json` expunged from dev dependencies.
 
 
-The [available CLI commands](#-commands) are fully functional and tested. However it's still a work in progress:
+The [available CLI commands](#🎹-commands) are fully functional and tested. However it's still a work in progress:
 * Not all [fs-extra](https://github.com/jprichardson/node-fs-extra) functions are mapped yet. Please, feel free to open an [issue](https://github.com/atao60/fse-cli/issues) if there is something you would like supported.
 * More tests to come, even if they will only concern the CLI part without overlapping [fs-extra](https://github.com/jprichardson/node-fs-extra)'s tests.
 

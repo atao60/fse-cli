@@ -4,16 +4,26 @@
  *   
  *   As this script is supposed to remove `node_modules`, don't use ts-node or any
  *   dependencies (not even graceful-fs... or extra-fs!), as it'd block the script, even under Linux.
+ * 
+ *   fs.rmdirSync supports a recursive options since Node.js 12.10.0: we can't use it
+ *   as long as we stay with engines.node >=10.15.3
  */
 import { existsSync, lstatSync, readdirSync, rmdirSync, unlinkSync } from 'fs';
 import { join } from 'path';
-import { argv, env, exit } from 'process';
+import { argv, env } from 'process';
 
-const pathList = [...argv.slice(2)] || [env.PATHS] || ['node_modules/'];
+const DEFAULT_PATH = './node_modules/';
+const PATH_SEP = ':';
 
-if (!pathList || pathList.length < 1) {
-    console.log("File/folder list is empty or not provided: nothing's done.");
-    exit(1);
+const pathList = argv.slice(2).filter(a => a && a.trim()).map(a=> a.trim());
+
+if(pathList.length < 1 && env.PATHS && env.PATHS.trim()) {
+    const extraPaths = env.EXTRA_PATHS.split(PATH_SEP).filter(a => a && a.trim()).map(a => a.trim());
+    pathList.push(...extraPaths);
+}
+
+if(pathList.length < 1) {
+    pathList.push(DEFAULT_PATH);
 }
 
 function deepDelete(paths) {

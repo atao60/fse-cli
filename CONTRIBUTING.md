@@ -151,6 +151,7 @@ The main available scripts are:
 - `npm run build` - create a production ready build,
 - `npm run commit` - commit instead of `git commit`,
 - `npm run release` - run test, lint and build before creating a new release version,
+- `npm run cli:publish` - publish on npm registry instead of `npm publish`,
 - `npm run clean` - remove temporary folders as dist, .build, ...
 - `npm run refresh` - remove node modules, package-lock.json, dist, ... and re-installs upgraded dependencies,
 - `npm run lint` - check of code,
@@ -283,7 +284,9 @@ Answer questions:
   *  Determine whether the commit is a BREAKING CHANGES or not (by answering `y` and fill up BREAKING CHANGES descriptions in the CLI).
   *  (Optional) Mention the issues in the [issue tracking system](https://en.wikipedia.org/wiki/Issue_tracking_system), here [Github issues](https://github.com/atao60/fse-cli/issues), (by answering `y` and fill up the issue descriptions in the CLI).
 
-
+> Any change can be released and published as soon as commited. See [below](#publish).
+But any uncommited changes will prevent a release.
+On the other hand, a publishing can be done with uncommited changes, ignoring them.
 
 ### Pull Request
 
@@ -297,7 +300,7 @@ git branch ### checking if current user is in 'master' branch before creating a 
 git checkout -b my-branch
 ```
 
-Do here the wanted changes
+Do here the wanted changes.
 
 ```bash
 
@@ -321,6 +324,8 @@ See [GitHub Docs - Checking out pull requests locally](https://docs.github.com/e
 To publish on [npm](https://www.npmjs.com/) public registry, you must be an administor with access rights for:
 - the package on the [npm](https://www.npmjs.com/) public registry, ie [@atao60/fse-cli](https://www.npmjs.com/package/@atao60/fse-cli),
 - the repository on [Github](https://github.com), ie [atao60/fse-cli](https://github.com/atao60/fse-cli).
+
+Don't use `npm publish` but `npm run cli:publish`:
 
 ```bash
 
