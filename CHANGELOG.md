@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.42](https://github.com/atao60/fse-cli/compare/v0.0.41...v0.0.42) (2021-01-25)
+
+
+### Bug Fixes
+
+* **publishing:** remove script 'prepublishOnly' ([498e726](https://github.com/atao60/fse-cli/commit/498e726edccf5e5207f6702004b4c8d6789907d4))
+
 ### [0.0.41](https://github.com/atao60/fse-cli/compare/v0.0.40...v0.0.41) (2021-01-25)
 
 
