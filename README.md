@@ -11,10 +11,9 @@ Welcome to @atao/fse-cli
 Everyone needs simple file system operations like copy, remove, clean, ... that can be used from the terminal or via scripts. 
 
 There are many [Npm](https://www.npmjs.com/) packages that provide all or any of this:
-- as an [API](https://en.wikipedia.org/wiki/Application_programming_interface) to be used as part of an application, but without associated [CLI](https://en.wikipedia.org/wiki/Command-line_interface),
-- as [CLI](https://en.wikipedia.org/wiki/Command-line_interface) but in separate [Npm](https://www.npmjs.com/) packages such as [rimraf](https://www.npmjs.com/package/rimraf), [mkdirp](https://www.npmjs.com/package/mkdirp), [cpy-cli](https://www.npmjs.com/package/cpy-cli), ...
+- as [API](https://en.wikipedia.org/wiki/Application_programming_interface) to be used as part of an application, but without associated [CLI](https://en.wikipedia.org/wiki/Command-line_interface),
 - as [CLI](https://en.wikipedia.org/wiki/Command-line_interface) but in separate [Npm](https://www.npmjs.com/) packages such as [del-cli](https://www.npmjs.com/package/del-cli), [rimraf](https://www.npmjs.com/package/rimraf), [make-dir-cli](https://www.npmjs.com/package/make-dir-cli), [mkdirp](https://www.npmjs.com/package/mkdirp), [cpy-cli](https://www.npmjs.com/package/cpy-cli), [move-file-cli](https://www.npmjs.com/package/move-file-cli)...
-- or even as a full [shell](https://en.wikipedia.org/wiki/Shell_(computing)) with e.g. [shx](https://www.npmjs.com/package/shx) based on [shelljs](https://www.npmjs.com/package/shelljs), a [Unix shell](https://en.wikipedia.org/wiki/Unix_shell) commands for [Node.js](https://nodejs.org).
+- or even as full [shell](https://en.wikipedia.org/wiki/Shell_(computing)), e.g. [shx](https://www.npmjs.com/package/shx) based on [shelljs](https://www.npmjs.com/package/shelljs), both of them being [Unix shell](https://en.wikipedia.org/wiki/Unix_shell) commands for [Node.js](https://nodejs.org).
 
 [This package](https://www.npmjs.com/package/@atao60/fse-cli) just provides many of them from a unique [CLI](https://en.wikipedia.org/wiki/Command-line_interface), without any pretention to be any kind of [shell](https://en.wikipedia.org/wiki/Shell_(computing)).
 
