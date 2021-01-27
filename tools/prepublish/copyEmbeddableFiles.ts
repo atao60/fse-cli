@@ -1,8 +1,8 @@
 import { join } from 'path';
 import { env } from 'process';
 import { uniq } from 'lodash';
-import { copySync, pathExistsSync, readFile } from 'fs-extra';
-import { default as klaw } from 'klaw';
+import { default as readdirp, EntryInfo } from 'readdirp';
+import { copySync, pathExistsSync, readFile, remove } from 'fs-extra';
 import { makeRe } from 'micromatch';
 
 const PACKAGE_JSON_FILE_NAME = 'package.json';
@@ -16,40 +16,85 @@ const encoding = 'utf-8';
 // https://docs.npmjs.com/cli/v6/configuring-npm/package-json#files
 // Some files are always included, regardless of settings, see MANDATORY_FILES below.
 //
-// Conversely, some files are always ignored, see IGNORED_PATHS below.
+// Conversely, some files or directories are always ignored, see EARLY_IGNORED_PATHS below.
+//
+// To get uptodate list, see https://github.com/npm/npm-packlist/blob/master/index.js
 
 const MANDATORY_FILES = Object.freeze({
-    // README, CHANGES, LICENSE & NOTICE can have any case and extension.
-    [PACKAGE_JSON_FILE_NAME]: { case: false, ext: false },
-    'README': { case: true, ext: true },
-    'CHANGES': { case: true, ext: true },
-    'CHANGELOG': { case: true, ext: true },
-    'HISTORY': { case: false, ext: false },
-    'LICENSE': { case: true, ext: true },
-    'LICENCE': { case: true, ext: true },
-    'NOTICE': { case: true, ext: true }
+    // README, CHANGES, ... can have any case and file extension:
+    [PACKAGE_JSON_FILE_NAME]: { ignorecase: false, anyfileext: false },
+    'readme': { ignorecase: true, anyfileext: true },
+    'changes': { ignorecase: true, anyfileext: true },
+    'changelog': { ignorecase: true, anyfileext: true },
+    'history': { ignorecase: true, anyfileext: true },
+    'license': { ignorecase: true, anyfileext: true },
+    'licence': { ignorecase: true, anyfileext: true },
+    'notice': { ignorecase: true, anyfileext: true },
+    'copying': { ignorecase: true, anyfileext: true }
     // The file in the "main" field
 });
 
-const IGNORED_PATHS = [
-    '.git',
-    'CVS',
-    '.svn',
-    '.hg',
-    '.lock-wscript',
-    '.wafpickle-N',
-    '.DS_Store',
+const getPackageConfigMainField = () => {
+    const npmPackageMain = trimSlash(env.npm_package_main);
+    const mainField = { [npmPackageMain]: { ignorecase: false, anyfileext: false } };
+    return mainField;
+};
+
+const getPackageConfigFilesField = () => {
+    return getNotRelaxedPaths(npmPackageFiles);
+}
+
+const EARLY_IGNORED_PATHS = [
+    '.npmignore',
+    '.gitignore',
+    '**/.git',
+    '**/.svn',
+    '**/.hg',
+    '**/CVS',
+    '**/.git/**',
+    '**/.svn/**',
+    '**/.hg/**',
+    '**/CVS/**',
+    '/.lock-wscript',
+    '/.wafpickle-*',
+    '/build/config.gypi',
     'npm-debug.log',
-    '.npmrc',
-    'node_modules',
-    'config.gypi',
-    PACKAGE_LOCK_JSON_FILE_NAME // (use shrinkwrap instead)
+    '**/.npmrc',
+    '.*.swp',
+    '.DS_Store',
+    '**/.DS_Store/**',
+    '._*',
+    '**/._*/**',
+    '*.orig',
+    `/${PACKAGE_LOCK_JSON_FILE_NAME}`, // (use shrinkwrap instead)
+    '/yarn.lock',
+    '/archived-packages/**',
+    // with this project, no need to follow links in the root node_modules folder
+    '**/node_modules',
+    '**/node_modules/**',
     // All files containing a * character (incompatible with Windows)
+];
+
+const isBadNameForWindows = (file: string) => file.includes('*');
+
+const LATE_IGNORED_GLOBS = [
+    '**/*.map',
+    '**/*.d.ts'
 ];
 
 const npmPackageFiles = Object.entries(env)
     .filter(([k, _v]) => k.startsWith('npm_package_files_'))
     .map(([_k, v]) => v);
+
+function getNotRelaxedPaths(paths: string[]) {
+    const pathList = paths
+        .map(trimSlash)
+        .reduce((pathList, p) => {
+            pathList[p] = { ignorecase: false, anyfileext: false };
+            return pathList;
+        }, {} as { [_: string]: { ignorecase: boolean, anyfileext: boolean } });
+    return pathList;
+}
 
 function trimSlash(s: string) {
     const startingAt = s.startsWith('./') ? './'.length : 0;
@@ -59,37 +104,20 @@ function trimSlash(s: string) {
 
 function embeddableFilePaths(extraFilePaths: Readonly<string[]>) {
 
-    // 'package-lock.json' will be used to create a file npm-shrinkwrap.json, see createNpmShrinkwrapFile.ts
-    const extraFiles = [...extraFilePaths, PACKAGE_LOCK_JSON_FILE_NAME]
-        .map(trimSlash)
-        .reduce((pathList, p) => {
-            pathList[p] = { case: false, ext: false };
-            return pathList;
-        }, {} as { [_: string]: { case: boolean, ext: boolean } });
-
-    const npmPackageMain = trimSlash(env.npm_package_main);
-    const mainField = { [npmPackageMain]: { case: false, ext: false } };
-
-    const filesField = npmPackageFiles
-        .map(trimSlash)
-        .reduce((pathList, p) => {
-            pathList[p] = { case: false, ext: false };
-            return pathList;
-        }, {} as { [_: string]: { case: boolean, ext: boolean } });
-
-    const embeddableFiles: { [_: string]: { case: boolean, ext: boolean } } = {
+    const embeddableFiles: { [_: string]: { ignorecase: boolean, anyfileext: boolean } } = {
         ...MANDATORY_FILES,
-        ...extraFiles,
-        ...mainField,
-        ...filesField
+        // 'package-lock.json' required to create a file npm-shrinkwrap.json from it, see createNpmShrinkwrapFile.ts
+        ...getNotRelaxedPaths([...extraFilePaths, PACKAGE_LOCK_JSON_FILE_NAME]),
+        ...getPackageConfigMainField(),
+        ...getPackageConfigFilesField()
     };
 
     return Object.freeze(embeddableFiles);
 };
 
-function searchPaths(searchableFileList: string[], flags: { case: boolean, ext: boolean }, rootPath: string, searchedName: string) {
-    const anyCase = flags.case ? 'i' : null;
-    const anyFileExt = flags.ext ? '(|\.[^.]+$)' : '';
+function searchPaths(searchableFileList: string[], flags: { ignorecase: boolean, anyfileext: boolean }, rootPath: string, searchedName: string) {
+    const anyCase = flags.ignorecase ? 'i' : null;
+    const anyFileExt = flags.anyfileext ? '(|\.[^.]+$)' : '';
     const pattern = new RegExp(['^', searchedName, anyFileExt].join(''), anyCase);
     const rootPathLength = rootPath.length + (rootPath.endsWith('/') ? 0 : 1);
 
@@ -109,8 +137,8 @@ function checkPath(rootPath: string, filePath: string) {
 }
 
 function getFindValidPaths(searchableFileList: string[], rootPath: string) {
-    return ([filePath, flags]: [string, { case: boolean, ext: boolean }]) => {
-        if (flags.case || flags.ext) {
+    return ([filePath, flags]: [string, { ignorecase: boolean, anyfileext: boolean }]) => {
+        if (flags.ignorecase || flags.anyfileext) {
             return searchPaths(searchableFileList, flags, rootPath, filePath);
         } else {
             return checkPath(rootPath, filePath);
@@ -130,34 +158,48 @@ async function fetchGitIgnorePaths(rootPath: string) {
 
 async function fillSearchablePathList(rootPath: string, publishPath: string) {
     const rootPathLength = rootPath.length + (rootPath.endsWith('/') ? 0 : 1);
-    // IGNORED_PATHS are also treated as globs
-    const pathsToBeIgnored = uniq([
-        ...IGNORED_PATHS,
+    // EARLY_IGNORED_PATHS are also treated as globs
+    const excludingPatterns = uniq([
+        ...EARLY_IGNORED_PATHS,
         ...(await fetchGitIgnorePaths(rootPath)),
         publishPath.slice(rootPathLength)
-    ].map(trimSlash)
-    );
-
-    const excludePathPatterns = pathsToBeIgnored.map(p => makeRe(p));
+    ]
+        .map(trimSlash)
+    )
+        .map(p => makeRe(p, { dot: true }));
 
     // 'package-lock.json' will be used to create a file npm-shrinkwrap.json, see createNpmShrinkwrapFile.ts
-    const includePathPatterns = [...npmPackageFiles, PACKAGE_LOCK_JSON_FILE_NAME].map(trimSlash).map(p => makeRe(p));
+    // so we need to preserve it here
+    const includingPatterns = [...npmPackageFiles, PACKAGE_LOCK_JSON_FILE_NAME]
+        .map(trimSlash)
+        .map(p => makeRe(p, { dot: true }));
 
-    const pathList = (await new Promise<klaw.Item[]>((resolve, reject) => {
-        const items: klaw.Item[] = [];
-        const filter = (filepath: string) => {
-            const shortpath = filepath.slice(rootPathLength);
-            const excluded = excludePathPatterns.some(r => r.test(shortpath));
-            const included = includePathPatterns.some(r => r.test(shortpath));
-             return !shortpath.includes('*') && (included || !excluded);
-        }
-        klaw(rootPath, { filter })
-            .on('error', reject)
-            .on('end', () => resolve(items))
-            .on('data', item => items.push(item))
-    }))
-        .map(i => i.path);
+    const fileFilter = function (entry: EntryInfo) {
+        const { path: shortpath } = entry;
+        const excluded = excludingPatterns.some(r => r.test(shortpath));
+        const included = includingPatterns.some(r => r.test(shortpath));
+        return !isBadNameForWindows(shortpath) && (included || !excluded);
+    };
+
+    const pathList: string[] = [];
+    for await (const { path } of readdirp(rootPath, { fileFilter })) {
+        pathList.push(path);
+    }
     return pathList;
+}
+
+async function removeLateIgnoredPathList(publishPath: string) {
+    const removingPatterns = LATE_IGNORED_GLOBS.map(trimSlash).map(p => makeRe(p, { dot: true }));
+
+    const fileFilter = function (entry: EntryInfo) {
+        const { path: shortpath } = entry;
+        const toberemoved = removingPatterns.some(r => r.test(shortpath));
+        return toberemoved;
+    };
+
+    for await (const { path } of readdirp(publishPath, { fileFilter })) {
+        remove(join(publishPath, path));
+    }
 }
 
 // ./publish is also ignored through ./.gitignore
@@ -166,6 +208,7 @@ export const copyEmbeddableFiles = async (rootPath: string, publishPath: string,
     const findValidPaths = getFindValidPaths(searchableFileList, rootPath);
     const validPathGroups = Object.entries(embeddableFilePaths(extraEmbeddableFilePaths))
         .map(findValidPaths);
+
     validPathGroups
         .reduce((a, pl) => [...a, ...pl], [])
         .filter(p => p && p.trim())
@@ -174,4 +217,6 @@ export const copyEmbeddableFiles = async (rootPath: string, publishPath: string,
             const destFullPath = join(publishPath, p);
             copySync(validFullPath, destFullPath, { overwrite: true });
         });
+    
+    await removeLateIgnoredPathList(publishPath);
 };

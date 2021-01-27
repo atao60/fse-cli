@@ -2,7 +2,7 @@ import { join } from 'path';
 import { readJson, writeJson } from 'fs-extra';
 import { unset } from 'lodash';
 
-const FIELDS_TO_BE_REMOVED = Object.freeze(['scripts', 'devDependencies', 'husky', 'config']);
+const FIELDS_TO_BE_REMOVED = Object.freeze(['types', 'scripts', 'devDependencies', 'husky', 'config']);
 
 export const shrinkPackageConfig = async (filePath: string, folderPath: string) => {
     const packageConfigPath = join(folderPath, filePath);
