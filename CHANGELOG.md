@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.43](https://github.com/atao60/fse-cli/compare/v0.0.42...v0.0.43) (2021-01-27)
+
+
+### Performance Improvements
+
+* **publishing:** publish with even less dev stuff, no more types and map files ([5aeac38](https://github.com/atao60/fse-cli/commit/5aeac3854325e7f16b9eb9686fbd03b301cd4bce))
+
+
+### Docs
+
+* add minor changes to ./README.md ([fb4a538](https://github.com/atao60/fse-cli/commit/fb4a538e50f89e55a208d73a9940c1cab31766b8))
+
+
+### Others
+
+* update dependencies (among which fs-extra to 9.1.0) ([7a88e27](https://github.com/atao60/fse-cli/commit/7a88e274061da946df42fb969d48af09d68e6e4f))
+
 ### [0.0.42](https://github.com/atao60/fse-cli/compare/v0.0.41...v0.0.42) (2021-01-25)
 
 
