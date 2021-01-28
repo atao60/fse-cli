@@ -18,21 +18,9 @@ jobs:
       - name: Build change list
         id: build_change_list
         shell: 'bash'
-        # it works as there are only additions of new line, never any suppressions
+        # `git diff` works here as there are only additions of new line, never any suppressions
         run: |
-          CHANGES=$(git diff --minimal $(git tag --sort version:refname | grep ^v | tail -n 2 | head -n 1) $(git tag --sort version:refname | grep ^v | tail -n 1) CHANGELOG.md | sed -e '1,\|atao60/fse-cli/compare| d' -e '\|atao60/fse-cli/compare|,$ d' -e '1 d' -e 's/^\+//' | sed '1 i\# Changes about this release')
-          CHANGES="${CHANGES//$'\n'/'%0A'}"
-          CHANGES="${CHANGES//$'\r'/'%0D'}"
-          echo CHANGES: "$CHANGES"
-          echo "::set-output name=CHANGELIST::$CHANGES"
-        env:
-          # This token is provided by Actions, you do not need to create your own token
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-      - name: Check change list
-        id: check_change_list
-        shell: 'bash'
-        run: |
-          echo CHANGELIST: "${{steps.build_change_list.outputs.CHANGELIST}}"
+          git diff --minimal $(git tag --sort version:refname | grep ^v | tail -n 2 | head -n 1) $(git tag --sort version:refname | grep ^v | tail -n 1) CHANGELOG.md | sed -e '1,\|atao60/fse-cli/compare| d' -e '\|atao60/fse-cli/compare|,$ d' -e '1 d' -e 's/^\+//' | sed '1 i\# Changes about this release' > ./CHANGELIST.txt
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -42,6 +30,6 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
-          body: "${{steps.build_change_list.outputs.CHANGELIST}}"
+          body_path: ./CHANGELIST.txt
           draft: false
           prerelease: false
