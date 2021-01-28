@@ -20,7 +20,12 @@ jobs:
         shell: 'bash'
         # `git diff` works here as there are only additions of new line, never any suppressions
         run: |
-          git diff --minimal $(git tag --sort version:refname | grep ^v | tail -n 2 | head -n 1) $(git tag --sort version:refname | grep ^v | tail -n 1) CHANGELOG.md | sed -e '1,\|atao60/fse-cli/compare| d' -e '\|atao60/fse-cli/compare|,$ d' -e '1 d' -e 's/^\+//' | sed '1 i\# Changes about this release' > ./CHANGELIST.txt
+          git diff --minimal $(git tag --sort version:refname | grep ^v | tail -n 2 | head -n 1) $(git tag --sort version:refname | grep ^v | tail -n 1) CHANGELOG.md | sed -e '1,\|atao60/fse-cli/compare| d' -e '\|atao60/fse-cli/compare|,$ d' -e '1 d' -e 's/^\+//' | sed '1 i\# Changes about this release' > ${{ github.workspace }}/release_notes.md
+      - name: Check change list
+        id: check_change_list
+        shell: 'bash'
+        run: |
+          cat ${{ github.workspace }}/release_notes.md
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -30,6 +35,6 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
-          body_path: ./CHANGELIST.txt
+          body_path: ${{ github.workspace }}/release_notes.md
           draft: false
           prerelease: false
