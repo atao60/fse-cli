@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.46](https://github.com/atao60/fse-cli/compare/v0.0.45...v0.0.46) (2021-01-28)
+
+
+### Bug Fixes
+
+* **release:** new try to add body to github release ([ccb4881](https://github.com/atao60/fse-cli/commit/ccb488151fe521e12d3b053006ee05fa504b765e))
+
 ### [0.0.45](https://github.com/atao60/fse-cli/compare/v0.0.44...v0.0.45) (2021-01-28)
 
 
