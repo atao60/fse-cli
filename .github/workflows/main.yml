@@ -23,10 +23,15 @@ jobs:
           CHANGES=$(git diff --minimal $(git tag --sort version:refname | grep ^v | tail -n 2 | head -n 1) $(git tag --sort version:refname | grep ^v | tail -n 1) CHANGELOG.md | sed -e '1,\|atao60/fse-cli/compare| d' -e '\|atao60/fse-cli/compare|,$ d' -e '1 d' -e 's/^\+//' | sed '1 i\# Changes about this release')
           CHANGES="${CHANGES//$'\n'/'%0A'}"
           CHANGES="${CHANGES//$'\r'/'%0D'}"
-          echo "::set-output name=CHANGES::$CHANGES"
+          echo "::set-output name=CHANGELIST::$CHANGES"
         env:
           # This token is provided by Actions, you do not need to create your own token
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+      - name: Check change list
+        id: check_change_list
+        shell: 'bash'
+        run: |
+          echo "${{steps.build_change_list.outputs.CHANGELIST}}"
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -36,6 +41,6 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
-          body: "${{steps.build_change_list.outputs.CHANGES}}"
+          body: "${{steps.build_change_list.outputs.CHANGELIST}}"
           draft: false
           prerelease: false
