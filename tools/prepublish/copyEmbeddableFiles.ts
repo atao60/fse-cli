@@ -115,14 +115,12 @@ function embeddableFilePaths(extraFilePaths: Readonly<string[]>) {
     return Object.freeze(embeddableFiles);
 };
 
-function searchPaths(searchableFileList: string[], flags: { ignorecase: boolean, anyfileext: boolean }, rootPath: string, searchedName: string) {
+function searchPaths(searchableFileList: string[], flags: { ignorecase: boolean, anyfileext: boolean }, searchedName: string) {
     const anyCase = flags.ignorecase ? 'i' : null;
-    const anyFileExt = flags.anyfileext ? '(|\.[^.]+$)' : '';
+    const anyFileExt = flags.anyfileext ? '(|\\.[^.]+$)' : '';
     const pattern = new RegExp(['^', searchedName, anyFileExt].join(''), anyCase);
-    const rootPathLength = rootPath.length + (rootPath.endsWith('/') ? 0 : 1);
 
     const validPathList = searchableFileList
-        .map(p => p.slice(rootPathLength))
         .filter(p => {
             return pattern.test(p);
         });
@@ -136,12 +134,14 @@ function checkPath(rootPath: string, filePath: string) {
     return [validPath.slice(rootPathLength)];
 }
 
+// TODO why checking if exists only when !flags.ignorecase & !flags.anyfileext?
+//      do we really need to check in any case?
 function getFindValidPaths(searchableFileList: string[], rootPath: string) {
     return ([filePath, flags]: [string, { ignorecase: boolean, anyfileext: boolean }]) => {
         if (flags.ignorecase || flags.anyfileext) {
-            return searchPaths(searchableFileList, flags, rootPath, filePath);
+            return searchPaths(searchableFileList, flags, filePath);
         } else {
-            return checkPath(rootPath, filePath);
+            return checkPath(rootPath, filePath); // TODO always return path as it? 
         }
     };
 }
@@ -206,17 +206,18 @@ async function removeLateIgnoredPathList(publishPath: string) {
 export const copyEmbeddableFiles = async (rootPath: string, publishPath: string, extraEmbeddableFilePaths: Readonly<string[]>) => {
     const searchableFileList = await fillSearchablePathList(rootPath, publishPath);
     const findValidPaths = getFindValidPaths(searchableFileList, rootPath);
-    const validPathGroups = Object.entries(embeddableFilePaths(extraEmbeddableFilePaths))
+    const embeddablePaths = embeddableFilePaths(extraEmbeddableFilePaths);
+    const validPathGroups = Object.entries(embeddablePaths)
         .map(findValidPaths);
-
-    validPathGroups
+    const tobecopied = validPathGroups
         .reduce((a, pl) => [...a, ...pl], [])
-        .filter(p => p && p.trim())
-        .forEach(p => {
-            const validFullPath = join(rootPath, p);
-            const destFullPath = join(publishPath, p);
-            copySync(validFullPath, destFullPath, { overwrite: true });
-        });
-    
+        .filter(p => p && p.trim());
+
+    tobecopied.forEach(p => {
+        const validFullPath = join(rootPath, p);
+        const destFullPath = join(publishPath, p);
+        copySync(validFullPath, destFullPath, { overwrite: true });
+    });
+
     await removeLateIgnoredPathList(publishPath);
 };
