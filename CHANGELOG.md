@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.51](https://github.com/atao60/fse-cli/compare/v0.0.50...v0.0.51) (2021-01-29)
+
+
+### Docs
+
+* replace in README.md the unicode for :under_construction: with svg file ([71a4cf2](https://github.com/atao60/fse-cli/commit/71a4cf2e0a0ef57d9a13aba8d6cc49d7f67a3d10))
+
 ### [0.0.50](https://github.com/atao60/fse-cli/compare/v0.0.49...v0.0.50) (2021-01-28)
 
 
