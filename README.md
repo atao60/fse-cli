@@ -4,7 +4,7 @@ Welcome to @atao/fse-cli
 
 [![NPM](https://nodei.co/npm/@atao60/fse-cli.png?mini=true)](https://www.npmjs.com/package/@atao60/fse-cli)
 
-🏗A [CLI](https://en.wikipedia.org/wiki/Command-line_interface) for [fs-extra](https://github.com/jprichardson/node-fs-extra). 
+<img src="https://raw.githubusercontent.com/googlefonts/noto-emoji/v2018-08-10-unicode11/svg/emoji_u1f3d7.svg" width="40" /> A [CLI](https://en.wikipedia.org/wiki/Command-line_interface) for [fs-extra](https://github.com/jprichardson/node-fs-extra).
 
 ## 💡 Rational
 
@@ -24,7 +24,7 @@ It is based on the `API` [Node.js: fs-extra](https://github.com/jprichardson/nod
 
 The [available CLI commands](#🎹-commands) are fully functional and tested. However it's still a work in progress:
 * Not all [fs-extra](https://github.com/jprichardson/node-fs-extra) functions are mapped yet. Please, feel free to open an [issue](https://github.com/atao60/fse-cli/issues) if there is something you would like supported.
-* More tests to come, even if they will only concern the CLI part without overlapping [fs-extra](https://github.com/jprichardson/node-fs-extra)'s tests.
+* More tests to come, even if they will only concern the [CLI](https://en.wikipedia.org/wiki/Command-line_interface) part without overlapping [fs-extra](https://github.com/jprichardson/node-fs-extra)'s tests.
 
 ## 🏁 Quickstart
 
