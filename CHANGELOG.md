@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.52](https://github.com/atao60/fse-cli/compare/v0.0.51...v0.0.52) (2021-02-02)
+
+
+### Code Refactoring
+
+* **publishing:** rename github action from main.yml to release.yml ([7a06ff7](https://github.com/atao60/fse-cli/commit/7a06ff72b861648ba822e1a860a3f0877b9e7c77))
+
 ### [0.0.51](https://github.com/atao60/fse-cli/compare/v0.0.50...v0.0.51) (2021-01-29)
 
 
