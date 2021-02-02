@@ -17,9 +17,9 @@ There are many [Npm](https://www.npmjs.com/) packages that provide all or any of
 
 [This package](https://www.npmjs.com/package/@atao60/fse-cli) just provides many of them from a unique [CLI](https://en.wikipedia.org/wiki/Command-line_interface), without any pretention to be any kind of [shell](https://en.wikipedia.org/wiki/Shell_(computing)).
 
-It is based on the `API` [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra). 
+It is based on the [API](https://en.wikipedia.org/wiki/Application_programming_interface) **[Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra)**. 
 
-> If an `API` is needed, use [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra), **not** [@atao60/fse-cli](https://www.npmjs.com/package/@atao60/fse-cli). If only because the latter embeds a `npm-shrinkwrap.json` expunged from dev dependencies.
+> If an [API](https://en.wikipedia.org/wiki/Application_programming_interface) is needed, use [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra), **not** [@atao60/fse-cli](https://www.npmjs.com/package/@atao60/fse-cli). If only because the latter embeds a `npm-shrinkwrap.json` expunged from dev dependencies.
 
 
 The [available CLI commands](#🎹-commands) are fully functional and tested. However it's still a work in progress:
