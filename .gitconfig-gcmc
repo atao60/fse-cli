@@ -1,0 +1,8 @@
+# Configuration for Microsoft Git-Credential-Manager-Core
+# See ./CONTRIBUTING.md about setting up ./.git/config with this file.
+# Any other configuration (cache, store, libsecret, ...) can be set up in the same way.
+
+[credential]
+       helper = 
+       helper = /usr/bin/git-credential-manager-core
+       credentialStore = secretservice

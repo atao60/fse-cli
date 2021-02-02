@@ -85,7 +85,9 @@
     "analyse": "npx pkgfiles && npm list",
     "cli:publish:build": "npm ci && npm run fullcheck && npm run build",
     "cli:publish:pack": "ts-node ./tools/prepublish '' '../..'",
-    "cli:publish": "npm run cli:publish:build && npm run cli:publish:pack && npm publish ./publish --access public"
+    "cli:publish": "npm run cli:publish:npm && npm run cli:publish:gh",
+    "cli:publish:npm": "npm run cli:publish:build && npm run cli:publish:pack && npm publish ./publish --access public",
+    "cli:publish:gh": "ts-node ./tools/publish-gh"
   },
   "keywords": [
     "fse",
@@ -151,6 +153,7 @@
     "@babel/preset-typescript": "^7.12.7",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "@octokit/request": "^5.4.13",
     "@types/babel-types": "^7.0.9",
     "@types/chai": "^4.2.14",
     "@types/concat-stream": "^1.6.0",

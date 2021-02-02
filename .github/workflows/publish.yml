@@ -1,0 +1,31 @@
+# This workflow will publish a package to GitHub Packages after publishing the same package to npm registry.
+# No lints and no tests needed here as this action will be launched only if publishing to npm registry were successful,
+# i.e. only after lints and tests have been done.
+
+
+name: Publish on Github Packages
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish-gpr:
+    name: Publish on Github Packages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # Setup .npmrc file to publish to Github
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+          scope: '@atao60'
+      - run: cat .npmrc
+      - run: npm ci
+      - run: echo registry=https://npm.pkg.github.com/atao60 >> .npmrc
+      - run: cat .npmrc
+      - run: npm run build
+      - run: npm run cli:publish:pack
+      - run: npm publish ./publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_GITHUB_TOKEN}}
