@@ -25,8 +25,10 @@ Welcome!
     - [Submit a pull request](#submit-a-pull-request)
     - [Check a submitted pull request](#check-a-submitted-pull-request)
   - [Publish](#publish)
-  - [Check the published package runs fine](#check-the-published-package-runs-fine)
-
+    - [NPM public registry & Github Packages](#npm-public-registry-&-github-packages)
+    - [Do it](#do-it)
+    - [Check the published package runs fine](#check-the-published-package-runs-fine)
+    - [Microsoft Git Credential Manager Core configuration](#microsoft-git-credential-manager-core-configuration)
 ## Guidelines
 
 We'd like to emphasize these points:
@@ -56,8 +58,7 @@ Moreover, even if it's not mandatory, it is expected this analysis will not rise
 
 The project uses [Semantic Versioning 2.0.0](https://semver.org/#semantic-versioning-200).
 
-The [changelog file](CHANGELOG.md) is updated with [standard-version](https://github.com/conventional-changelog/standard-version#readme) using [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/). See [`@commitlint/config-conventional` types](https://github.com/conventional-changelog/conventional-changelog-config-spec/blob/HEAD/versions/2.1.0/README.md#types).
-
+The [changelog file](CHANGELOG.md) is updated with [standard-version](https://github.com/conventional-changelog/standard-version#readme) using [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/). See [`@commitlint/config-conventional` types](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional#type-enum).
 
 ### License
 
@@ -116,7 +117,7 @@ npm list -g --depth 0 2>&1 | grep fse-cli # (°°)
 ```
 
 > (°°) replace `2>&1 | grep ...` by its counterpart under [Windows](https://www.microsoft.com/windows/),
-[Mac OS X](https://www.apple.com/macos), ... Or simply use `npm list -g --depth 0` and check if `fse-cli` is present.
+[Mac OS](https://www.apple.com/macos), ... Or simply use `npm list -g --depth 0` and check if `fse-cli` is present.
 
 ## Development
 
@@ -277,7 +278,7 @@ git add .
 npm run commit
 ```
 Answer questions:
-  *  Choose the type of the commit (feat, refactor, fix, etc.).
+  *  Choose the type of the commit (feat, refactor, fix, etc.), see [`@commitlint/config-conventional` types](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional#type-enum).
   *  (Optional) Provide a scope.
   *  Provide a short description of the commit.
   *  (Optional) Provide a longer description.
@@ -321,9 +322,19 @@ See [GitHub Docs - Checking out pull requests locally](https://docs.github.com/e
 
 ### Publish
 
-To publish on [npm](https://www.npmjs.com/) public registry, you must be an administor with access rights for:
-- the package on the [npm](https://www.npmjs.com/) public registry, ie [@atao60/fse-cli](https://www.npmjs.com/package/@atao60/fse-cli),
-- the repository on [Github](https://github.com), ie [atao60/fse-cli](https://github.com/atao60/fse-cli).
+#### NPM public registry & Github Packages
+
+Each release (i.e. a tag whose label begins with `v`) is published on both [NPM public registry](https://www.npmjs.com/) and [Github Packages registry](https://github.com/atao60/fse-cli/packages).
+To do it, you must be an administor with access rights for:
+- the package on the [npm](https://www.npmjs.com/) public registry, i.e. [@atao60/fse-cli](https://www.npmjs.com/package/@atao60/fse-cli),
+- the repository on [Github](https://github.com), i.e. [atao60/fse-cli](https://github.com/atao60/fse-cli),
+- the API of [Github](https://github.com), i.e. [GitHub REST API](https://docs.github.com/en/rest).
+
+At the moment:
+- NPM Registry login is done manually,
+- Github access is done automatically (see [MS - GCMC](#microsoft-git-credential-manager-core-configuration) below).
+
+#### Do it
 
 Don't use `npm publish` but `npm run cli:publish`:
 
@@ -344,7 +355,9 @@ npm logout
 git branch -D my-branch
 ```
 
-### Check the published package runs fine
+#### Check the published package runs fine
+
+In fact the package on [NPM public registry](https://www.npmjs.com/):
 
 ```bash
 cd <your local repository for @atao60/fse-cli>
@@ -358,3 +371,8 @@ npm -g un @atao60/fse-cli ### to force access to the npm registry
 npx @atao60/fse-cli version  ### or any other fse-cli command
 
 ```
+#### Microsoft Git Credential Manager Core configuration
+
+Microsoft [Git Credential Manager Core](https://github.com/microsoft/Git-Credential-Manager-Core) is now avalable on [Windows](https://www.microsoft.com/windows/), [Mac OS](https://www.apple.com/macos) **and** [Linux](https://www.linuxfoundation.org/).
+
+So `@atao60/fse` uses it to hide project's Github secrets. A configuration file `./.gitconfig-gcmc` is provided to help doing it. It must be included either in `./.git/config` or in `~/.gitconfig`.
