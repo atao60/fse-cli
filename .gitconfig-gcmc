@@ -3,6 +3,6 @@
 # Any other configuration (cache, store, libsecret, ...) can be set up in the same way.
 
 [credential]
-       helper = 
-       helper = /usr/bin/git-credential-manager-core
-       credentialStore = secretservice
+	helper = 
+	helper = /usr/bin/git-credential-manager-core
+	credentialStore = secretservice

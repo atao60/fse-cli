@@ -5,7 +5,6 @@ const username = 'apigithub';
 const apigithuburl = `https://${username}@api.github.com`;
 
 (async () => {
-
     const {password: PAT} = await getCredential(apigithuburl);
     await request({
         method: 'POST',
