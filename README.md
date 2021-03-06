@@ -2,8 +2,6 @@ Welcome to @atao/fse-cli
 ===
 [![Github Version](https://img.shields.io/github/package-json/v/atao60/fse-cli?label=github&color=#0366d6)](https://github.com/atao60/fse-cli) [![Github Version](https://img.shields.io/github/issues/atao60/fse-cli)](https://github.com/atao60/fse-cli/issues) [![License: MIT](https://img.shields.io/github/license/atao60/fse-cli)](https://github.com/atao60/fse-cli/blob/master/LICENSE) [![NPM Version](https://img.shields.io/npm/v/@atao60/fse-cli?color=#0366d6)](https://www.npmjs.com/package/@atao60/fse-cli)
 
-[![NPM](https://nodei.co/npm/@atao60/fse-cli.png?mini=true)](https://www.npmjs.com/package/@atao60/fse-cli)
-
 <img src="https://raw.githubusercontent.com/googlefonts/noto-emoji/v2018-08-10-unicode11/svg/emoji_u1f3d7.svg" width="40" /> A [CLI](https://en.wikipedia.org/wiki/Command-line_interface) for [fs-extra](https://github.com/jprichardson/node-fs-extra).
 
 ## 💡 Rational
@@ -28,6 +26,7 @@ The [available CLI commands](#🎹-commands) are fully functional and tested. Ho
 
 ## 🏁 Quickstart
 
+[![NPM](https://nodei.co/npm/@atao60/fse-cli.png?mini=true)](https://www.npmjs.com/package/@atao60/fse-cli)
 
 Each command is available:
 - either as a stand alone one, i.e. `fse-<command>` or `fse-cli-<command>`,
