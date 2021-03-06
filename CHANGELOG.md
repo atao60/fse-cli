@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.54](https://github.com/atao60/fse-cli/compare/v0.0.53...v0.0.54) (2021-03-06)
+
+
+### Docs
+
+* **publishing:** update CONTRIBUTING.md ([7b469a2](https://github.com/atao60/fse-cli/commit/7b469a20a0f549514a1ef2838539438e3d3c5822))
+* **readme:** move npm link inside quickstart section ([7e8f75e](https://github.com/atao60/fse-cli/commit/7e8f75e5a1eb6a55cb7af093597356cdae4cbffd))
+* update copyright year ([9ea7369](https://github.com/atao60/fse-cli/commit/9ea7369ab8234feb7438eb58e8800159fe8d891b))
+
 ### [0.0.53](https://github.com/atao60/fse-cli/compare/v0.0.52...v0.0.53) (2021-02-03)
 
 
