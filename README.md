@@ -75,7 +75,7 @@ For more details, see the [manual](MANUAL.md).
 
 See [Contributing](CONTRIBUTING.md).
 
-## 🛡 License
+## 🛡️ License
 
 See [MIT](LICENSE).
 
