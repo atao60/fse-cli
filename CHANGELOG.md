@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.55](https://github.com/atao60/fse-cli/compare/v0.0.54...v0.0.55) (2021-03-07)
+
+
+### Styling
+
+* **tools:** correct code syntax in tools files ([262f0a4](https://github.com/atao60/fse-cli/commit/262f0a49e384b8675af580d3fcb91fc79c0069af))
+
+
+### Docs
+
+* replace emoji unicode for 'shield' with fully-qualified version in README.md ([6655b5d](https://github.com/atao60/fse-cli/commit/6655b5d3b15d6576404efde9b7c5fb720ddce9a4))
+
 ### [0.0.54](https://github.com/atao60/fse-cli/compare/v0.0.53...v0.0.54) (2021-03-06)
 
 
