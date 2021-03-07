@@ -11,14 +11,14 @@ function createProcess(command: string, commandArgs: string[], publishPath: stri
     const options: SpawnOptions = {
         stdio: 'inherit',
         cwd: publishPath
-    }
+    };
     return spawn(command, commandArgs, options);
 }
 
 function execute(commandArgs: string[], publishPath: string) {
     return new Promise((resolve, reject) => {
         console.log(`\nRunning '${PACKAGE_MANAGER} ${commandArgs.join(' ')}'`);
-        const childProcess = createProcess(PACKAGE_MANAGER, commandArgs, publishPath)
+        createProcess(PACKAGE_MANAGER, commandArgs, publishPath)
             .on('close', (code, signal) => {
                 resolve({ code, signal });
             })
@@ -26,7 +26,7 @@ function execute(commandArgs: string[], publishPath: string) {
     });
 }
 
-export const shrinkNpmShrinkwrapFile = async (publishPath: string) => {
+export const shrinkNpmShrinkwrapFile = async (publishPath: string): Promise<void> => {
     await execute(['ci'], publishPath);
     await execute(['dedupe'], publishPath);
     await execute(['prune', '--production'], publishPath);

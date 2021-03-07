@@ -31,7 +31,7 @@ const publishPath = ((rootpath) => {
     return join(rootpath, dirpath);
 })(rootPath);
 
-(async () => {
+void (async () => {
     await resetPublishFolder(publishPath);
     await copyEmbeddableFiles(rootPath, publishPath, extraEmbeddableFilePaths);
     await shrinkPackageConfig(PACKAGE_JSON_FILE_NAME, publishPath);

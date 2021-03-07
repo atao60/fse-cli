@@ -8,7 +8,7 @@ export interface Credential {
     password?: string
 }
 
-export const getCredential = (url: string) => {
+export const getCredential = (url: string): Promise<Credential> => {
 
     const { protocol, username, host } = new URL(url);
     const gitquery = ([
@@ -26,10 +26,10 @@ export const getCredential = (url: string) => {
     const process = spawn(command, commandArgs, options);
 
     return new Promise<Credential>((resolve, reject) => {
-        const output = [];
+        const output: Buffer[] = [];
 
         process.stdout.on('data', data => {
-            output.push(data.toString().trim());
+            output.push(data);
         });
 
         process.stdin.write(gitquery);
@@ -42,12 +42,12 @@ export const getCredential = (url: string) => {
             const credential = output.join('\n').split('\n').reduce((acc, line) => {
                 if (line.startsWith('username') || line.startsWith('password')) {
                     const [key, val] = line.split('=');
-                    acc[key] = val;
+                    acc[key] = val.trim();
                 }
                 return acc;
             }, {} as Credential);
             resolve(credential);
-        })
+        });
 
         process.on('error', (err) => {
             reject(err);

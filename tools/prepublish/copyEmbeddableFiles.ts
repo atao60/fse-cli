@@ -42,7 +42,7 @@ const getPackageConfigMainField = () => {
 
 const getPackageConfigFilesField = () => {
     return getNotRelaxedPaths(npmPackageFiles);
-}
+};
 
 const EARLY_IGNORED_PATHS = [
     '.npmignore',
@@ -71,7 +71,7 @@ const EARLY_IGNORED_PATHS = [
     '/archived-packages/**',
     // with this project, no need to follow links in the root node_modules folder
     '**/node_modules',
-    '**/node_modules/**',
+    '**/node_modules/**'
     // All files containing a * character (incompatible with Windows)
 ];
 
@@ -99,7 +99,7 @@ function getNotRelaxedPaths(paths: string[]) {
 function trimSlash(s: string) {
     const startingAt = s.startsWith('./') ? './'.length : 0;
     const endingAt = s.endsWith('/') ? -('/'.length) : undefined;
-    return s.slice(startingAt, endingAt)
+    return s.slice(startingAt, endingAt);
 }
 
 function embeddableFilePaths(extraFilePaths: Readonly<string[]>) {
@@ -113,9 +113,11 @@ function embeddableFilePaths(extraFilePaths: Readonly<string[]>) {
     };
 
     return Object.freeze(embeddableFiles);
-};
+}
 
-function searchPaths(searchableFileList: string[], flags: { ignorecase: boolean, anyfileext: boolean }, searchedName: string) {
+function searchPaths(searchableFileList: string[],
+    flags: { ignorecase: boolean, anyfileext: boolean },
+    searchedName: string) {
     const anyCase = flags.ignorecase ? 'i' : null;
     const anyFileExt = flags.anyfileext ? '(|\\.[^.]+$)' : '';
     const pattern = new RegExp(['^', searchedName, anyFileExt].join(''), anyCase);
@@ -198,12 +200,14 @@ async function removeLateIgnoredPathList(publishPath: string) {
     };
 
     for await (const { path } of readdirp(publishPath, { fileFilter })) {
-        remove(join(publishPath, path));
+        void remove(join(publishPath, path));
     }
 }
 
 // ./publish is also ignored through ./.gitignore
-export const copyEmbeddableFiles = async (rootPath: string, publishPath: string, extraEmbeddableFilePaths: Readonly<string[]>) => {
+export const copyEmbeddableFiles = async (rootPath: string,
+    publishPath: string,
+    extraEmbeddableFilePaths: Readonly<string[]>): Promise<void> => {
     const searchableFileList = await fillSearchablePathList(rootPath, publishPath);
     const findValidPaths = getFindValidPaths(searchableFileList, rootPath);
     const embeddablePaths = embeddableFilePaths(extraEmbeddableFilePaths);
