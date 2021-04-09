@@ -4,7 +4,7 @@
     * either as a stand alone one, e.g. `fse-copy` or `fse-cli-copy`,
     * or as a sub command, e.g. `fse copy` or `fse-cli copy`.
 
-🎹 When lauching a job, by default each argument without default or inline value will be prompted. 
+🎹 When launching a job, by default each argument without default or inline value will be prompted. 
 To force prompting for all the arguments, add the option '--all'.
 
     * version          Displays [@atao60/fse-cli](https://github.com/atao60/fse-cli/blob/HEAD/CHANGELOG.md) version (and [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra/blob/HEAD/CHANGELOG.md) version).

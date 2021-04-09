@@ -10,7 +10,7 @@ The options and arguments are the same as those of [Node.js: fs-extra](https://w
 
 ## 🎹 Commands
 
-When lauching a job with prompting, by default the user is asked the arguments for which there is no default or inline value. 
+When launching a job with prompting, by default the user is asked the arguments for which there is no default or inline value. 
 To force prompting for all the arguments, add the option '--all'.
 
 ### Version

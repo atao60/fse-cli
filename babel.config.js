@@ -29,8 +29,9 @@ const presets = [
         "@babel/env",
         {
             // "debug": true,
-            // 'usage': includes polyfills given `.browserslistrc` and your source code (Babel analyses it - might not always 
-            //  perfectly work depending on your app and its dependencies) instead of including everything from core-js
+            // 'usage': includes polyfills given `.browserslistrc` and your source code (Babel analyses it - might 
+            //  not always perfectly work depending on your app and its dependencies) instead of including 
+            //everything from core-js
             useBuiltIns: "usage",
             corejs: {
                 version: 3,
@@ -46,7 +47,8 @@ const presets = [
 
 module.exports = (api) => {
     // Cache configuration is a required option
-    api.cache(true); // Same as api.cache.forever(), ie permacache the computed config and never call the function again
+    // With 'true', same as api.cache.forever(), ie permacache the computed config and never call the function again
+    api.cache(true); 
 
     return { presets, plugins };
 };

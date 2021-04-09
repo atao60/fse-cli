@@ -32,7 +32,7 @@ Each command is available:
 - either as a stand alone one, i.e. `fse-<command>` or `fse-cli-<command>`,
 - or as a sub command, i.e. `fse <command>` or `fse-cli <command>`.
 
-> The arguments and options of each command are those of [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra) as far as possible.
+> The arguments and options of each command are those of [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra) as far as possible, see the [manual](MANUAL.md).
 
 Let's start with displaying the versions of both [@atao60/fse-cli](https://github.com/atao60/fse-cli) and [fs-extra](https://github.com/jprichardson/node-fs-extra):
 
@@ -53,7 +53,7 @@ fse version
 - or in a project:
 
 ```bash
-npm install @atao60/fse-cli
+npm install --save-dev @atao60/fse-cli # or `yarn add --dev @atao60/fse-cli`
 
 fse version
 ```
@@ -61,8 +61,8 @@ fse version
 ## 🎹 Commands
 
 - [copy](MANUAL.md#'copy-file-or-directory'),
-- [ensureDir](MANUAL.md#'creating-directories'), alias *mkdirs* or *mkdirp*
-- [remove](MANUAL.md#'deleting-files-and-directories'), alias *rimraf*
+- [ensureDir](MANUAL.md#'creating-directories'), alias *mkdirs* or *mkdirp*,
+- [remove](MANUAL.md#'deleting-files-and-directories'), alias *rimraf*,
 - [emptyDir](MANUAL.md#'Cleaning-directories'),
 - [ensureFile](MANUAL.md#'creating-files'), alias *touch*,
 - [move](MANUAL.md#'move-file-or-directory'),

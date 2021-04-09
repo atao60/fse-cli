@@ -1,3 +1,18 @@
 {
-    "editor.detectIndentation": false
+    "editor.detectIndentation": false,
+    "cSpell.words": [
+        "Entrypoint",
+        "Quickstart",
+        "atao",
+        "browserslistrc",
+        "corejs",
+        "mkdir",
+        "mkdirp",
+        "mkdirs",
+        "packagelock",
+        "permacache",
+        "polyfilling",
+        "rimraf",
+        "transpiled"
+    ]
 }
