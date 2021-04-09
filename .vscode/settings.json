@@ -2,10 +2,14 @@
     "editor.detectIndentation": false,
     "cSpell.words": [
         "Entrypoint",
+        "GCMC",
         "Quickstart",
+        "Roadmap",
         "atao",
         "browserslistrc",
+        "commitlint",
         "corejs",
+        "fullcheck",
         "mkdir",
         "mkdirp",
         "mkdirs",
@@ -13,6 +17,8 @@
         "permacache",
         "polyfilling",
         "rimraf",
+        "survivejs",
+        "tada",
         "transpiled"
     ]
 }

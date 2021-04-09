@@ -76,7 +76,7 @@ By contributing to `fse-cli`, you agree that your contributions will be licensed
 This project uses:
 - [Typescript](https://www.typescriptlang.org/) as far as possible, otherwise [ES2018](https://www.ecma-international.org/ecma-262/9.0/index.html),
 - [Babel7](https://babeljs.io/blog/2018/08/27/7.0.0) as compiler (°).
-- [ESLint](https://eslint.org/) **and** [TSLint](https://palantir.github.io/tslint/) as static code analysers,
+- [ESLint](https://eslint.org/) **and** [TSLint](https://palantir.github.io/tslint/) as static code analyzers,
 - [Npm](https://www.npmjs.com/) as package manager.
 
 > (°) There are four TypeScript features that do not compile in Babel due to its single-file emit architecture, see § `It's not a perfect marriage` of [TypeScript With Babel: A Beautiful Marriage](https://iamturns.com/typescript-babel/).
@@ -91,7 +91,7 @@ Aliases are defined in the associative array `jobLinks` inside [src/config.ts](s
 
 Each `task` is tested without duplicating [fs-extra](https://github.com/jprichardson/node-fs-extra) tests.
 
-At the moment there is no CI/Build configuration on [Github](https://github.com) side. But thanks to [Husky](github.com/typicode/husky#readme), a [code analysis](#coding-rules) and a full test + build are done before each push on the [github repository](https://github.com/atao60/fse-cli).
+At the moment there is no CI/Build configuration on [Github](https://github.com) side. But thanks to [Husky](https://github.com/typicode/husky#readme), a [code analysis](#coding-rules) and a full test + build are done before each push on the [github repository](https://github.com/atao60/fse-cli).
 
 ## Prerequisites 
 
@@ -285,9 +285,9 @@ Answer questions:
   *  Determine whether the commit is a BREAKING CHANGES or not (by answering `y` and fill up BREAKING CHANGES descriptions in the CLI).
   *  (Optional) Mention the issues in the [issue tracking system](https://en.wikipedia.org/wiki/Issue_tracking_system), here [Github issues](https://github.com/atao60/fse-cli/issues), (by answering `y` and fill up the issue descriptions in the CLI).
 
-> Any change can be released and published as soon as commited. See [below](#publish).
-But any uncommited changes will prevent a release.
-On the other hand, a publishing can be done with uncommited changes, ignoring them.
+> Any change can be released and published as soon as committed. See [below](#publish).
+But any uncommitted changes will prevent a release.
+On the other hand, a publishing can be done with uncommitted changes, ignoring them.
 
 ### Pull Request
 
@@ -325,7 +325,7 @@ See [GitHub Docs - Checking out pull requests locally](https://docs.github.com/e
 #### NPM public registry & Github Packages
 
 Each release (i.e. a tag whose label begins with `v`) is published on both [NPM public registry](https://www.npmjs.com/) and [Github Packages registry](https://github.com/atao60/fse-cli/packages).
-To do it, you must be an administor with access rights for:
+To do it, you must be an administrator with access rights for:
 - the package on the [npm](https://www.npmjs.com/) public registry, i.e. [@atao60/fse-cli](https://www.npmjs.com/package/@atao60/fse-cli),
 - the repository on [Github](https://github.com), i.e. [atao60/fse-cli](https://github.com/atao60/fse-cli),
 - the API of [Github](https://github.com), i.e. [GitHub REST API](https://docs.github.com/en/rest).
@@ -373,6 +373,6 @@ npx @atao60/fse-cli version  ### or any other fse-cli command
 ```
 #### Microsoft Git Credential Manager Core configuration
 
-Microsoft [Git Credential Manager Core](https://github.com/microsoft/Git-Credential-Manager-Core) is now avalable on [Windows](https://www.microsoft.com/windows/), [Mac OS](https://www.apple.com/macos) **and** [Linux](https://www.linuxfoundation.org/).
+Microsoft [Git Credential Manager Core](https://github.com/microsoft/Git-Credential-Manager-Core) is now available on [Windows](https://www.microsoft.com/windows/), [Mac OS](https://www.apple.com/macos) **and** [Linux](https://www.linuxfoundation.org/).
 
 So `@atao60/fse` uses it to hide project's Github secrets. A configuration file `./.gitconfig-gcmc` is provided to help doing it. It must be included either in `./.git/config` or in `~/.gitconfig`.
