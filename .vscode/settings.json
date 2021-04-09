@@ -20,5 +20,6 @@
         "survivejs",
         "tada",
         "transpiled"
-    ]
+    ],
+    "typescript.tsdk": "node_modules/typescript/lib"
 }
