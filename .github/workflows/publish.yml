@@ -10,19 +10,18 @@ on:
 
 jobs:
   publish-gpr:
-    name: Publish on Github Packages
+    name: Publish on Github Packages Registry
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # Setup .npmrc file to publish to Github
       - uses: actions/setup-node@v1
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
           scope: '@atao60'
       - run: npm ci
+      # Setup .npmrc file to publish to Github
       - run: echo registry=https://npm.pkg.github.com/atao60 >> .npmrc
-      - run: cat .npmrc
       - run: npm run build
       - run: npm run cli:publish:pack
       - run: npm publish ./publish
