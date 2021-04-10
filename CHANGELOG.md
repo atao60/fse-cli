@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.56](https://github.com/atao60/fse-cli/compare/v0.0.55...v0.0.56) (2021-04-10)
+
+
+### Features
+
+* add option 'quiet': only query command messages and error messages are displayed ([65d7219](https://github.com/atao60/fse-cli/commit/65d7219d5dec07b4dac5fffb77a478e85fc0cf9a)), closes [#9](https://github.com/atao60/fse-cli/issues/9)
+
+
+### Performance Improvements
+
+* **github action:** remove "displaying" file '.npmrc' ([ee646d0](https://github.com/atao60/fse-cli/commit/ee646d068a696742a7c47bb8bbb2e1fe468e3610))
+
+
+### Styling
+
+* **doc:** fix spelling in CONTRIBUTING.md ([21e07d0](https://github.com/atao60/fse-cli/commit/21e07d04e4dc3ac0d81a49e86433e9002ec79c33))
+* **doc & comments:** fix spelling and comment length ([a58526e](https://github.com/atao60/fse-cli/commit/a58526e201da6cf819e499566194c2fd4cdb6b55))
+
+
+### Build System
+
+* **vsc:** force vsc editor to use workspace TS version ([d26f174](https://github.com/atao60/fse-cli/commit/d26f174dca3c6fd65c5eef92cb947a1d6e6fb506))
+
+
+### Others
+
+* **vsc:** update spelling data for vsc ([a9681d5](https://github.com/atao60/fse-cli/commit/a9681d5b863793dd19634d541d978a27e7f31d34))
+
+
+### Code Refactoring
+
+* **ts:** enforce typing ([35c9a32](https://github.com/atao60/fse-cli/commit/35c9a324cd3c7f8ef6c505d449ebc1a89be7c96e))
+
+
+### Docs
+
+* enhance CONTRIBUTING.md about code overview and 'npm link' ([aa5f7cb](https://github.com/atao60/fse-cli/commit/aa5f7cbe5ade38ee108af607c03bc288619fda8d))
+
 ### [0.0.55](https://github.com/atao60/fse-cli/compare/v0.0.54...v0.0.55) (2021-03-07)
 
 
