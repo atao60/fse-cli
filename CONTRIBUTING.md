@@ -13,6 +13,8 @@ Welcome!
   - [License](#license)
 - [Roadmap](#roadmap)
 - [Code Overview](#code-overview)
+  - [Tools](#tools)
+  - [Design](#design)
 - [Prerequisites](#Prerequisites)
 - [Development](#development)
   - [Fork](#fork)
@@ -69,9 +71,10 @@ By contributing to `fse-cli`, you agree that your contributions will be licensed
 * add other functions from fs-extra
 * add functions other than from fs-extra, e.g. [tree-cli](https://www.npmjs.com/package/tree-cli)
 * add i18n
-* CI with Github Action
 
 ## Code Overview
+
+### Tools
 
 This project uses:
 - [Typescript](https://www.typescriptlang.org/) as far as possible, otherwise [ES2018](https://www.ecma-international.org/ecma-262/9.0/index.html),
@@ -80,6 +83,12 @@ This project uses:
 - [Npm](https://www.npmjs.com/) as package manager.
 
 > (°) There are four TypeScript features that do not compile in Babel due to its single-file emit architecture, see § `It's not a perfect marriage` of [TypeScript With Babel: A Beautiful Marriage](https://iamturns.com/typescript-babel/).
+
+### Design
+
+Much documentation can be replaced with highly readable code and tests. In a world of evolutionary architecture, however, it's important to record certain design decisions for the benefit of future team members as well as for external oversight. This project uses Architecture Decision Records (ADR) for capturing important architectural decisions along with their context and consequences. They are gathered under folder `./doc/adr`.
+
+Otherwise, below are some broad design rules.
 
 Each main `fs-extra` function is wrapped in a `task`, each one with a dedicated sub-folder under [src/tasks](src/tasks).
 
@@ -198,7 +207,7 @@ Create a symbol link in npm global installation and watch any changes:
 
 cd <path to @atao60/fse-cli folder>
 
-npm link
+npm link   ### or `npm install --global .`
 # [...]
 #
 # audited 1025 packages in 6.743s
@@ -225,7 +234,7 @@ fse version
 
 ```
 
-> (°) Under any wished location, even the directory `atao60-fse-cli` above. 
+> (°) In fact under any wished location, even under the folder of `atao60-fse-cli` itself. 
 
 Or try it as a dependency:
 
@@ -236,7 +245,7 @@ cd <path to the using project folder>
 npm link @atao60/fse-cli
 # <path to the using project folder>/node_modules/@atao60/fse-cli -> ~/.nvm/versions/node/v12.18.3/lib/node_modules/@atao60/fse-cli -> <path to atao60-fse-cli folder>
 
-npm install -D @atao60/fse-cli
+npm install -D @atao60/fse-cli ### (°°)
 # npm notice created a lockfile as package-lock.json. You should commit this file.
 # [...]
 #
@@ -247,6 +256,18 @@ npm install -D @atao60/fse-cli
 #
 # found 0 vulnerabilities
 
+```
+
+> (°°) If the linked package has same version as one published on NPM Registry, 
+then `npm install -D @atao60/fse-cli` will replace the link with a copy of the release under `node_modules`. 
+Not what is expected. 
+
+When the link becomes useless, remove it:
+
+```bash
+cd <path to @atao60/fse-cli folder>
+
+npm unlink   ### or `npm uninstall --global .`
 ```
 
 ### Analyse dependencies
