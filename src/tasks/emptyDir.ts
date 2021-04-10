@@ -1,14 +1,25 @@
 import { red } from 'chalk';
 import { emptyDir } from 'fs-extra';
+import { env } from 'process';
+
+import * as logger from '../logger';
+
+const quietDefault = env.FSE_CLI_QUIET && env.FSE_CLI_QUIET === 'true';
 
 const emptyDirDef = {
     name: 'emptyDir',
-    spec: {},
-    'default': {},
-    options: (args: { _: unknown[] }): Record<string, unknown> => ({
+    spec: {
+        '--quiet': Boolean,
+        '-q': '--quiet'
+    },
+    'default': {
+        quiet: quietDefault
+    },
+    options: (args: { _: unknown[], [key: string]: unknown }): Record<string, unknown> => ({
+        quiet: args['--quiet'] || emptyDirDef.default.quiet,
         dir: args._[0]  // TODO a list of directories?
     }),
-    questions: (options: { dir: unknown }): Record<string, unknown>[] => {
+    questions: (options: { dir: unknown; quiet: unknown }): Record<string, unknown>[] => {
         const questions: Record<string, unknown>[] = [];
         if (!options.dir) {
             questions.push({
@@ -25,17 +36,27 @@ const emptyDirDef = {
 export const def = emptyDirDef;
 
 /**
- * Wrapper for node-fs-exta emptyDir function.
+ * Wrapper for node-fs-extra emptyDir function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/emptyDir.md
  */
-export function job ({ dir: directory }: { dir: string }): void {
-    console.info(`Cleaning up directory ${directory} ...`);
+export function job ({ dir: directory, quiet }: 
+    { dir: string; quiet: boolean; }): void {
+
+    function info(message: string, ...params: unknown[]) {
+        logger.info(message, { quiet, params });
+    }
+
+    function error(message: string, ...params: unknown[]) {
+        logger.error(message, { quiet, params });
+    }
+
+    info(`Cleaning up directory ${directory} ...`);
     
-    emptyDir(directory, error => {
-        if (error) {
-            console.error(`${red.bold('ERROR')} thrown while emptying directory: `, error);
+    emptyDir(directory, err => {
+        if (err) {
+            error(`${red.bold('ERROR')} thrown while emptying directory: `, err);
             return;
         }
-        console.info(`Directory ${directory} emptied.`);
+        info(`Directory ${directory} emptied.`);
     });
 }

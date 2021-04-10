@@ -1,6 +1,8 @@
 import { existsSync, readFileSync } from 'fs-extra';
 import { join } from 'path';
 
+import * as logger from '../logger';
+
 const versionDef = {
     name: 'version',
     spec: {},
@@ -21,5 +23,5 @@ export function job(): void {
     const cliVersion = version as string;
     const libVersion = (dependencies as {[_:string]: {version: string}})['fs-extra'].version;
 
-    console.log(`@atao60/fse-cli ${cliVersion} (fs-extra ${libVersion})`);
+    logger.info(`@atao60/fse-cli ${cliVersion} (fs-extra ${libVersion})`);
 }

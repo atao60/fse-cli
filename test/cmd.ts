@@ -14,7 +14,8 @@ export interface ProcessPromise<T> extends Promise<T> {
 interface ProcessOptions {
     env?: {
         DEBUG?: boolean;
-        FORCE_COLOR?: number
+        FORCE_COLOR?: number;
+        FSE_CLI_QUIET?: string
     };
     timeout?: number;
     maxTimeout?: number;
@@ -101,7 +102,7 @@ function executeWithInput(processPath: string,
     let killIOTimeout: ReturnType<typeof setTimeout>;
 
     // Creates a loop to feed user inputs to the child process in order to get results from the tool
-    // This code is heavily inspired (if not blantantly copied) from inquirer-test:
+    // This code is heavily inspired (if not blatantly copied) from inquirer-test:
     // https://github.com/ewnd9/inquirer-test/blob/6e2c40bbd39a061d3e52a8b1ee52cdac88f8d7f7/index.js#L14
     const loop = (currentinputs: unknown[]): void => {
         if (killIOTimeout) {

@@ -1,14 +1,25 @@
 import { red } from 'chalk';
 import { ensureFile } from 'fs-extra';
+import { env } from 'process';
+
+import * as logger from '../logger';
+
+const quietDefault = env.FSE_CLI_QUIET && env.FSE_CLI_QUIET === 'true';
 
 const ensureFileDef = {
     name: 'ensureFile',
-    spec: {},
-    'default': {},
-    options: (args: { _: unknown[] }): Record<string, unknown> => ({
+    spec: {
+        '--quiet': Boolean,
+        '-q': '--quiet'
+    },
+    'default': {
+        quiet: quietDefault
+    },
+    options: (args: { _: unknown[], [key: string]: unknown }): Record<string, unknown> => ({
+        quiet: args['--quiet'] || ensureFileDef.default.quiet,
         file: args._[0]
     }),
-    questions: (options: { file: unknown }): Record<string, unknown>[] => {
+    questions: (options: { file: unknown, quiet: unknown }): Record<string, unknown>[] => {
         const questions: Record<string, unknown>[] = [];
         if (!options.file) {
             questions.push({
@@ -25,18 +36,26 @@ const ensureFileDef = {
 export const def = ensureFileDef;
 
 /**
- * Wrapper for node-fs-exta ensureFile function.
+ * Wrapper for node-fs-extra ensureFile function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/ensureFile.md
  */
-export function job ({ file }: { file: string }): void {
+export function job ({ file, quiet }: { file: string; quiet: boolean }): void {
 
-    console.info(`Checking if existing and, if not, creating file ${file} ...`);
+    function info(message: string, ...params: unknown[]) {
+        logger.info(message, { quiet, params });
+    }
 
-    ensureFile(file, error => {
-        if (error) {
-            console.error(`${red.bold('ERROR')} thrown while creating file: `, error);
+    function error(message: string, ...params: unknown[]) {
+        logger.error(message, { quiet, params });
+    }
+
+    info(`Checking if existing and, if not, creating file ${file} ...`);
+
+    ensureFile(file, err => {
+        if (err) {
+            error(`${red.bold('ERROR')} thrown while creating file: `, err);
             return;
         }
-        console.info(`File ${file} exists`);
+        info(`File ${file} exists`);
     });
 }

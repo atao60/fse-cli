@@ -1,20 +1,29 @@
 import { red } from 'chalk';
 import { ensureDir } from 'fs-extra';
+import { env } from 'process';
+
+import * as logger from '../logger';
+
+const quietDefault = env.FSE_CLI_QUIET && env.FSE_CLI_QUIET === 'true';
 
 const ensureDirDef = {
     name: 'ensureDir',
     spec: {
         '--all': Boolean,
         '--mode': Number, // let fse check it's a valid number
+        '--quiet': Boolean,
         '-a': '--all',
-        '-m': '--mode'
+        '-m': '--mode',
+        '-q': '--quiet'
     },
     'default': {
-        mode: undefined
+        mode: undefined,
+        quiet: quietDefault
     },
     options: (args: { _: unknown[], [key: string]: unknown }): Record<string, unknown> => ({
         askAll: args['--all'] || false,
         mode: args['--mode'] || ensureDirDef.default.mode,
+        quiet: args['--quiet'] || ensureDirDef.default.quiet,
         dir: args._[0]
     }),
     questions: (options: { [_: string]: unknown }): Record<string, unknown>[] => {
@@ -27,7 +36,9 @@ const ensureDirDef = {
                 validate: (input: string) => (input && input.trim()) ? true : "A directory is required"
             });
         }
+
         if (!options.askAll) { return questions; }
+
         if (!options.mode) {
             questions.push({
                 type: 'input',
@@ -36,26 +47,46 @@ const ensureDirDef = {
                 default: ensureDirDef.default.mode
             });
         }
+        if (!options.quiet) {
+            questions.push({
+                type: 'confirm',
+                name: 'quiet',
+                message: 'Toggle to quiet mode?',
+                default: ensureDirDef.default.quiet
+            });
+        }
         return questions;
     }
 };
 
 export const def = ensureDirDef;
 
+// interface CliEnsureOptions extends EnsureOptions {
+//     quiet?: boolean;
+// }
+
 /**
- * Wrapper for node-fs-exta ensureDir function.
+ * Wrapper for node-fs-extra ensureDir function.
  * https://github.com/jprichardson/node-fs-extra/blob/master/docs/ensureDir.md
  */
-export function job ({ dir: directory, mode }:
-    { dir: string; mode: number }): void {
+export function job ({ dir: directory, mode, quiet }:
+    { dir: string; mode: number; quiet?: boolean }): void {
 
-    console.info(`Checking if existing and, if not, creating directory ${directory} ...`);
+    function info(message: string, ...params: unknown[]) {
+        logger.info(message, { quiet, params });
+    }
 
-    ensureDir(directory, mode, error => {
-        if (error) {
-            console.error(`${red.bold('ERROR')} thrown while creating directory: `, error);
+    function error(message: string, ...params: unknown[]) {
+        logger.error(message, { quiet, params });
+    }
+
+    info(`Checking if existing and, if not, creating directory ${directory} ...`);
+
+    ensureDir(directory, mode, err => {
+        if (err) {
+            error(`${red.bold('ERROR')} thrown while creating directory: `, err);
             return;
         }
-        console.info(`Directory ${directory} exists.`);
+        info(`Directory ${directory} exists.`);
     });
 }

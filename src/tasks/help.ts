@@ -4,6 +4,7 @@ import chalk, { Chalk } from 'chalk';
 import terminalLink from 'terminal-link';
 
 import { job as version } from './version';
+import { info } from '../logger';
 
 const versionDef = {
     name: 'help',
@@ -17,7 +18,7 @@ export const def = versionDef;
 
 export function job(): void {
     version();
-    console.log('');
+    info('');
     showHelp();
 }
 
@@ -48,6 +49,6 @@ function showHelp() {
             const link = terminalLink(title, url);
             return chalk.blue(link);
         });
-    console.log(usage);
+    info(usage);
 
 }

@@ -13,6 +13,9 @@ The options and arguments are the same as those of [Node.js: fs-extra](https://w
 When launching a job with prompting, by default the user is asked the arguments for which there is no default or inline value. 
 To force prompting for all the arguments, add the option '--all'.
 
+To suppress output when it makes sens (i.e. not an error or an output of query command), use either the option '--quiet'
+or the environment variable `FSE_CLI_QUIET=true`.
+
 ### Version
 
 Display [@atao60/fse-cli](https://www.npmjs.com/package/@atao60/fse-cli) version (and [Node.js: fs-extra](https://www.npmjs.com/package/fs-extra) version).
@@ -44,7 +47,7 @@ fse copy
 *Power user style*
 
 ```
-fse copy --all --keepExisting --errorOnExist --dereference --preserveTimestamps <source path> <destination path>
+fse copy --all --keepExisting --errorOnExist --dereference --preserveTimestamps --quiet <source path> <destination path>
 ```
 
 > Note. `--keepExisting` behaves as the opposite of `fs-extra`'s `--overwrite`.
@@ -66,7 +69,7 @@ fse mkdirp
 *Power user style*
 
 ```
-fse mkdirp --mode <integer> <new directory's path>
+fse mkdirp --all --mode <integer> --quiet <new directory's path>
 ```
 
 ### Cleaning directories
@@ -84,7 +87,7 @@ fse emptyDir
 *Power user style*
 
 ```
-fse emptyDir <directory's path>
+fse emptyDir --quiet <directory's path>
 ```
 
 ### Deleting files and directories
@@ -104,7 +107,7 @@ fse remove
 *Power user style*
 
 ```
-fse remove <directory's path>
+fse remove --quiet <directory's path>
 ```
 
 ### Creating files
@@ -124,7 +127,7 @@ fse touch
 *Power user style*
 
 ```
-fse touch <new file's path>
+fse touch --quiet <new file's path>
 ```
 
 ### Move file or directory
@@ -142,5 +145,5 @@ fse move
 *Power user style*
 
 ```
-fse move --all --overwrite <source path> <destination path>
+fse move --all --overwrite --quiet <source path> <destination path>
 ```

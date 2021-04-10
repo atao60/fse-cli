@@ -122,12 +122,44 @@ describe("The fs-extra CLI", () => {
     });
 
     describe("Calling 'remove'", () => {
-        // first check if the jog is done
+        // first check if the job is done
         it("When existing directory, it will be removed", function (done) { // don't pass 'done' as argument! with async/await
 
             const dirToBeRemoved = createTempDir("Test 'Remove a directory', unable to create a temporary directory based on '%s' & '%s': %s");
             const script = `${LIB_DIR}`; // ie index.js
             const args = { app: ['remove', dirToBeRemoved] };
+            const userInputs = [];
+            const options = {
+                // timeout: 200,          // 100 ms by default
+                // maxTimeout: 0,         // 10 s by default; if "0" then no timeout
+                env: { DEBUG }           // false by default
+            };
+            const foundRegex = new RegExp('^\\s*Removing\\s+directory\\s', 'm');
+            run(
+                script,
+                args,
+                userInputs,
+                options
+            )
+                .then(result => {
+                    expect(existsSync(dirToBeRemoved)).to.be.false;
+                    expect(result).to.match(foundRegex);
+                    done();
+                })
+                .catch(error => {
+                    done(error);
+                })
+                .finally(() => {
+                    try {
+                        rmdirSync(dirToBeRemoved, { recursive: true });
+                    } catch (e) { /* do nothing */ }
+                });
+        });
+        it("When existing directory, it will be removed with '--quiet'", function (done) { // don't pass 'done' as argument! with async/await
+
+            const dirToBeRemoved = createTempDir("Test 'Remove a directory', unable to create a temporary directory based on '%s' & '%s': %s");
+            const script = `${LIB_DIR}`; // ie index.js
+            const args = { app: ['remove', '-q', dirToBeRemoved] };
             const userInputs = [];
             const options = {
                 // timeout: 200,          // 100 ms by default
@@ -140,8 +172,43 @@ describe("The fs-extra CLI", () => {
                 userInputs,
                 options
             )
-                .then(() => {
+                .then(result => {
                     expect(existsSync(dirToBeRemoved)).to.be.false;
+                    expect((result as string).trim()).to.be.empty;
+                    done();
+                })
+                .catch(error => {
+                    done(error);
+                })
+                .finally(() => {
+                    try {
+                        rmdirSync(dirToBeRemoved, { recursive: true });
+                    } catch (e) { /* do nothing */ }
+                });
+        });
+        it("When existing directory, it will be removed with 'FSE_CLI_QUIET'", function (done) { // don't pass 'done' as argument! with async/await
+
+            const dirToBeRemoved = createTempDir("Test 'Remove a directory', unable to create a temporary directory based on '%s' & '%s': %s");
+            const script = `${LIB_DIR}`; // ie index.js
+            const args = { app: ['remove', dirToBeRemoved] };
+            const userInputs = [];
+            const options = {
+                // timeout: 200,          // 100 ms by default
+                // maxTimeout: 0,         // 10 s by default; if "0" then no timeout
+                env: { 
+                    DEBUG,  // false by default
+                    FSE_CLI_QUIET: 'true' // false by default
+                }          
+            };
+            run(
+                script,
+                args,
+                userInputs,
+                options
+            )
+                .then(result => {
+                    expect(existsSync(dirToBeRemoved)).to.be.false;
+                    expect((result as string).trim()).to.be.empty;
                     done();
                 })
                 .catch(error => {
@@ -156,7 +223,7 @@ describe("The fs-extra CLI", () => {
     });
 
     describe("Calling 'mkdir'", () => {
-        // first check if the jog is done
+        // first check if the job is done
         it("When non existing directory, it will be created", function (done) { // don't pass 'done' as argument! with async/await
 
             const baseDir = createTempDir("Test 'Create a directory', unable to create a temporary parent directory based on '%s' & '%s': %s");
@@ -167,7 +234,41 @@ describe("The fs-extra CLI", () => {
             const options = {
                 // timeout: 200,          // 100 ms by default
                 // maxTimeout: 0,         // 10 s by default; if "0" then no timeout
-                env: { DEBUG }           // false by default
+                env: { DEBUG }         // false by default
+            };
+            const foundRegex = new RegExp('^\\s*Checking\\s+if\\s+existing\\s+and,\\s+if\\s+not,\\s+creating\\s+directory\\s', 'm');
+            run(
+                script,
+                args,
+                userInputs,
+                options
+            )
+                .then(result => {
+                    expect(existsSync(dirToBeCreated)).to.be.true;
+                    expect(statSync(dirToBeCreated).isDirectory()).to.be.true;
+                    expect(result).to.match(foundRegex);
+                    done();
+                })
+                .catch(error => {
+                    done(error);
+                })
+                .finally(() => {
+                    // to avoid ENOTEMPTY with the second rmdirSync, even with `recursive: true`
+                    rmdirSync(dirToBeCreated, { recursive: true });
+                    rmdirSync(baseDir, { recursive: true });
+                });
+        });
+        it("When non existing directory, it will be created with '--quiet'", function (done) { // don't pass 'done' as argument! with async/await
+
+            const baseDir = createTempDir("Test 'Create a directory', unable to create a temporary parent directory based on '%s' & '%s': %s");
+            const dirToBeCreated = join(baseDir, 'theNewDir');
+            const script = `${LIB_DIR}`; // ie index.js
+            const args = { app: ['mkdirp', '-q', dirToBeCreated] };
+            const userInputs = [];
+            const options = {
+                // timeout: 200,          // 100 ms by default
+                // maxTimeout: 0,         // 10 s by default; if "0" then no timeout
+                env: { DEBUG }         // false by default
             };
             run(
                 script,
@@ -175,9 +276,10 @@ describe("The fs-extra CLI", () => {
                 userInputs,
                 options
             )
-                .then(() => {
+                .then(result => {
                     expect(existsSync(dirToBeCreated)).to.be.true;
                     expect(statSync(dirToBeCreated).isDirectory()).to.be.true;
+                    expect((result as string).trim()).to.be.empty;
                     done();
                 })
                 .catch(error => {
@@ -192,7 +294,7 @@ describe("The fs-extra CLI", () => {
     });
 
     describe("Calling 'touch'", () => {
-        // first check if the jog is done
+        // first check if the job is done
         it("When non existing file, it will be created", function (done) { // don't pass 'done' as argument! with async/await
 
 
@@ -204,7 +306,7 @@ describe("The fs-extra CLI", () => {
             const options = {
                 // timeout: 200,          // 100 ms by default
                 // maxTimeout: 0 ,        // 10 s by default; if "0" then no timeout
-                env: { DEBUG }           // false by default
+                env: { DEBUG }         // false by default
             };
             run(
                 script,
@@ -231,7 +333,7 @@ describe("The fs-extra CLI", () => {
     });
 
     describe("Calling 'copy'", () => {
-        // first check if the jog is done
+        // first check if the job is done
         it("When destination file doesn't exist, a new file is created with the same content", function (done) { // don't pass 'done' as argument! with async/await
             
             const destDirName = "sub-dir-";
@@ -292,8 +394,8 @@ describe("The fs-extra CLI", () => {
     });
 
     describe("Calling 'move'", () => {
-        // first check if the jog is done
-        it("Then source has been removed, destinaton exists and content is untouched", function (done) { // don't pass 'done' as argument! with async/await
+        // first check if the job is done
+        it("Then source has been removed, destination exists and content is untouched", function (done) { // don't pass 'done' as argument! with async/await
 
             const destDirName = "sub-dir-";
             const srcFileName = "theFileToBeMoved";
