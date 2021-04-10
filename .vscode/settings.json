@@ -9,17 +9,30 @@
         "browserslistrc",
         "commitlint",
         "corejs",
-        "fullcheck",
+        "envvars",
         "mkdir",
         "mkdirp",
         "mkdirs",
+        "mocharc",
         "packagelock",
         "permacache",
+        "pkgfiles",
         "polyfilling",
+        "printf",
         "rimraf",
         "survivejs",
         "tada",
-        "transpiled"
+        "transpiled",
+        "unstaged"
     ],
-    "typescript.tsdk": "node_modules/typescript/lib"
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "cSpell.ignoreWords": [
+        "currentinputs",
+        "fullcheck",
+        "logerror",
+        "loginfo",
+        "octokit",
+        "postrelease",
+        "readdirp"
+    ]
 }
