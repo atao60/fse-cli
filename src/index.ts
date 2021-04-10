@@ -15,4 +15,4 @@ import { argv } from 'process';
 
 import { cli } from './cli';
 
-cli(argv);
+void cli(argv);
