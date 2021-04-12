@@ -76,7 +76,7 @@
     "fullcheck": "npm run test:dev && npm run lint",
     "unstaged:check": "git diff-index --quiet HEAD --",
     "commit": "git-cz",
-    "prerelease": "npm run unstaged:check && npm run fullcheck && npm run build && git add -A",
+    "prerelease": "npm run unstaged:check && npm run fullcheck && npm run build && npm run update:copyright && git add -A",
     "release": "cross-env HUSKY_SKIP_HOOKS=1 standard-version -a",
     "postrelease": "cross-env HUSKY_SKIP_HOOKS=1 git push --follow-tags",
     "lint:quiet": "tsc --project src && eslint src/**/* test/**/* scripts/**/* --quiet",
@@ -87,7 +87,9 @@
     "cli:publish:pack": "ts-node ./tools/prepublish '' '../..'",
     "cli:publish": "npm run cli:publish:npm && npm run cli:publish:gh",
     "cli:publish:npm": "npm run cli:publish:build && npm run cli:publish:pack && npm publish ./publish --access public",
-    "cli:publish:gh": "ts-node ./tools/publish-gh"
+    "cli:publish:gh": "ts-node ./tools/publish-gh",
+    "test:scripts": "mocha --config ./.mocharc-scripts.json",
+    "update:copyright": "node ./scripts/update-copyright"
   },
   "keywords": [
     "fse",
