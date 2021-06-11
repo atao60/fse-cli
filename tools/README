@@ -1,0 +1,2 @@
+Put in this folder 'tools' only scripts not written as ES6 modules.
+Put other scripts in folder '../scripts'.

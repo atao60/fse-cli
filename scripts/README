@@ -1,2 +1,4 @@
-Put in this folder 'scripts' only scripts written as ES6 modules.
+Put in this folder 'scripts' only scripts written as ES6 modules (see ./package.json).
 Put other scripts in folder '../tools'.
+
+Note. Node.js had provided experimental support for ECMAScript modules since version 8.9.0.
