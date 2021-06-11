@@ -175,7 +175,7 @@
     "babel-plugin-node-source-map-support": "0.0.1",
     "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "chai": "^4.3.4",
-    "commitizen": "^4.2.3",
+    "commitizen": "^4.2.4",
     "concat-stream": "^2.0.0",
     "cross-env": "^7.0.3",
     "cross-spawn": "^7.0.3",
