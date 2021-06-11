@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.57](https://github.com/atao60/fse-cli/compare/v0.0.56...v0.0.57) (2021-06-11)
+
+
+### Others
+
+* **dependencies:** update dependencies' versions ([bef1134](https://github.com/atao60/fse-cli/commit/bef113435e70b1faf73daec7a79a98e246b8e81a))
+
+
+### Build System
+
+* **deps:** bump browserslist from 4.16.1 to 4.16.6 ([f2fe4d2](https://github.com/atao60/fse-cli/commit/f2fe4d27e956ea7ed8ee358a47de5fc8805ae3e2))
+* **deps:** bump handlebars from 4.7.6 to 4.7.7 ([7471b0b](https://github.com/atao60/fse-cli/commit/7471b0bc30403615e737299d5d6a30e8a470bb66))
+* **deps:** bump hosted-git-info from 2.8.8 to 2.8.9 ([0e83013](https://github.com/atao60/fse-cli/commit/0e83013c0d4ae8a19506009ef6990afadcf9c81e))
+* **deps-dev:** bump lodash from 4.17.20 to 4.17.21 ([b4e2c8f](https://github.com/atao60/fse-cli/commit/b4e2c8f2564a1f36ff9b5428a2bcd317b7765c4b))
+* **doc:** check and update if needed the copyright years before each release ([19631cb](https://github.com/atao60/fse-cli/commit/19631cba128e7c3aad0f46fd753511c4b34e07c5))
+
+
+### Docs
+
+* minor changes to docs, comments and vsc settings ([e30bc8d](https://github.com/atao60/fse-cli/commit/e30bc8dd7e3c85c0bf62e249e525dc143e68619e))
+* **adr:** add an adr about license ([eb1ffeb](https://github.com/atao60/fse-cli/commit/eb1ffebe2f427633127e48330c7392a4d2c0329f))
+
 ### [0.0.56](https://github.com/atao60/fse-cli/compare/v0.0.55...v0.0.56) (2021-04-10)
 
 
