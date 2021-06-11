@@ -19,6 +19,12 @@ const plugins = [
             loose: true // 'loose === true' is required by proposal-decorators' legacy
         }
     ],
+    [   // must be the same value than with @babel/plugin-proposal-class-properties
+        "@babel/plugin-proposal-private-methods",
+        {
+            loose: true
+        }
+    ],
     "@babel/plugin-transform-runtime", // provided defs such as _interopRequireDefault
     "babel-plugin-node-source-map-support"
 ];
