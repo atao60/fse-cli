@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.58](https://github.com/atao60/fse-cli/compare/v0.0.57...v0.0.58) (2021-06-11)
+
+
+### Bug Fixes
+
+* **deps:** fix regression (dargs should have been updated with suppression of number-is-nan & C°) ([1484fa9](https://github.com/atao60/fse-cli/commit/1484fa916f0f74e01d4d14abcfadfd2bc252bee3))
+
+
+### Build System
+
+* **deps:** bump normalize-url from 4.5.0 to 4.5.1 ([380a482](https://github.com/atao60/fse-cli/commit/380a4821eda69a5b3f1fd23760f1944a93e4450d))
+
 ### [0.0.57](https://github.com/atao60/fse-cli/compare/v0.0.56...v0.0.57) (2021-06-11)
 
 
