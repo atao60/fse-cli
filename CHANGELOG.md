@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.59](https://github.com/atao60/fse-cli/compare/v0.0.58...v0.0.59) (2021-06-11)
+
+
+### Build System
+
+* **babel:** avoid warning about plugins property 'loose' ([e3e8ec8](https://github.com/atao60/fse-cli/commit/e3e8ec85140db88d3a2dd21eb0e94cc33c599670))
+* **deps:** remove vulnerabilities (step 1) ([9bac74e](https://github.com/atao60/fse-cli/commit/9bac74e5ad3248a7a76ed3cb3bdb6016cb18cd7f))
+* **deps:** remove vulnerabilities (step 2) ([d424e86](https://github.com/atao60/fse-cli/commit/d424e86ca096b62a2f357ffb4c27014a1fbd9baa))
+
 ### [0.0.58](https://github.com/atao60/fse-cli/compare/v0.0.57...v0.0.58) (2021-06-11)
 
 
