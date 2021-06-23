@@ -91,7 +91,8 @@
     "cli:publish:gh": "ts-node ./tools/publish-gh",
     "test:scripts": "mocha --config ./.mocharc-scripts.json",
     "update:copyright": "node ./scripts/update-copyright",
-    "preinstall": "npx npm-force-resolutions"
+    "preinstall": "npm run lock:create && npx npm-force-resolutions",
+    "lock:create": "npx path-exists-cli package-lock.json || npm install --package-lock-only --ignore-scripts"
   },
   "keywords": [
     "fse",
