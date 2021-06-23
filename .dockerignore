@@ -1,0 +1,10 @@
+.follow-up
+.build
+dist
+.github
+.git
+.vscode
+doc
+publish
+node_modules
+*.md

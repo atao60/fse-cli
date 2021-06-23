@@ -21,6 +21,7 @@ Welcome!
   - [Scripts](#scripts)
   - [Cross Platform Concerns](#cross-platform-concerns)
   - [Watch changes](#watch-changes)
+  - [Iterate tests over main versions of Node.js](#iterate-tests-over-main-versions-of-node.js)
   - [Check package locally](#check-package-locally)
   - [Commit](#commit)
   - [Pull Request](#pull-request)
@@ -80,7 +81,8 @@ This project uses:
 - [Typescript](https://www.typescriptlang.org/) as far as possible, otherwise [ES2018](https://www.ecma-international.org/ecma-262/9.0/index.html),
 - [Babel7](https://babeljs.io/blog/2018/08/27/7.0.0) as compiler (°).
 - [ESLint](https://eslint.org/) **and** [TSLint](https://palantir.github.io/tslint/) as static code analyzers,
-- [Npm](https://www.npmjs.com/) as package manager.
+- [Npm](https://www.npmjs.com/) as package manager,
+- [Docker](https://www.docker.com/) to run tests locally with specific versions of [Node.js](https://nodejs.org).
 
 > (°) There are four TypeScript features that do not compile in Babel due to its single-file emit architecture, see § `It's not a perfect marriage` of [TypeScript With Babel: A Beautiful Marriage](https://iamturns.com/typescript-babel/).
 
@@ -108,6 +110,7 @@ At the moment there is no CI/Build configuration on [Github](https://github.com)
 * [Node.js](https://nodejs.org/en/download/)
 * [Npm](https://www.npmjs.com/) - comes with Node.js
 * [Npx](https://github.com/npm/npx#readme) - comes with Node.js
+* [Docker](https://www.docker.com/)
 
 and possibly:
 * a [GitHub account](https://github.com/)
@@ -117,9 +120,11 @@ The shell used here is [Bash](https://www.gnu.org/software/bash/) under [Linux](
 Check prerequisites' status:
 ```bash
 
-npm doctor # will show information about git, node, npm... for the current user
+npm doctor # show information about git, node, npm... for the current user
 
 git --version
+
+docker --version # check if BuildKit can be used, i.e. with Docker 18.09 or higher
 
 npm list -g --depth 0 2>&1 | grep fse-cli # (°°)
 
@@ -148,6 +153,7 @@ npm install
 # npx depcheck  ### good to detect missing dependencies,
                 #   but many false errors about unused dependencies such as e.g. runtime ones (tslib, @babel/runtime)
 
+### `cost-of-modules` gives install time required for each package.
 # npm run rimraf -- ./node_modules_bak && npx cost-of-modules
 
 ```
@@ -156,7 +162,7 @@ npm install
 
 The main available scripts are:
 
-- `npm start` - alias for `npm test`
+- `npm start` - alias for `npm test`,
 - `npm test` - rerun build and test after any code changes and made them available through `npm link`,
 - `npm run build` - create a production ready build,
 - `npm run commit` - commit instead of `git commit`,
@@ -168,11 +174,14 @@ The main available scripts are:
 - `npm run fullcheck` - run test and lint,
 - `npm run analyse` - check dependencies and publish content.
 
+It's also possible to iterate the tests over each main version of [Node.js](https://nodejs.org), using [Docker](https://www.docker.com/):
+- `./make.sh nodecheckall`.
+
 ### Cross Platform Concerns
 
 ##### Code
 
-Libraries [graceful-fs](https://www.npmjs.com/package/graceful-fs) and [cross-spawn](https://www.npmjs.com/package/cross-spawn) have been used to improve Windows support.
+Libraries such as [graceful-fs](https://www.npmjs.com/package/graceful-fs) and [cross-spawn](https://www.npmjs.com/package/cross-spawn) have been used to improve Windows support.
 
 ##### Scripts
 
@@ -198,6 +207,19 @@ Not forgetting, of course...:
 npm start ### will rebuild and test after each code change
 
 ```
+### Iterate tests over main versions of Node.js
+
+To ensure this package `@atao60/fse-cli` is compatible with all major versions of [Node.js](https://nodejs.org), a [Docker](https://www.docker.com/) image with the last release of each of them is used to run the tests:
+
+```bash
+./make.sh nodecheckall
+```
+The checked versions of [Node.js](https://nodejs.org) are from 10 to 16.
+
+
+>[EOL](https://en.wikipedia.org/wiki/End-of-life_product) of `Node.js` 10 was the 30th April 2021, see [Node.js' Releases](https://github.com/nodejs/Release).  
+Even if [Docker Official Images for Node.js](https://hub.docker.com/_/node) doesn't support any more versions below 12, older versions are still available.
+
 
 ### Check package locally
 

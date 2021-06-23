@@ -1,0 +1,14 @@
+ARG NODE_VERSION=10.15.3
+
+FROM node:${NODE_VERSION}-alpine
+
+WORKDIR /app
+
+COPY ["package.json", "package-lock.json", "./"]
+
+RUN npm ci
+
+COPY . .
+
+# It's a test image: freeze launching api
+ENTRYPOINT ["npm", "run", "fulltest"]
