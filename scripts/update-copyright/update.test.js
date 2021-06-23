@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* spell-checker: disable */
-/* 'match goups' is a copy almost identical of test from
+/* 'match groups' is an almost identical copy of test from
  * copyright-regex <https://github.com/regexps/copyright-regex>
  */
 'use strict';
