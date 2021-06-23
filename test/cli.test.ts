@@ -4,7 +4,7 @@ import { describe, it } from 'mocha';
 import { join } from 'path';
 import { env } from 'process';
 import { format as printf } from 'util';
-import supportsColor from 'supports-color';
+import { stdout as supportsColorStdout } from 'supports-color';
 
 import { execute as run } from './cmd';
 
@@ -492,7 +492,9 @@ describe("The fs-extra CLI", () => {
                 // maxTimeout: 0,         // 10 s by default; if "0" then no timeout
                 env: { 
                     DEBUG,                                   // false by default
-                    FORCE_COLOR: supportsColor.stdout.level  // 
+                    // See Add ability to force disable colors with an environment variable #31
+                    //     https://github.com/chalk/supports-color/pull/31
+                    FORCE_COLOR: supportsColorStdout ? supportsColorStdout.level : 0  
                 }            
             };
             const versionRegex = new RegExp(`^@atao60/fse-cli\\s+${semverPattern}\\s+\\(fs-extra\\s+${semverPattern}\\)`);
