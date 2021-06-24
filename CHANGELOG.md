@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.60](https://github.com/atao60/fse-cli/compare/v0.0.59...v0.0.60) (2021-06-24)
+
+
+### Styling
+
+* **comments:** minor changes ([ecca4e1](https://github.com/atao60/fse-cli/commit/ecca4e1bc591cb7832806d9f2ca419ad8ce8b681))
+
+
+### Tests
+
+* add test of fse-cli as global npm package ([c97cf9c](https://github.com/atao60/fse-cli/commit/c97cf9c475b005dad1d69b28a5805340bedf328a))
+* run tests under each main version of Node (using Docker) ([928fae9](https://github.com/atao60/fse-cli/commit/928fae9ae5c704a9c62ce2ded2a03d5c1612dd5d))
+
+
+### Build System
+
+* **deps:** allow running `npm i` even w/o package-lock.json ([3080bba](https://github.com/atao60/fse-cli/commit/3080bba853cc51b4bc15652ea068d8ddf70e464c))
+* **deps:** minor updating ([4033fe8](https://github.com/atao60/fse-cli/commit/4033fe8cb3395fc6d7f4b7c31d2d96521f7721de))
+* **deps:** upgrade fs-extra ([39434cf](https://github.com/atao60/fse-cli/commit/39434cf02752a50310ebcb62c3b60ac7258d6fdd))
+* **deps:** upgrade mocha to version 9 ([056c9ad](https://github.com/atao60/fse-cli/commit/056c9ade0257c213a78423e8db2e61e66468c563))
+* **deps:** upgrade ts-node & ts typing ([354339f](https://github.com/atao60/fse-cli/commit/354339f848a637bd4edfc95723c8e3d7c5a66224))
+
+
+### Docs
+
+* add warning about next release dropping support to Node 10 ([cc3d279](https://github.com/atao60/fse-cli/commit/cc3d27912f1a444a17c92d4dc0ff9ed432e89ab4))
+
 ### [0.0.59](https://github.com/atao60/fse-cli/compare/v0.0.58...v0.0.59) (2021-06-11)
 
 
