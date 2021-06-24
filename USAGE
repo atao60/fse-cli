@@ -9,7 +9,7 @@ To force prompting for all the arguments, add the option '--all' when available.
 To suppress output when it makes sens (i.e. not an error or an output of query command), use either the option '--quiet'
 or the environment variable 'FSE_CLI_QUIET=true'.
 
-    * version          Displays [@atao60/fse-cli](https://github.com/atao60/fse-cli/blob/HEAD/CHANGELOG.md) version (and [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra/blob/HEAD/CHANGELOG.md) version).
+    * version          Displays [@atao60/fse-cli](https://github.com/atao60/fse-cli/releases) version (and [Node.js: fs-extra](https://github.com/jprichardson/node-fs-extra/blob/master/CHANGELOG.md) version).
 
         `fse version`
 
