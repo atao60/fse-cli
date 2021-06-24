@@ -216,6 +216,7 @@ To ensure this package `@atao60/fse-cli` is compatible with all major versions o
 ```
 The checked versions of [Node.js](https://nodejs.org) are from 10 to 16.
 
+> As soon as [Docker](https://www.docker.com/) is installed, some Bourne shell or compatible should be available, allowing running `make.sh`.
 
 >[EOL](https://en.wikipedia.org/wiki/End-of-life_product) of `Node.js` 10 was the 30th April 2021, see [Node.js' Releases](https://github.com/nodejs/Release).  
 Even if [Docker Official Images for Node.js](https://hub.docker.com/_/node) doesn't support any more versions below 12, older versions are still available.

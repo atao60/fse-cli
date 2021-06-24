@@ -10,5 +10,8 @@ RUN npm ci
 
 COPY . .
 
-# It's a test image: freeze launching api
-ENTRYPOINT ["npm", "run", "fulltest"]
+RUN ["npm", "run", "compile:dev"]
+
+RUN ["npm", "link"]
+
+CMD ["npm", "run", "node:version"]
