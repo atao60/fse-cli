@@ -107,7 +107,7 @@ At the moment there is no CI/Build configuration on [Github](https://github.com)
 ## Prerequisites 
 
 * [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/en/download/)
+* [Node.js](https://nodejs.org/)
 * [Npm](https://www.npmjs.com/) - comes with Node.js
 * [Npx](https://github.com/npm/npx#readme) - comes with Node.js
 * [Docker](https://www.docker.com/)
