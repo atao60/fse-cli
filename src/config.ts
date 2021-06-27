@@ -4,7 +4,7 @@ import { prompt } from 'inquirer';
 import { basename, join } from 'path';
 import { exit } from 'process';
 
-import { JobDef } from './job-def';
+import { JobDef } from './job-def.js';
 
 // !!! ⚠️ Don't forget to update the section 'bin' of package.json for any change of jobLinks ⚠️ !!!
 const jobLinks = Object.freeze({
@@ -62,7 +62,7 @@ async function parseArgumentsIntoOptions(rawArgs: string[]) {
     }
 
     const argv = finalArgs.slice(3);
-    const modulePath = join(__dirname, 'tasks', jobTag);
+    const modulePath = join(__dirname, 'tasks', jobTag + '.js');
     const module = await import(modulePath);
     const jobDef = module.def;
     const args = arg(

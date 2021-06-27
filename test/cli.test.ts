@@ -6,7 +6,7 @@ import { env } from 'process';
 import { format as printf } from 'util';
 import { stdout as supportsColorStdout } from 'supports-color';
 
-import { execute as run } from './cmd';
+import { execute as run } from './cmd.js';
 
 const LIB_DIR = join(__dirname, env.APP_CODE_PATH || '../../dist');
 // os.tmpdir() is not used here, to stay inside project folder

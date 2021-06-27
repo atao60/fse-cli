@@ -4,7 +4,7 @@ const tasksSubDir = 'tasks';
 
 async function loadModule(jobTag: string) {
     // dynamic import is fine here as `jobTag` validity has been checked already
-    const modulePath = join(__dirname, tasksSubDir, jobTag);
+    const modulePath = join(__dirname, tasksSubDir, jobTag + '.js');
     const module: { job: (options: Record<string, unknown>) => Promise<void> } = await import(modulePath);
     return module;
 }

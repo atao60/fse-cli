@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'fs-extra';
 import { join } from 'path';
 
-import * as logger from '../logger';
+import * as logger from '../logger.js';
 
 const versionDef = {
     name: 'version',

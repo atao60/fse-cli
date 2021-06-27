@@ -3,8 +3,8 @@ import { join } from 'path';
 import chalk, { Chalk } from 'chalk';
 import terminalLink from 'terminal-link';
 
-import { job as version } from './version';
-import { info } from '../logger';
+import { job as version } from './version.js';
+import { info } from '../logger.js';
 
 const versionDef = {
     name: 'help',

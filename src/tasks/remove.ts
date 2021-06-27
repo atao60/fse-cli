@@ -4,7 +4,7 @@ import { env } from 'process';
 
 const quietDefault = env.FSE_CLI_QUIET && env.FSE_CLI_QUIET === 'true';
 
-import * as logger from '../logger';
+import * as logger from '../logger.js';
 
 const removeDef = {
     name: 'remove',
