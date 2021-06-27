@@ -18,6 +18,7 @@ Actions:
   globaltest     run commands version and help of fse-cli as global npm package
   check          create test image then run full testing and global testing
   nodecheckall   iterate over the last main versions
+  debug          run full testing in mode debug
   clean          remove all the images created by action 'nodecheckall'
   usage          display this help (default)
 EOUSAGE
@@ -41,6 +42,12 @@ case $1 in
     echo ">>> Full Test"
     docker run -it --rm $TEST_IMAGE_NAME:$VERSION npm run test:dev:run
   ;;
+  debug)
+    echo ">>> Node, effective version"
+    docker run -it --rm $TEST_IMAGE_NAME:$VERSION
+    echo ">>> Full Test"
+    docker run -it --rm $TEST_IMAGE_NAME:$VERSION "/bin/sh" "-c" "CLI_TEST_DEBUG=true npm run test:dev:run"
+  ;;
   globaltest)
     echo ">>> Global Test (using link): fse version"
     docker run -it --rm $TEST_IMAGE_NAME:$VERSION "/bin/sh" "-c" "cd .. && fse version" 
@@ -61,5 +68,4 @@ case $1 in
   ;;
   *)
     usage
-  ;;
 esac
