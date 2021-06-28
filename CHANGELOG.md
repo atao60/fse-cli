@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.62](https://github.com/atao60/fse-cli/compare/v0.0.61...v0.0.62) (2021-06-28)
+
+
+### Features
+
+* **test:** add debug entry to make.sh ([f7fd324](https://github.com/atao60/fse-cli/commit/f7fd3243ff3f608ddb51bc3cd08e44e6e3b6052b))
+
+
+### Bug Fixes
+
+* **build:** restore working husky (v6) hooks ([44af08d](https://github.com/atao60/fse-cli/commit/44af08d31618f1a5d630574afd074f9b8713299c))
+
+
+### Code Refactoring
+
+* more precise interface JobDef (sequel) ([2d87dd0](https://github.com/atao60/fse-cli/commit/2d87dd041d1180b46b2f3d01619584988500e275))
+* **esm:** split named import-s ([0fdd002](https://github.com/atao60/fse-cli/commit/0fdd0022a167ce8d6d593e636a5811ca6217965f))
+* more precise interface JobDef ([ff94353](https://github.com/atao60/fse-cli/commit/ff9435309c3676202a189739a149002eb99e751b))
+* **esm:** add file extension .js in import-s ([0faf646](https://github.com/atao60/fse-cli/commit/0faf6467500dff5518ddf7be5ad9773e952467b6))
+* **esm:** set explicit format cjs of config files ([cf30b02](https://github.com/atao60/fse-cli/commit/cf30b020526600de06734ef6e759af364b25d22c))
+
+
+### Docs
+
+* update README & CONTRIBUTING ([5ed5a0b](https://github.com/atao60/fse-cli/commit/5ed5a0b97c201bad25470c91ff2f4022095c3f98))
+
 ### [0.0.61](https://github.com/atao60/fse-cli/compare/v0.0.60...v0.0.61) (2021-06-25)
 
 
