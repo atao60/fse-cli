@@ -146,6 +146,8 @@ cd atao60-fse-cli
 
 npm install
 
+npm run fullcheck ### Check if the app code is fine (°)
+
 # npm outdated
 
 # npm audit
@@ -157,6 +159,8 @@ npm install
 # npm run rimraf -- ./node_modules_bak && npx cost-of-modules
 
 ```
+
+> (°) The first time the timeout of 2s may not be enough. Just run again the full checking.
 
 ### Scripts
 
@@ -221,6 +225,7 @@ The checked versions of [Node.js](https://nodejs.org) are from 10 to 16.
 >[EOL](https://en.wikipedia.org/wiki/End-of-life_product) of `Node.js` 10 was the 30th April 2021, see [Node.js' Releases](https://github.com/nodejs/Release).  
 Even if [Docker Official Images for Node.js](https://hub.docker.com/_/node) doesn't support any more versions below 12, older versions are still available.
 
+> Don't forget to regularly check and clean up disk space used by [Docker](https://www.docker.com/): `docker system df` and `docker system prune` are your friends here!
 
 ### Check package locally
 
