@@ -21,7 +21,7 @@ const jobLinks = Object.freeze({
     move: 'move',
     version: 'version',
     help: 'help'
-} as {[key: string]: string});
+} as { [key: string]: string });
 
 // 'cli' must not be used as task name
 const allowedScriptPrefixes = ['fse-cli', 'fse'];  // longer first
@@ -64,8 +64,7 @@ async function parseArgumentsIntoOptions(rawArgs: string[]) {
 
     const argv = finalArgs.slice(3);
     const modulePath = join(__dirname, 'tasks', jobTag + '.js');
-    const module = await import(modulePath);
-    const jobDef = module.def;
+    const { def: jobDef }: {def: JobDef} = await import(modulePath);
     const args = arg(
         jobDef.spec,
         { argv }
@@ -82,7 +81,7 @@ async function promptForMissingOptions({ jobDef, options: partialOptions }:
     { jobDef: JobDef, options: Record<string, unknown> }): Promise<JobOptions> {
 
     const questions = jobDef.questions(partialOptions);
-    const answers = await prompt<{[key: string]: any}>(questions); 
+    const answers = await prompt<{ [key: string]: unknown }>(questions);
 
     const options = Object.keys(answers).reduce((options, k) => {
         options[k] = partialOptions[k] || answers[k];
