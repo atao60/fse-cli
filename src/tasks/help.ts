@@ -1,4 +1,5 @@
-import { existsSync, readFileSync } from 'fs-extra';
+import fse from 'fs-extra';
+const { existsSync, readFileSync } = fse;
 import { join } from 'path';
 import chalk, { Chalk } from 'chalk';
 import terminalLink from 'terminal-link';

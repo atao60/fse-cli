@@ -1,10 +1,13 @@
 import { expect } from 'chai';
-import { closeSync, existsSync, mkdtempSync, mkdirSync, openSync, readFileSync, rmdirSync, statSync, unlinkSync, writeSync } from 'graceful-fs';
-import { describe, it } from 'mocha';
+import gfs from 'graceful-fs';
+const { closeSync, existsSync, mkdtempSync, mkdirSync, openSync, readFileSync, rmdirSync, statSync, unlinkSync, writeSync } = gfs;
+import mocha from 'mocha';
+const  { describe, it } = mocha;
 import { join } from 'path';
 import { env } from 'process';
 import { format as printf } from 'util';
-import { stdout as supportsColorStdout } from 'supports-color';
+import sc from 'supports-color';
+const { stdout: supportsColorStdout } = sc;
 
 import { execute as run } from './cmd.js';
 

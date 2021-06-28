@@ -1,5 +1,7 @@
-import { red } from 'chalk';
-import { ensureFile } from 'fs-extra';
+import chalk from 'chalk';
+const { red } = chalk;
+import fse from 'fs-extra';
+const { ensureFile } = fse;
 import { env } from 'process';
 
 import * as logger from '../logger.js';

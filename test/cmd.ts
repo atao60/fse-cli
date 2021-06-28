@@ -2,8 +2,10 @@ import { constants } from 'os';
 import { env } from 'process';
 import concat from 'concat-stream';
 
-import { spawn } from 'cross-spawn';
-import { existsSync } from 'graceful-fs';
+import cs from 'cross-spawn';
+const { spawn } = cs;
+import gfs from 'graceful-fs';
+const { existsSync } = gfs;
 // here only types are imported from `child_process`: no risk about cross platform issues.
 import { ChildProcess, ChildProcessWithoutNullStreams, SpawnOptions } from 'child_process';
 

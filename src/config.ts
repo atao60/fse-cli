@@ -1,6 +1,7 @@
 import arg from 'arg';
 import chalk from 'chalk';
-import { prompt } from 'inquirer';
+import inquirer from 'inquirer';
+const { prompt } = inquirer;
 import { basename, join } from 'path';
 import { exit } from 'process';
 

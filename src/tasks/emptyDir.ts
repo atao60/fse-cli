@@ -1,4 +1,5 @@
-import { red } from 'chalk';
+import chalk from 'chalk';
+const { red } = chalk;
 import { emptyDir } from 'fs-extra';
 import { env } from 'process';
 

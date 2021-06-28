@@ -1,4 +1,5 @@
-import { red } from 'chalk';
+import chalk from 'chalk';
+const { red } = chalk;
 import { move, MoveOptions } from 'fs-extra';
 import { env } from 'process';
 
