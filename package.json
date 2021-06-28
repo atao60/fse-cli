@@ -42,13 +42,6 @@
     "USAGE",
     "CONTRIBUTING.md"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run fullcheck",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
@@ -93,7 +86,8 @@
     "test:scripts": "mocha --config ./.mocharc-scripts.json",
     "update:copyright": "node ./scripts/update-copyright",
     "preinstall": "npm run lock:create && npx npm-force-resolutions",
-    "lock:create": "npx path-exists-cli package-lock.json || npm install --package-lock-only --ignore-scripts"
+    "lock:create": "npx path-exists-cli package-lock.json || npm install --package-lock-only --ignore-scripts",
+    "prepare": "husky install"
   },
   "keywords": [
     "fse",
