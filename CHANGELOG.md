@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/atao60/fse-cli/compare/v0.1.1...v0.1.2) (2021-06-29)
+
+
+### Bug Fixes
+
+* **esm:** replace 'main' with 'exports' in package.json as publishing ([8a1dd61](https://github.com/atao60/fse-cli/commit/8a1dd610f970b7a0fed899851f91779757c59991))
+
 ### [0.1.1](https://github.com/atao60/fse-cli/compare/v0.1.0...v0.1.1) (2021-06-29)
 
 
