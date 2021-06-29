@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/atao60/fse-cli/compare/v0.0.63...v0.1.0) (2021-06-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* **esm:** remove support to Node 10
+
+### build
+
+* **esm:** migrate to ES Modules ([f4a0e7b](https://github.com/atao60/fse-cli/commit/f4a0e7b17cd2427799885529dc098aabde925c2c)), closes [jprichardson/node-fs-extra#746](https://github.com/jprichardson/node-fs-extra/issues/746)
+
 ### [0.0.63](https://github.com/atao60/fse-cli/compare/v0.0.62...v0.0.63) (2021-06-29)
 
 
