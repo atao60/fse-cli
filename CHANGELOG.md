@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/atao60/fse-cli/compare/v0.1.0...v0.1.1) (2021-06-29)
+
+
+### Bug Fixes
+
+* fix changelog error and default version in make.sh ([67f528b](https://github.com/atao60/fse-cli/commit/67f528be802182b68d691d4ae12c535c1a567cee))
+
 ## [0.1.0](https://github.com/atao60/fse-cli/compare/v0.0.63...v0.1.0) (2021-06-29)
 
 
