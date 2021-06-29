@@ -11,7 +11,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### build
 
-* **esm:** migrate to ES Modules ([f4a0e7b](https://github.com/atao60/fse-cli/commit/f4a0e7b17cd2427799885529dc098aabde925c2c)), closes [jprichardson/node-fs-extra#746](https://github.com/jprichardson/node-fs-extra/issues/746)
+* **esm:** migrate to ES Modules ([f4a0e7b](https://github.com/atao60/fse-cli/commit/f4a0e7b17cd2427799885529dc098aabde925c2c))
 
 ### [0.0.63](https://github.com/atao60/fse-cli/compare/v0.0.62...v0.0.63) (2021-06-29)
 

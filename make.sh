@@ -4,7 +4,7 @@ CWD=$(cd $(dirname $0); pwd)
 MAKE=$0
 OWNER=atao60
 NAME=fse-cli
-VERSION=${2:-10.15.3}
+VERSION=${2:-12.20.0}
 ALL_MAIN_VERSIONS="12 14 15 16"
 
 TEST_IMAGE_NAME=$OWNER/$NAME-test
