@@ -34,10 +34,13 @@ const MANDATORY_FILES = Object.freeze({
     // The file in the "main" field
 });
 
-const getPackageConfigMainField = () => {
-    const npmPackageMain = trimSlash(env.npm_package_main);
-    const mainField = { [npmPackageMain]: { ignorecase: false, anyfileext: false } };
-    return mainField;
+const getPackageConfigPathField = (name: string) => {
+    const value = env[`npm_package_` + name];
+    if (value == null) return {};
+
+    const npmPackageFieldValue = trimSlash(value);
+    const path = { [npmPackageFieldValue]: { ignorecase: false, anyfileext: false } };
+    return path;
 };
 
 const getPackageConfigFilesField = () => {
@@ -108,7 +111,8 @@ function embeddableFilePaths(extraFilePaths: Readonly<string[]>) {
         ...MANDATORY_FILES,
         // 'package-lock.json' required to create a file npm-shrinkwrap.json from it, see createNpmShrinkwrapFile.ts
         ...getNotRelaxedPaths([...extraFilePaths, PACKAGE_LOCK_JSON_FILE_NAME]),
-        ...getPackageConfigMainField(),
+        ...getPackageConfigPathField('main'),
+        ...getPackageConfigPathField('exports'),
         ...getPackageConfigFilesField()
     };
 
