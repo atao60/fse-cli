@@ -21,6 +21,7 @@ jobs:
           scope: '@atao60'
       - run: npm ci
       # Setup .npmrc file to publish to Github
+      - run: ts-node --show-config
       - run: echo registry=https://npm.pkg.github.com/atao60 >> .npmrc
       - run: npm run build
       - run: npm run cli:publish:pack
