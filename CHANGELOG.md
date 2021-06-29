@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.63](https://github.com/atao60/fse-cli/compare/v0.0.62...v0.0.63) (2021-06-29)
+
+
+### Bug Fixes
+
+* change the right file for JobDef ([7916998](https://github.com/atao60/fse-cli/commit/79169983bbd0b70190a996c7363832bc812bf323))
+
 ### [0.0.62](https://github.com/atao60/fse-cli/compare/v0.0.61...v0.0.62) (2021-06-28)
 
 
