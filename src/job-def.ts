@@ -1,7 +1,9 @@
+import { Spec } from "arg";
+
 export interface JobDef {
     name: string;
-    spec: {[key: string]: any};
-    'default'?: {},
-    options: Function;
-    questions: Function
+    spec: Spec;
+    'default'?: { [key: string]: unknown};
+    options: (_: { _: unknown[] }) => Record<string, unknown>;
+    questions: (_: { [_: string]: unknown }) => Record<string, unknown>[]
 }
