@@ -38,7 +38,7 @@ or the environment variable 'FSE_CLI_QUIET=true'.
         `fse remove --quiet <directory's path>`
 
     * touch             Ensures that the file exists. If the file that is requested to be created is in directories that do not exist, 
-                        these directories are created. If the file already exists, it is NOT MODIFIED."
+                        these directories are created. If the file already exists, it is NOT MODIFIED.
                         Aliases: ***ensureFile***, ***touch***
 
         `fse touch --quiet <new file's path>`

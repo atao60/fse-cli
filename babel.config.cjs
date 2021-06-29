@@ -1,5 +1,5 @@
 const targets = {
-    node: "10.15.3" // See also engines.node in package.json
+    node: "12.20.0" // See also engines.node in package.json
     // With @atao/fse-cli, indeed no '.browserslistrc'
 };
 
@@ -45,7 +45,7 @@ const presets = [
             },
             // Now Babel defaults 'modules' to 'auto', not any more to 'commonjs' (which won’t tree-shake.)
             // So no more need to setup 'modules' to 'false':
-            // modules: false, 
+            modules: false,
             targets
         }
     ]

@@ -1,11 +1,14 @@
+import chalk, { Chalk } from 'chalk';
 import fse from 'fs-extra';
 const { existsSync, readFileSync } = fse;
-import { join } from 'path';
-import chalk, { Chalk } from 'chalk';
+import { dirname, join } from 'path';
 import terminalLink from 'terminal-link';
+import { fileURLToPath } from 'url';
 
 import { job as version } from './version.js';
 import { info } from '../logger.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const versionDef = {
     name: 'help',

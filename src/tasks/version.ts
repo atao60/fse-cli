@@ -1,8 +1,11 @@
 import fse from 'fs-extra';
 const { existsSync, readFileSync } = fse;
-import { join } from 'path';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
 import * as logger from '../logger.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const versionDef = {
     name: 'version',

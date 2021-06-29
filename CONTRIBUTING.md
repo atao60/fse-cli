@@ -107,10 +107,11 @@ At the moment there is no CI/Build configuration on [Github](https://github.com)
 ## Prerequisites 
 
 * [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/)
-* [Npm](https://www.npmjs.com/) - comes with Node.js
-* [Npx](https://github.com/npm/npx#readme) - comes with Node.js
+* [Node.js](https://nodejs.org/) - *at least version 12.20*
+* [Npm](https://www.npmjs.com/) - *comes with Node.js*
+* [Npx](https://github.com/npm/npx#readme) - *comes with Node.js*
 * [Docker](https://www.docker.com/)
+* [nvm](https://github.com/nvm-sh/nvm) - *optional*
 
 and possibly:
 * a [GitHub account](https://github.com/)
@@ -126,6 +127,8 @@ git --version
 
 docker --version # check if BuildKit can be used, i.e. with Docker 18.09 or higher
 
+nvm --version # required only if you need to install Node with at least version 12.20 or higher
+
 npm list -g --depth 0 2>&1 | grep fse-cli # (°°)
 
 ```
@@ -138,6 +141,8 @@ npm list -g --depth 0 2>&1 | grep fse-cli # (°°)
 ### Fork
 
 ```bash
+node --version ### check Node.js is installed with at least version 12.20
+
 sudo npm uninstall -g @atao60/fse-cli ### if needed; required to avoid any issue with `npm link`, see below
 
 git clone https://github.com/atao60/fse-cli.git atao60-fse-cli
@@ -213,17 +218,20 @@ npm start ### will rebuild and test after each code change
 ```
 ### Iterate tests over main versions of Node.js
 
-To ensure this package `@atao60/fse-cli` is compatible with all major versions of [Node.js](https://nodejs.org), a [Docker](https://www.docker.com/) image with the last release of each of them is used to run the tests:
+To ensure this package `@atao60/fse-cli` is compatible with all major versions of [Node.js](https://nodejs.org), a [Docker](https://www.docker.com/)(°) image with the last release of each of them is used to run the tests:
 
 ```bash
 ./make.sh nodecheckall
 ```
-The checked versions of [Node.js](https://nodejs.org) are from 10 to 16.
+The checked releases of [Node.js](https://nodejs.org) are from 12 to last available one as long as a version compatible with [ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) is available(°°).
 
-> As soon as [Docker](https://www.docker.com/) is installed, some Bourne shell or compatible should be available, allowing running `make.sh`.
+> (°) As soon as [Docker](https://www.docker.com/) is installed, some Bourne shell or compatible one should be available, allowing cross-platform running of `make.sh`.
 
->[EOL](https://en.wikipedia.org/wiki/End-of-life_product) of `Node.js` 10 was the 30th April 2021, see [Node.js' Releases](https://github.com/nodejs/Release).  
-Even if [Docker Official Images for Node.js](https://hub.docker.com/_/node) doesn't support any more versions below 12, older versions are still available.
+> (°°) Already reached [EOL](https://en.wikipedia.org/wiki/End-of-life_product) of [Node.js' Releases](https://github.com/nodejs/Release) are:
+- 10: 30th April 2021,  
+- 13: 1st of june 2020,  
+- 15: 1st of june 2021.  
+As release 15 is compatible with `ESM`, it's not been removed from checking yet.
 
 > Don't forget to regularly check and clean up disk space used by [Docker](https://www.docker.com/): `docker system df` and `docker system prune` are your friends here!
 

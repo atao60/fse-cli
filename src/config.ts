@@ -2,10 +2,13 @@ import arg from 'arg';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
 const { prompt } = inquirer;
-import { basename, join } from 'path';
+import { basename, dirname, join } from 'path';
 import { exit } from 'process';
+import { fileURLToPath } from 'url';
 
 import { JobDef } from './job-def.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // !!! ⚠️ Don't forget to update the section 'bin' of package.json for any change of jobLinks ⚠️ !!!
 const jobLinks = Object.freeze({

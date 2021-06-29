@@ -7,12 +7,14 @@
         "allowSyntheticDefaultImports": true,
         "outDir": "../dist",
         "baseUrl": "",
-        "module": "commonjs",
+        "module": "ES2020",
         "moduleResolution": "node",
         "lib": [
             "es2018",
             "dom"
         ]
     },
-    "include": ["**/*.test.ts"]
+    "include": [
+        "**/*.test.ts"
+    ]
 }

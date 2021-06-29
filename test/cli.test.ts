@@ -3,13 +3,16 @@ import gfs from 'graceful-fs';
 const { closeSync, existsSync, mkdtempSync, mkdirSync, openSync, readFileSync, rmdirSync, statSync, unlinkSync, writeSync } = gfs;
 import mocha from 'mocha';
 const  { describe, it } = mocha;
-import { join } from 'path';
+import { dirname, join } from 'path';
 import { env } from 'process';
-import { format as printf } from 'util';
 import sc from 'supports-color';
 const { stdout: supportsColorStdout } = sc;
+import { fileURLToPath } from 'url';
+import { format as printf } from 'util';
 
 import { execute as run } from './cmd.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const LIB_DIR = join(__dirname, env.APP_CODE_PATH || '../../dist');
 // os.tmpdir() is not used here, to stay inside project folder
