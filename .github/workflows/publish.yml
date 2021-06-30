@@ -24,7 +24,7 @@ jobs:
       - run: npx ts-node --show-config
       - run: echo registry=https://npm.pkg.github.com/atao60 >> .npmrc
       - run: npm run build
-      - run: npm run cli:publish:pack
+      - run: node -r tsconfig-paths/register -r ts-node/register './tools/prepublish' '' '../..'
       - run: npm publish ./publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
