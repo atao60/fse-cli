@@ -4,7 +4,13 @@ Welcome to @atao/fse-cli
 
 <img src="https://raw.githubusercontent.com/googlefonts/noto-emoji/v2018-08-10-unicode11/svg/emoji_u1f3d7.svg" width="40" /> A [CLI](https://en.wikipedia.org/wiki/Command-line_interface) for [fs-extra](https://github.com/jprichardson/node-fs-extra).
 
-> Releases (0.0.x) will be the last ones to support LTS release [10](https://nodejs.org/download/release/v10.24.1/) of [Node.js](https://nodejs.org). Moreover the releases [11](https://nodejs.org/download/release/v11.15.0/) and [13](https://nodejs.org/download/release/v13.14.0/) are also no more supported. 
+
+> **BREAKING CHANGE**  
+Since release [0.1](https://www.npmjs.com/package/@atao60/fse-cli/v/0.1.2), `@atao60/fse-cli` will only support [Node.js 12](https://nodejs.org/download/release/v12.22.1/) and above.  
+Releases 0.0.x are last ones to support LTS release [10](https://nodejs.org/download/release/v10.24.1/) of [Node.js](https://nodejs.org).  
+Moreover the support is also removed for [Node.js](https://nodejs.org) release [13](https://nodejs.org/download/release/v13.14.0/).
+
+
 ## 💡 Rational
 
 Everyone needs simple file system operations like copy, remove, clean, ... that can be used from the terminal or via scripts. 

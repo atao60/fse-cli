@@ -23,11 +23,13 @@ Welcome!
   - [Watch changes](#watch-changes)
   - [Iterate tests over main versions of Node.js](#iterate-tests-over-main-versions-of-node.js)
   - [Check package locally](#check-package-locally)
+  - [Analyse dependencies](#analyse-dependencies)
   - [Commit](#commit)
   - [Pull Request](#pull-request)
     - [Submit a pull request](#submit-a-pull-request)
     - [Check a submitted pull request](#check-a-submitted-pull-request)
   - [Publish](#publish)
+    - [Size optimization](#size-optimization)
     - [NPM public registry & Github Packages](#npm-public-registry-&-github-packages)
     - [Do it](#do-it)
     - [Check the published package runs fine](#check-the-published-package-runs-fine)
@@ -102,7 +104,11 @@ Aliases are defined in the associative array `jobLinks` inside [src/config.ts](s
 
 Each `task` is tested without duplicating [fs-extra](https://github.com/jprichardson/node-fs-extra) tests.
 
-At the moment there is no CI/Build configuration on [Github](https://github.com) side. But thanks to [Husky](https://github.com/typicode/husky#readme), a [code analysis](#coding-rules) and a full test + build are done before each push on the [github repository](https://github.com/atao60/fse-cli).
+At the moment, CI/Build is splitted between:
+- NPM publishing driven locally by [Husky](https://github.com/typicode/husky#readme),
+- Github releasing and publishing done with [Github Actions](https://docs.github.com/en/actions).
+
+A [code analysis](#coding-rules) and a full test + build are done before each push on the [github repository](https://github.com/atao60/fse-cli).
 
 ## Prerequisites 
 
@@ -174,9 +180,9 @@ The main available scripts are:
 - `npm start` - alias for `npm test`,
 - `npm test` - rerun build and test after any code changes and made them available through `npm link`,
 - `npm run build` - create a production ready build,
-- `npm run commit` - commit instead of `git commit`,
+- `npm run commit` - commit, instead of `git commit`,
 - `npm run release` - run test, lint and build before creating a new release version,
-- `npm run cli:publish` - publish on npm registry instead of `npm publish`,
+- `npm run cli:publish` - publish on npm and github registries, instead of `npm publish`,
 - `npm run clean` - remove temporary folders as dist, .build, ...
 - `npm run refresh` - remove node modules, package-lock.json, dist, ... and re-installs upgraded dependencies,
 - `npm run lint` - check of code,
@@ -378,6 +384,10 @@ Once the pull request merged, delete this branch.
 See [GitHub Docs - Checking out pull requests locally](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/checking-out-pull-requests-locally).
 
 ### Publish
+
+#### Size optimization
+
+`atao60/fse-cli` is published with a embedded npm-shrinkwrap.json expunged from dev deps. This is done through a "shrink" step before publishing. See `./tools/prepublish'.
 
 #### NPM public registry & Github Packages
 
