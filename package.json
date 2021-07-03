@@ -86,8 +86,6 @@
     "cli:publish:gh": "ts-node ./tools/publish-gh",
     "test:scripts": "mocha --config ./.mocharc-scripts.json",
     "update:copyright": "node ./scripts/update-copyright",
-    "preinstall": "npm run lock:create && npx npm-force-resolutions",
-    "lock:create": "npx path-exists-cli package-lock.json || npm install --package-lock-only --ignore-scripts",
     "prepare": "husky install"
   },
   "keywords": [
@@ -187,7 +185,6 @@
     "micromatch": "^4.0.4",
     "mocha": "^9.0.1",
     "nodemon": "^2.0.7",
-    "npm-force-resolutions": "0.0.10",
     "readdirp": "^3.6.0",
     "standard-version": "^9.2.0",
     "supports-color": "^9.0.1",
@@ -201,8 +198,5 @@
   "bugs": {
     "url": "https://github.com/atao60/fse-cli/issues"
   },
-  "homepage": "https://github.com/atao60/fse-cli#readme",
-  "resolutions": {
-    "trim-newlines": "3.0.1"
-  }
+  "homepage": "https://github.com/atao60/fse-cli#readme"
 }

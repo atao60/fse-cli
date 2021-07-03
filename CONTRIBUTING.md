@@ -234,10 +234,11 @@ The checked releases of [Node.js](https://nodejs.org) are from 12 to last availa
 > (°) As soon as [Docker](https://www.docker.com/) is installed, some Bourne shell or compatible one should be available, allowing cross-platform running of `make.sh`.
 
 > (°°) Already reached [EOL](https://en.wikipedia.org/wiki/End-of-life_product) of [Node.js' Releases](https://github.com/nodejs/Release) are:
-- 10: 30th April 2021,  
-- 13: 1st of june 2020,  
-- 15: 1st of june 2021.  
-As release 15 is compatible with `ESM`, it's not been removed from checking yet.
+>- 10: 30th April 2021,
+>- 13: 1st of june 2020,
+>- 15: 1st of june 2021.  
+>  
+>As release 15 is compatible with `ESM`, it's not been removed from checking yet.
 
 > Don't forget to regularly check and clean up disk space used by [Docker](https://www.docker.com/): `docker system df` and `docker system prune` are your friends here!
 
