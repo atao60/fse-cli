@@ -4,11 +4,13 @@ import inquirer from 'inquirer';
 const { prompt } = inquirer;
 import { basename, dirname, join } from 'path';
 import { exit } from 'process';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 import { JobDef } from './job-def.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const tasksSubDir = 'tasks';
 
 // !!! ⚠️ Don't forget to update the section 'bin' of package.json for any change of jobLinks ⚠️ !!!
 const jobLinks = Object.freeze({
@@ -66,8 +68,8 @@ async function parseArgumentsIntoOptions(rawArgs: string[]) {
     }
 
     const argv = finalArgs.slice(3);
-    const modulePath = join(__dirname, 'tasks', jobTag + '.js');
-    const { def: jobDef }: {def: JobDef} = await import(modulePath);
+    const { href: moduleUrl } = pathToFileURL(join(__dirname, tasksSubDir, jobTag + '.js'));
+    const { def: jobDef }: {def: JobDef} = await import(moduleUrl);
     const args = arg(
         jobDef.spec,
         { argv }
