@@ -2,9 +2,10 @@
 
 CWD=$(cd $(dirname $0); pwd)
 MAKE=$0
+COMMAND=${1}
+VERSION=${2:-12.20.0}
 OWNER=atao60
 NAME=fse-cli
-VERSION=${2:-12.20.0}
 ALL_MAIN_VERSIONS="12 14 15 16"
 
 TEST_IMAGE_NAME=$OWNER/$NAME-test
@@ -24,7 +25,7 @@ Actions:
 EOUSAGE
 }
 
-case $1 in
+case $COMMAND in
   build)
     echo ">>> Node, required version: $VERSION"
     docker build \
