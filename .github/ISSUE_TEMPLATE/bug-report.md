@@ -14,7 +14,18 @@ assignees: ''
 
 #### 💻Your Environment
 
-**Node Version:**
+**Operating System:**
+
+<pre><code>
+<!-- under Linux or Mac OS X, run `uname -a` -->
+<!-- under Linux running `lsb_release -a` or `cat /etc/os-release` can also gives relevant data -->
+<!-- under Windows run `systeminfo` -->
+<!-- then paste output below -->
+<!-- ✍️-->
+
+</code></pre>
+
+**Node.js Version:**
 
 <pre><code>
 <!-- run `node --version` and paste output below -->
