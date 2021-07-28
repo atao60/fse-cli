@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/atao60/fse-cli/compare/v0.1.6...v0.1.7) (2021-07-28)
+
+
+### Bug Fixes
+
+* **tasks:** use url in place of path to get task files ([b080ba9](https://github.com/atao60/fse-cli/commit/b080ba920c6aebff56645c9faa7b9439ee15f798)), closes [#34765](https://github.com/atao60/fse-cli/issues/34765) [#16](https://github.com/atao60/fse-cli/issues/16)
+
 ### [0.1.6](https://github.com/atao60/fse-cli/compare/v0.1.5...v0.1.6) (2021-07-03)
 
 ### [0.1.5](https://github.com/atao60/fse-cli/compare/v0.1.4...v0.1.5) (2021-06-30)
