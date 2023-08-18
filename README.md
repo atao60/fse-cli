@@ -86,7 +86,7 @@ See [Contributing](CONTRIBUTING.md).
 
 See [MIT](LICENSE).
 
-Copyright &copy; 2020-2021 [Pierre Raoul](https://github.com/atao60).
+Copyright &copy; 2020-2023 [Pierre Raoul](https://github.com/atao60).
 
 ## 📜 Credits
 
