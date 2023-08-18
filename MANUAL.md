@@ -134,7 +134,9 @@ fse touch --quiet <new file's path>
 
 From the [fs-extra documentation](https://github.com/jprichardson/node-fs-extra/blob/master/docs/move.md):
 
-"Moves a file or directory, even across devices."
+"Moves a file or directory, even across devices.  
+    Note: When `src` is a file, `dest` must be a file and when `src` is a directory, `dest` must be a directory.
+"
 
 *Follow the prompts*
 
