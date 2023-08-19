@@ -404,7 +404,9 @@ At the moment:
 
 #### Do it
 
-Don't use `npm publish` but `npm run cli:publish`:
+⚠&#xfe0f; Don't use `npm publish` but `npm run cli:publish` ⚠&#xfe0f;
+
+Then:
 
 ```bash
 
